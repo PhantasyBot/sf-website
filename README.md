@@ -1,4 +1,6 @@
-# Studio Freight Website
+# Phantasy Website
+
+(note: this is a fork of Studio Freight website)
 
 ## Setup
 

@@ -34,6 +34,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'r2.rally.sh',
+      },
+      {
+        protocol: 'https',
         hostname: 'placehold.co',
       },
     ],

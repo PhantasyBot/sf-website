@@ -9,10 +9,15 @@ import { useStore } from 'lib/store'
 import dynamic from 'next/dynamic'
 import s from './header.module.scss'
 
-const SFLogo = dynamic(() => import('icons/sf-logo.svg'), { ssr: false })
-const SFLogoMobile = dynamic(() => import('icons/sf-logo-mobile.svg'), {
+const PhantasyLogo = dynamic(() => import('icons/phantasy-logo.svg'), {
   ssr: false,
 })
+const PhantasyLogoMobile = dynamic(
+  () => import('icons/phantasy-logo-mobile.svg'),
+  {
+    ssr: false,
+  },
+)
 const Stard = dynamic(() => import('icons/stard.svg'), { ssr: false })
 const Monogram = dynamic(() => import('icons/sf-monogram.svg'), { ssr: false })
 const StarDuotone = dynamic(() => import('icons/star-duotone.svg'), {
@@ -78,9 +83,9 @@ export const Header = ({ principles = [], contact }) => {
       <Separator />
       <div className={cn(s.header, 'layout-grid')}>
         {isMobile === true ? (
-          <SFLogoMobile className={s.title} />
+          <PhantasyLogoMobile className={s.title} />
         ) : (
-          <SFLogo className={s.title} />
+          <PhantasyLogo className={s.title} />
         )}
       </div>
       <Separator />

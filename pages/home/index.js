@@ -278,7 +278,7 @@ export async function getStaticProps() {
       'Code that scales',
     ],
     phoneNumber: '+1 (555) 123-4567',
-    email: 'hello@example.com',
+    email: 'hello@phantasy.bot',
     about: {
       json: {
         nodeType: 'document',
@@ -290,8 +290,7 @@ export async function getStaticProps() {
             content: [
               {
                 nodeType: 'text',
-                value:
-                  "We're a design and development studio focused on creating performant digital experiences.",
+                value: "We're an 18+ NSFW AI Entertainment Studio.",
                 marks: [],
                 data: {},
               },
@@ -427,8 +426,8 @@ export async function getStaticProps() {
       items: [
         {
           sys: { id: 'project1' },
-          name: 'Project One',
-          industry: 'E-commerce',
+          name: 'Rally',
+          industry: 'Virtual Girlfriend',
           body: {
             json: {
               nodeType: 'document',
@@ -441,7 +440,7 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'A beautiful e-commerce project with stunning visuals and performance.',
+                        'Rally is a cheerful virtual girlfriend that lets you do NSFW with her.',
                       marks: [],
                       data: {},
                     },
@@ -454,14 +453,47 @@ export async function getStaticProps() {
             'Working with this team was amazing. They delivered beyond our expectations.',
           services: ['Design', 'Development', 'Animation'],
           stack: ['React', 'Next.js', 'GSAP'],
-          link: 'https://example.com',
+          link: 'https://rally.sh',
           assetsCollection: {
             items: [
               {
                 imagesCollection: {
                   items: [
                     {
-                      url: 'https://placehold.co/1026x604/111/333?text=Project+One',
+                      url: 'https://r2.rally.sh/photos/rally_twitter_00519_.png',
+                      width: 1026,
+                      height: 604,
+                    },
+                  ],
+                },
+              },
+              {
+                imagesCollection: {
+                  items: [
+                    {
+                      url: 'https://r2.rally.sh/photos/rally_twitter_00519_.png',
+                      width: 1026,
+                      height: 604,
+                    },
+                  ],
+                },
+              },
+              {
+                imagesCollection: {
+                  items: [
+                    {
+                      url: 'https://r2.rally.sh/photos/rally_twitter_00500_.png',
+                      width: 1026,
+                      height: 604,
+                    },
+                  ],
+                },
+              },
+              {
+                imagesCollection: {
+                  items: [
+                    {
+                      url: 'https://r2.rally.sh/photos/rally_twitter_00519_.png',
                       width: 1026,
                       height: 604,
                     },

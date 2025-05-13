@@ -106,7 +106,7 @@ export function Footer({ className, style, links, studioInfo }) {
         <section className={s['footer-image']}>
           <Image
             src="/mobile-temp-images/footer.png"
-            alt="studio freight"
+            alt="Phantasy"
             fill
             className={s.image}
           />

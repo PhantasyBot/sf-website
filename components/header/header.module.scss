@@ -90,14 +90,77 @@
 
   .header {
     width: 100%;
+    position: relative;
+
+    @include desktop {
+      // Create space for the repeating background
+      height: desktop-vw(70px);
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/images/phantasy-logo-dark.svg');
+        background-repeat: repeat-x;
+        background-position: center;
+        background-size: auto desktop-vw(40px);
+        opacity: 0.1; // Make the background logos darker
+        z-index: 0;
+      }
+    }
+
+    @include mobile {
+      height: mobile-vw(60px);
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/images/phantasy-logo-mobile-dark.svg');
+        background-repeat: repeat-x;
+        background-position: center;
+        background-size: auto mobile-vw(40px);
+        opacity: 0.1;
+        z-index: 0;
+      }
+    }
+
+    @include desktop-xl {
+      height: desktop-vw(60px);
+
+      &::before {
+        background-size: auto desktop-vw(30px);
+      }
+    }
 
     .title {
       grid-column: 1/-1;
       text-shadow: 0 0 10px;
       margin: desktop-vw(14px) 0;
+      height: auto;
+      max-height: desktop-vw(40px);
+      width: 100%;
+      position: relative;
+      z-index: 1; // Ensure the main logo is above the background
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+
+      @include desktop-xl {
+        max-height: desktop-vw(30px);
+      }
 
       @include mobile {
         margin: mobile-vw(10px) 0;
+        max-height: mobile-vw(40px);
       }
     }
   }

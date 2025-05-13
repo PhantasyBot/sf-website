@@ -35,12 +35,12 @@ if (typeof window !== 'undefined') {
 
   window.CREDIT_ME = {
     id: location.hostname,
-    url: 'https://studiofreight.com',
+    url: 'https://phantasy.bot',
     credits: [
       {
-        name: 'Studio Freight',
-        email: 'hello@studiofreight.com',
-        website: 'https://studiofreight.com',
+        name: 'Phantasy',
+        email: 'hello@phantasy.bot',
+        website: 'https://phantasy.bot',
       },
     ],
   }

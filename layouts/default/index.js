@@ -8,40 +8,15 @@ import s from './layout.module.scss'
 
 const Orchestra = dynamic(
   () => import('lib/orchestra').then(({ Orchestra }) => Orchestra),
-  { ssr: false }
+  { ssr: false },
 )
 
 export function Layout({
   seo = {
-    title: 'Studio Freight - Built on Principle',
-    description:
-      'Studio Freight is an independent creative studio built on principle.',
-    image: { url: 'https://studiofreight.com/sf-og.jpg' },
-    keywords: [
-      'freight',
-      'studio',
-      'UX',
-      'UI',
-      'userexperience',
-      'webdesign',
-      'webdeveloper',
-      'design',
-      'codedesign',
-      'code',
-      'hashtag',
-      'development',
-      'website',
-      'websitedevelopment',
-      'webservices',
-      'art direction',
-      'strategy',
-      'web',
-      'murals',
-      'illustration',
-      'photography',
-      'signage',
-      'video',
-    ],
+    title: 'Phantasy',
+    description: 'Phantasy is an 18+ NSFW AI Entertainment Studio.',
+    image: { url: 'https://r2.rally.sh/photos/rally_twitter_00519_.png' },
+    keywords: ['AI', 'NSFW', 'Entertainment', 'Studio', 'AI Entertainment'],
   },
   children,
   theme = 'dark',
@@ -60,11 +35,7 @@ export function Layout({
       <div className={cn(`theme-${theme}`, s.layout, className)}>
         <Cursor />
         <Scrollbar />
-        <Header
-          
-          principles={principles}
-          contact={contactData}
-        />
+        <Header principles={principles} contact={contactData} />
         <main className={s.main}>{children}</main>
         <Footer links={footerLinks} studioInfo={studioInfo} />
       </div>

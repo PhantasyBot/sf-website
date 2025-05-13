@@ -14,6 +14,12 @@
   }
 }
 
+@mixin desktop-xl {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}
+
 @function mobile-vw($pixels, $base-vw: $mobile-width) {
   @return math.div($pixels * 100vw, $base-vw);
 }
