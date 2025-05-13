@@ -2,7 +2,7 @@ import { Link, Marquee } from '@studio-freight/compono'
 import { useMediaQuery } from '@studio-freight/hamo'
 import va from '@vercel/analytics'
 import cn from 'clsx'
-import { ContactForm } from 'components/header/contact-form'
+import { ContactFormModal } from 'components/header/contact-form'
 import { Separator } from 'components/separator'
 import { pad } from 'lib/maths'
 import { useStore } from 'lib/store'
@@ -101,7 +101,7 @@ export const Header = ({ principles = [], contact }) => {
           ))}
         </Marquee>
       )}
-      <ContactForm data={contact} />
+      <ContactFormModal data={contact} />
     </header>
   )
 }

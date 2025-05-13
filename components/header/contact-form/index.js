@@ -1,6 +1,6 @@
 import * as Accordion from '@radix-ui/react-accordion'
 import cn from 'clsx'
-import { Hubspot } from 'components/hubspot'
+import { ContactForm } from 'components/contact-form'
 import { ScrollableBox } from 'components/scrollable-box'
 import { Separator } from 'components/separator'
 import { renderer } from 'lib/compatibility/faq-renderer'
@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import s from './contact-form.module.scss'
 
-export function ContactForm({ data }) {
+export function ContactFormModal({ data }) {
   const menuRef = useRef(null)
   const router = useRouter()
   const { contact } = router.query
@@ -49,6 +49,41 @@ export function ContactForm({ data }) {
     setContactIsOpen(contact)
   }, [contact])
 
+  // Define form fields
+  const defaultFields = [
+    {
+      name: 'name',
+      label: 'Name',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'email',
+      label: 'Email',
+      type: 'email',
+      required: true,
+    },
+    {
+      name: 'company',
+      label: 'Company',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'message',
+      label: 'Message',
+      type: 'textarea',
+      required: true,
+    },
+  ]
+
+  // Use form fields from data if available
+  const formFields = data?.form?.fields || defaultFields
+
+  const handleFormSuccess = () => {
+    setShowThanks(true)
+  }
+
   return (
     <div className={cn(s.container, contactIsOpen && s.open)}>
       <div className={s.overlay} onClick={closeContactTab} />
@@ -68,11 +103,11 @@ export function ContactForm({ data }) {
         ) : (
           <ScrollableBox className={s.scrollable} shadow={false}>
             <div className={s.content}>{globalRenderer(data.description)}</div>
-            <Hubspot {...data.form} className={s.form}>
-              {({ ...helpers }) => (
-                <Hubspot.Form className={s.form} {...helpers} />
-              )}
-            </Hubspot>
+            <ContactForm
+              className={s.form}
+              fields={formFields}
+              onSuccess={handleFormSuccess}
+            />
             <div className={s.accordion}>
               <p className="p text-uppercase text-bold text-muted">FAQ</p>
               <Accordion.Root
