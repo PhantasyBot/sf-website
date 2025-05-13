@@ -32,6 +32,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'assets.studiofreight.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
   },

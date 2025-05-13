@@ -1,22 +1,24 @@
 export default async function handler(req, res) {
   try {
-    const resp = await fetch('https://api.hubapi.com/crm/v3/objects/deals', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.HUBSPOT_ACCESS_TOKEN}`,
+    // Mock successful response
+    const mockResponse = {
+      id: 'mock-deal-id',
+      properties: {
+        dealname: 'Mock Deal',
+        pipeline: 'default',
+        dealstage: 'appointmentscheduled',
+        amount: '1000',
+        dealtype: 'newbusiness',
+        createdate: new Date().toISOString(),
       },
-      body: req.body,
-    })
-
-    if (!resp.ok) {
-      console.log('error code', resp)
-      throw new Error(`Failed to create deal: ${resp.status}`)
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     }
 
-    const response = await resp.json()
-    res.status(200).json(response)
+    console.log('Mock deal created:', mockResponse)
+
+    // Return a successful response with mock data
+    res.status(200).json(mockResponse)
   } catch (error) {
     console.log('error', error)
     res.status(500).json({ error })

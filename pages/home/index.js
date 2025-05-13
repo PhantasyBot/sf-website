@@ -6,16 +6,8 @@ import { ComposableImage } from 'components/composable-image'
 import { ClientOnly } from 'components/isomorphic'
 import { LayoutMobile } from 'components/layout-mobile'
 import { ScrollableBox } from 'components/scrollable-box'
-import { fetchCmsQuery } from 'contentful/api'
-import {
-  contactEntryQuery,
-  footerEntryQuery,
-  projectListEntryQuery,
-  studioFreightEntryQuery,
-} from 'contentful/queries/home.graphql'
-import { renderer } from 'contentful/renderer'
 import { Layout } from 'layouts/default'
-import { getForm } from 'lib/hubspot'
+import { renderer } from 'lib/simple-renderer'
 import { slugify } from 'lib/slugify'
 import { useStore } from 'lib/store'
 import dynamic from 'next/dynamic'
@@ -277,24 +269,257 @@ export default function Home({ studioFreight, footer, contact, projects }) {
   )
 }
 
-export async function getStaticProps({ preview = false }) {
-  const [{ studioFreight }, { footer }, { contact }, { projectList }] =
-    await Promise.all([
-      fetchCmsQuery(studioFreightEntryQuery, {
-        preview,
-      }),
-      fetchCmsQuery(footerEntryQuery, {
-        preview,
-      }),
-      fetchCmsQuery(contactEntryQuery, {
-        preview,
-      }),
-      fetchCmsQuery(projectListEntryQuery, {
-        preview,
-      }),
-    ])
+export async function getStaticProps() {
+  // Mock data instead of Contentful queries
+  const studioFreight = {
+    principles: [
+      'Design that delivers',
+      'Technology that performs',
+      'Code that scales',
+    ],
+    phoneNumber: '+1 (555) 123-4567',
+    email: 'hello@example.com',
+    about: {
+      json: {
+        nodeType: 'document',
+        data: {},
+        content: [
+          {
+            nodeType: 'paragraph',
+            data: {},
+            content: [
+              {
+                nodeType: 'text',
+                value:
+                  "We're a design and development studio focused on creating performant digital experiences.",
+                marks: [],
+                data: {},
+              },
+            ],
+          },
+        ],
+      },
+    },
+  }
 
-  contact.form = await getForm(contact.form)
+  const footer = {
+    linksCollection: {
+      items: [
+        { name: 'Twitter', url: 'https://twitter.com' },
+        { name: 'LinkedIn', url: 'https://linkedin.com' },
+        { name: 'Instagram', url: 'https://instagram.com' },
+      ],
+    },
+  }
+
+  const contact = {
+    form: {
+      formId: 'mock-form-id',
+      fields: [
+        {
+          name: 'firstname',
+          label: 'First Name',
+          type: 'text',
+          required: true,
+        },
+        { name: 'lastname', label: 'Last Name', type: 'text', required: true },
+        { name: 'email', label: 'Email', type: 'email', required: true },
+        { name: 'message', label: 'Message', type: 'textarea', required: true },
+      ],
+    },
+    description: {
+      json: {
+        nodeType: 'document',
+        data: {},
+        content: [
+          {
+            nodeType: 'paragraph',
+            data: {},
+            content: [
+              {
+                nodeType: 'text',
+                value: 'Contact us with any questions you might have.',
+                marks: [],
+                data: {},
+              },
+            ],
+          },
+        ],
+      },
+    },
+    thankYouMessage: {
+      json: {
+        nodeType: 'document',
+        data: {},
+        content: [
+          {
+            nodeType: 'paragraph',
+            data: {},
+            content: [
+              {
+                nodeType: 'text',
+                value:
+                  'Thank you for your message. We will get back to you shortly.',
+                marks: [],
+                data: {},
+              },
+            ],
+          },
+        ],
+      },
+    },
+    faqsCollection: {
+      items: [
+        {
+          title: 'How do I get started?',
+          content: {
+            json: {
+              nodeType: 'document',
+              data: {},
+              content: [
+                {
+                  nodeType: 'paragraph',
+                  data: {},
+                  content: [
+                    {
+                      nodeType: 'text',
+                      value:
+                        'Contact us to discuss your project and we will provide a free consultation.',
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
+        {
+          title: 'What services do you offer?',
+          content: {
+            json: {
+              nodeType: 'document',
+              data: {},
+              content: [
+                {
+                  nodeType: 'paragraph',
+                  data: {},
+                  content: [
+                    {
+                      nodeType: 'text',
+                      value:
+                        'We offer web design, development, and digital marketing services.',
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
+      ],
+    },
+  }
+
+  const projectList = {
+    listCollection: {
+      items: [
+        {
+          sys: { id: 'project1' },
+          name: 'Project One',
+          industry: 'E-commerce',
+          body: {
+            json: {
+              nodeType: 'document',
+              data: {},
+              content: [
+                {
+                  nodeType: 'paragraph',
+                  data: {},
+                  content: [
+                    {
+                      nodeType: 'text',
+                      value:
+                        'A beautiful e-commerce project with stunning visuals and performance.',
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          testimonial:
+            'Working with this team was amazing. They delivered beyond our expectations.',
+          services: ['Design', 'Development', 'Animation'],
+          stack: ['React', 'Next.js', 'GSAP'],
+          link: 'https://example.com',
+          assetsCollection: {
+            items: [
+              {
+                imagesCollection: {
+                  items: [
+                    {
+                      url: 'https://placehold.co/1026x604/111/333?text=Project+One',
+                      width: 1026,
+                      height: 604,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+        {
+          sys: { id: 'project2' },
+          name: 'Project Two',
+          industry: 'Tech',
+          body: {
+            json: {
+              nodeType: 'document',
+              data: {},
+              content: [
+                {
+                  nodeType: 'paragraph',
+                  data: {},
+                  content: [
+                    {
+                      nodeType: 'text',
+                      value:
+                        'An innovative tech platform with cutting-edge features.',
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          testimonial:
+            'The team delivered a fantastic product that exceeded our expectations.',
+          services: ['UX/UI', 'Development', 'Strategy'],
+          stack: ['React', 'Three.js', 'WebGL'],
+          link: 'https://example.com/project2',
+          assetsCollection: {
+            items: [
+              {
+                imagesCollection: {
+                  items: [
+                    {
+                      url: 'https://placehold.co/1026x604/111/333?text=Project+Two',
+                      width: 1026,
+                      height: 604,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
+  }
 
   return {
     props: {
