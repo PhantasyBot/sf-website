@@ -4,7 +4,7 @@ import { ProjectAccordion } from 'components/project-accordion'
 import { renderer } from 'lib/compatibility/renderer'
 import s from './layout-mobile.module.scss'
 
-const LayoutMobile = ({ projects, studioFreight }) => {
+const LayoutMobile = ({ projects, phantasy }) => {
   return (
     <div className={s.content}>
       <section className={s['hero-image']}>
@@ -28,7 +28,7 @@ const LayoutMobile = ({ projects, studioFreight }) => {
         <p className={cn(s.title, 'p text-bold text-uppercase text-muted')}>
           About
         </p>
-        <div className={s.description}>{renderer(studioFreight.about)}</div>
+        <div className={s.description}>{renderer(phantasy.about)}</div>
       </section>
     </div>
   )

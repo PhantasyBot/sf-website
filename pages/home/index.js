@@ -24,7 +24,7 @@ const Gallery = dynamic(
   },
 )
 
-export default function Home({ studioFreight, footer, contact, projects }) {
+export default function Home({ phantasy, footer, contact, projects }) {
   const router = useRouter()
 
   const [showInfoModal, setShowInfoModal] = useState(false)
@@ -58,16 +58,16 @@ export default function Home({ studioFreight, footer, contact, projects }) {
   return (
     <Layout
       theme="dark"
-      principles={studioFreight.principles}
+      principles={phantasy.principles}
       studioInfo={{
-        phone: studioFreight.phoneNumber,
-        email: studioFreight.email,
+        phone: phantasy.phoneNumber,
+        email: phantasy.email,
       }}
       contactData={contact}
       footerLinks={footer.linksCollection.items}
     >
       {!isDesktop ? (
-        <LayoutMobile studioFreight={studioFreight} projects={projects} />
+        <LayoutMobile phantasy={phantasy} projects={projects} />
       ) : (
         <ClientOnly>
           <div className={cn(s.content, 'layout-grid')}>
@@ -78,7 +78,7 @@ export default function Home({ studioFreight, footer, contact, projects }) {
                 About
               </p>
               <ScrollableBox className={s.description}>
-                {renderer(studioFreight.about)}
+                {renderer(phantasy.about)}
               </ScrollableBox>
             </section>
             <section className={s.projects}>
@@ -270,14 +270,9 @@ export default function Home({ studioFreight, footer, contact, projects }) {
 }
 
 export async function getStaticProps() {
-  // Mock data instead of Contentful queries
-  const studioFreight = {
-    principles: [
-      'Design that delivers',
-      'Technology that performs',
-      'Code that scales',
-    ],
-    phoneNumber: '+1 (555) 123-4567',
+  const phantasy = {
+    principles: ['FUCK BITCHES', 'GET MONEY', 'RINSE AND REPEAT'],
+    phoneNumber: '+1 (424) 222-9967',
     email: 'hello@phantasy.bot',
     about: {
       json: {
@@ -555,7 +550,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      studioFreight,
+      phantasy,
       footer,
       contact,
       projects: projectList.listCollection,
