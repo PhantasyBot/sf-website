@@ -1,7 +1,7 @@
 import { Image } from '@studio-freight/compono'
 import cn from 'clsx'
 import { ProjectAccordion } from 'components/project-accordion'
-import { renderer } from 'contentful/renderer'
+import { renderer } from 'lib/compatibility/renderer'
 import s from './layout-mobile.module.scss'
 
 const LayoutMobile = ({ projects, studioFreight }) => {
