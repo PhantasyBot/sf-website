@@ -15,7 +15,7 @@ export function Layout({
   seo = {
     title: 'Phantasy',
     description: 'Phantasy is an 18+ NSFW AI Entertainment Studio.',
-    image: { url: 'https://r2.rally.sh/photos/rally_twitter_00519_.png' },
+    image: { url: 'https://r2.rally.sh/photos/rally_pfp.png' },
     keywords: ['AI', 'NSFW', 'Entertainment', 'Studio', 'AI Entertainment'],
   },
   children,
@@ -25,6 +25,8 @@ export function Layout({
   footerLinks,
   studioInfo,
   contactData,
+  currentTheme,
+  selectedProject,
 }) {
   const debug = useDebug()
 
@@ -32,12 +34,19 @@ export function Layout({
     <>
       <CustomHead {...seo} />
 
-      <div className={cn(`theme-${theme}`, s.layout, className)}>
+      <div
+        data-theme={currentTheme}
+        className={cn(`theme-${theme}`, s.layout, className)}
+      >
         <Cursor />
         <Scrollbar />
         <Header principles={principles} contact={contactData} />
         <main className={s.main}>{children}</main>
-        <Footer links={footerLinks} studioInfo={studioInfo} />
+        <Footer
+          links={footerLinks}
+          studioInfo={studioInfo}
+          selectedProject={selectedProject}
+        />
       </div>
 
       {debug && (

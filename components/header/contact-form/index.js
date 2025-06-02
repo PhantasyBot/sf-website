@@ -89,7 +89,10 @@ export function ContactFormModal({ data }) {
       <div className={s.overlay} onClick={closeContactTab} />
       <div className={cn(s.wrapper, contactIsOpen && s.open)} ref={menuRef}>
         <div className={s.heading}>
-          <button className={cn('button', s.cta)} onClick={closeContactTab}>
+          <button
+            className={cn('button', 'button-accent-strong', s.cta)}
+            onClick={closeContactTab}
+          >
             close
           </button>
           <Separator className={s.separator} />

@@ -86,7 +86,7 @@ export function ContactForm({ className, fields, onSuccess }) {
 
       <button
         type="submit"
-        className={cn('button', s.submitButton)}
+        className={cn('button', 'button-accent-strong', s.submitButton)}
         disabled={isSubmitting || Object.keys(formErrors).length > 0}
       >
         {isSubmitting ? 'Sending...' : 'Submit'}

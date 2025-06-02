@@ -1,0 +1,192 @@
+// styles/themes.scss
+
+:root {
+  // Default Theme (Fallback, can be based on Rally or your initial dark theme)
+  --primary-accent: #f598aa;
+  --secondary-accent: #ffb6c1;
+  --background-primary: #1a1a1d;
+  --background-secondary: #2c2c30;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a9a9a9;
+  --text-on-accent: #1a1a1d;
+  --theme-mode: 'dark'; // Helps differentiate general light/dark styles
+  --primary-accent-gradient: linear-gradient(
+    90deg,
+    #f598aa,
+    #ffb6c1
+  ); // Default simple gradient
+}
+
+[data-theme='rally'] {
+  --primary-accent: #f598aa; // Sakura Pink
+  --secondary-accent: #ffb6c1; // Light Pink
+  --background-primary: #121212; // Very Dark Grey
+  --background-secondary: #1e1e1e; // Dark Grey
+  --text-primary: #e0e0e0; // Off-white
+  --text-secondary: #b3b3b3; // Grey
+  --text-on-accent: #121212; // Dark text on pink accents
+  --theme-mode: 'dark';
+  --primary-accent-gradient: linear-gradient(90deg, #f598aa, #ff8fab);
+}
+
+[data-theme='banshee'] {
+  // Ghost Japanese White - light, ethereal
+  --primary-accent: #cad2e2; // Pale, desaturated blue/grey
+  --secondary-accent: #e0d8e9; // Pale lavender/grey
+  --background-primary: #f7f7f9; // Very light grey, almost white
+  --background-secondary: #e9e9ed; // Light grey
+  --text-primary: #3d3d4a; // Dark grey for contrast
+  --text-secondary: #6c6c78; // Medium grey
+  --text-on-accent: #3d3d4a; // Dark text on light accents
+  --theme-mode: 'light';
+  --primary-accent-gradient: linear-gradient(90deg, #cad2e2, #e0d8e9);
+}
+
+[data-theme='munny'] {
+  // Light Mode, Japanese Green
+  --primary-accent: #558b2f; // Matcha-like Green
+  --secondary-accent: #a5d6a7; // Lighter, complementary green
+  --background-primary: #fbfff8; // Very light, slightly warm off-white
+  --background-secondary: #e8f5e9; // Soft green-tinted background
+  --text-primary: #2e2e2e; // Dark, readable text
+  --text-secondary: #5a5a5a; // Softer grey for secondary text
+  --text-on-accent: #fbfff8; // Light text on green accents
+  --theme-mode: 'light';
+  --primary-accent-gradient: linear-gradient(90deg, #558b2f, #7cb342);
+}
+
+[data-theme='merchandise'] {
+  --primary-accent-gradient: linear-gradient(
+    90deg,
+    #ffadad,
+    #ffd6a5,
+    #fdffb6,
+    #caffbf,
+    #9bf6ff,
+    #a0c4ff,
+    #bdb2ff,
+    #ffc6ff
+  ); // Pastel Rainbow
+  --primary-accent: #a0c4ff; // Representative solid color (blue from gradient)
+  --secondary-accent: #ffd6a5; // Representative solid color (orange from gradient)
+  --background-primary: #ffffff; // White
+  --background-secondary: #f0f0f0; // Light grey
+  --text-primary: #2c2c2c; // Dark grey/black
+  --text-secondary: #585858; // Medium grey
+  --text-on-accent: #2c2c2c; // Dark text on light accents
+  --theme-mode: 'light';
+
+  // Helper classes for merchandise theme
+  .use-gradient-background {
+    background: var(--primary-accent-gradient);
+    border: none; // Gradients often look better without borders
+  }
+  .use-gradient-text {
+    background: var(--primary-accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+}
+
+// Apply base styles using CSS variables
+body {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+a,
+.link-style {
+  // You might have a common class for link-like elements
+  color: var(--primary-accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--secondary-accent);
+    // text-decoration: underline; // Optional: keep or remove based on design
+  }
+}
+
+button,
+.button-style {
+  // General button styling
+  background-color: var(--primary-accent);
+  color: var(--text-on-accent);
+  border: 1px solid var(--primary-accent);
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+  border-radius: 4px; // Example: basic button styling
+
+  &:hover {
+    background-color: var(--secondary-accent);
+    border-color: var(--secondary-accent);
+    color: var(
+      --text-on-accent
+    ); // Ensure text color remains appropriate for new background
+  }
+}
+
+// For specific themes that might override general button styles:
+[data-theme='merchandise'] {
+  button.use-gradient-background,
+  .button-style.use-gradient-background {
+    // If a button in merchandise theme should have gradient
+    background: var(--primary-accent-gradient);
+    color: var(
+      --text-on-accent
+    ); // Adjust if needed for readability over gradient
+    border: none;
+    &:hover {
+      // Define hover for gradient buttons, maybe a slight brightness change or overlay
+      filter: brightness(1.1);
+    }
+  }
+}
+
+// New style for buttons with accent background but white text/border
+.button-accent-strong {
+  background-color: var(--primary-accent);
+  color: #ffffff; // Force white text
+  border: 1px solid #ffffff; // Force white border
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+  border-radius: 4px; // Consistent with other buttons
+
+  &:hover {
+    background-color: var(--secondary-accent);
+    color: #ffffff; // Keep white text
+    border-color: #ffffff; // Keep white border
+  }
+}
+
+.text-muted {
+  color: var(
+    --text-secondary
+  ) !important; // Use !important if it needs to override utility classes with high specificity
+}
+
+// Active project indicator, etc.
+.active-indicator-style {
+  // Example class for active items
+  background-color: var(--primary-accent);
+  color: var(--text-on-accent);
+  // Add other styles like padding, border-radius as needed
+}
+
+[data-theme='merchandise'] .active-indicator-style.use-gradient-background {
+  background: var(--primary-accent-gradient);
+  color: var(--text-on-accent); // Adjust if needed
+}

@@ -10,6 +10,7 @@ import { useStore } from 'lib/store'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import 'styles/global.scss'
+import 'styles/themes.scss'
 
 const Noise = dynamic(
   () => import('components/noise').then(({ Noise }) => Noise),

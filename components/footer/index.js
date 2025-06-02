@@ -5,20 +5,37 @@ import cn from 'clsx'
 import { Separator } from 'components/separator'
 import s from './footer.module.scss'
 
-export function Footer({ className, style, links, studioInfo }) {
+export function Footer({
+  className,
+  style,
+  links,
+  studioInfo,
+  selectedProject,
+}) {
   const isMobile = useMediaQuery('(max-width: 800px)')
+
+  // Determine the Lite Paper text and download link
+  const litePaperText = selectedProject?.name
+    ? `${selectedProject.name} Lite Paper ↓`
+    : 'Capabilities Deck ↓'
+  const litePaperLink = selectedProject?.name
+    ? `/downloads/${selectedProject.name
+        .toLowerCase()
+        .replace(/\s+/g, '-')}-lite-paper.pdf`
+    : '/StudioFreight-Capabilities.pdf'
 
   return (
     <footer className={s.container}>
       <Separator className="layout-block" />
       <div className={cn(s.footer, 'layout-grid', className)} style={style}>
         <a
-          href="/StudioFreight-Capabilities.pdf"
+          href={litePaperLink}
           download
-          className={cn(s.column, 'p-s text-accent')}
-          onClick={() => va.track('Downloaded Capabilities deck')}
+          className={cn(s.column, 'p-s')}
+          onClick={() => va.track(`Downloaded ${litePaperText}`)}
+          style={{ color: 'var(--primary-accent)' }}
         >
-          Capabilities Deck ↓
+          {litePaperText}
         </a>
         {isMobile === false && (
           <>

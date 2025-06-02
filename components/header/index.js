@@ -71,7 +71,7 @@ export const Header = ({ principles = [], contact }) => {
           </Marquee>
         )}
         <button
-          className={cn('button', s.cta)}
+          className={cn('button', 'button-accent-strong', s.cta)}
           onClick={() => {
             va.track('Opened Contact Form')
             setContactIsOpen(!contactIsOpen)
