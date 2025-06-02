@@ -2,7 +2,11 @@ import { Image, Link } from '@studio-freight/compono'
 import { useMediaQuery } from '@studio-freight/hamo'
 import cn from 'clsx'
 import { Separator } from 'components/separator'
+import dynamic from 'next/dynamic'
 import s from './footer.module.scss'
+
+const XIcon = dynamic(() => import('icons/x.svg'), { ssr: false })
+const DiscordIcon = dynamic(() => import('icons/discord.svg'), { ssr: false })
 
 export function Footer({
   className,
@@ -107,6 +111,32 @@ export function Footer({
           <li>
             <Link className="p-s decorate" href={`mailto:${studioInfo.email}`}>
               E: {studioInfo.email}
+            </Link>
+          </li>
+        </ul>
+
+        {/* Social Media Icons */}
+        <ul className={cn(s.column, s.socialMedia)}>
+          <li>
+            <Link
+              className={s.socialIcon}
+              href="https://x.com/phantasy_bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on X"
+            >
+              <XIcon />
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={s.socialIcon}
+              href="https://discord.gg/phantasy"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Join our Discord"
+            >
+              <DiscordIcon />
             </Link>
           </li>
         </ul>
