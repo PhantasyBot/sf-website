@@ -2,6 +2,26 @@
 
 (note: this is a fork of Studio Freight website)
 
+A Next.js website built with modern web technologies for Phantasy.
+
+## Features
+
+- Next.js 14 with React 18
+- Contentful CMS integration
+- Modern CSS with SCSS modules
+- PWA capabilities
+- SEO optimized
+- Responsive design
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
 ## Setup
 
 The usual process for Next.js based apps/websites:

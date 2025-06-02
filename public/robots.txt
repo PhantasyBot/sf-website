@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://studiofreight.com
+Host: https://phantasy.bot
 
 # Sitemaps
-Sitemap: https://studiofreight.com/sitemap.xml
+Sitemap: https://phantasy.bot/sitemap.xml

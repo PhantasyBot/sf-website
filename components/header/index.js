@@ -18,10 +18,6 @@ const PhantasyLogoMobile = dynamic(
   },
 )
 const Stard = dynamic(() => import('icons/stard.svg'), { ssr: false })
-const Monogram = dynamic(() => import('icons/sf-monogram.svg'), { ssr: false })
-const StarDuotone = dynamic(() => import('icons/star-duotone.svg'), {
-  ssr: false,
-})
 
 export const Header = ({ principles = [], contact }) => {
   const isMobile = useMediaQuery('(max-width: 800px)')
@@ -42,20 +38,6 @@ export const Header = ({ principles = [], contact }) => {
             href="https://github.com/studio-freight/sf-website"
           >
             <Stard />
-          </Link>
-          <Link
-            name="easter egg - soundboard"
-            className={s.egg}
-            href="https://soundboard.studiofreight.com"
-          >
-            <Monogram />
-          </Link>
-          <Link
-            name="easter egg - pale blue dot"
-            className={s.egg}
-            href="https://youtu.be/GO5FwsblpT8"
-          >
-            <StarDuotone />
           </Link>
         </div>
         {isMobile === false && (

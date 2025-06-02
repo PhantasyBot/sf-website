@@ -1,6 +1,6 @@
 {
-  "name": "Studio Freight",
-  "short_name": "SF",
+  "name": "Phantasy",
+  "short_name": "Phantasy",
   "description": "A design studio built on principle. We grow brands by making them easy to understand and impossible to ignore. Our creative experts support with branding, art direction, strategy, web design, web development, packaging, copywriting, lettering, illustration, photography, murals, signage, video, and beyond.",
   "icons": [
     {
@@ -16,8 +16,8 @@
       "purpose": "any"
     }
   ],
-  "theme_color": "#4160ff",
-  "background_color": "#000000",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "start_url": "/",
   "scope": ".",
   "display": "standalone",

@@ -45,98 +45,17 @@
       }
     }
 
-    &.nsfw.blurred {
+    &.nsfw:not(.revealed) {
       .image {
-        filter: blur(12px);
-        image-rendering: pixelated;
-        image-rendering: -moz-crisp-edges;
-        image-rendering: crisp-edges;
+        filter: blur(20px) brightness(0.8);
+        transition: filter 0.3s ease;
       }
+    }
 
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: repeating-linear-gradient(
-            17deg,
-            var(--primary-accent) 0px,
-            var(--primary-accent) 2px,
-            transparent 2px,
-            transparent 5px
-          ),
-          repeating-linear-gradient(
-            73deg,
-            var(--primary-accent) 0px,
-            var(--primary-accent) 1px,
-            transparent 1px,
-            transparent 7px
-          ),
-          repeating-linear-gradient(
-            -23deg,
-            var(--primary-accent) 0px,
-            var(--primary-accent) 3px,
-            transparent 3px,
-            transparent 8px
-          ),
-          repeating-radial-gradient(
-            circle at 13% 27%,
-            var(--primary-accent) 0px,
-            var(--primary-accent) 1px,
-            transparent 1px,
-            transparent 4px
-          ),
-          repeating-radial-gradient(
-            circle at 67% 73%,
-            var(--primary-accent) 0px,
-            var(--primary-accent) 2px,
-            transparent 2px,
-            transparent 6px
-          );
-        opacity: 0.3;
-        z-index: 1;
-        pointer-events: none;
-        mix-blend-mode: overlay;
-
-        @include desktop {
-          background-image: repeating-linear-gradient(
-              17deg,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 3px,
-              transparent 3px,
-              transparent 7px
-            ),
-            repeating-linear-gradient(
-              73deg,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 2px,
-              transparent 2px,
-              transparent 9px
-            ),
-            repeating-linear-gradient(
-              -23deg,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 4px,
-              transparent 4px,
-              transparent 10px
-            ),
-            repeating-radial-gradient(
-              circle at 13% 27%,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 2px,
-              transparent 2px,
-              transparent 6px
-            ),
-            repeating-radial-gradient(
-              circle at 67% 73%,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 3px,
-              transparent 3px,
-              transparent 8px
-            );
-        }
+    &.nsfw.revealed {
+      .image {
+        filter: none;
+        transition: filter 0.3s ease;
       }
     }
   }
@@ -162,98 +81,17 @@
         object-fit: cover;
       }
 
-      &.nsfw.blurred {
+      &.nsfw:not(.revealed) {
         video {
-          filter: blur(12px);
-          image-rendering: pixelated;
-          image-rendering: -moz-crisp-edges;
-          image-rendering: crisp-edges;
+          filter: blur(20px) brightness(0.8);
+          transition: filter 0.3s ease;
         }
+      }
 
-        &::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-image: repeating-linear-gradient(
-              17deg,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 2px,
-              transparent 2px,
-              transparent 5px
-            ),
-            repeating-linear-gradient(
-              73deg,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 1px,
-              transparent 1px,
-              transparent 7px
-            ),
-            repeating-linear-gradient(
-              -23deg,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 3px,
-              transparent 3px,
-              transparent 8px
-            ),
-            repeating-radial-gradient(
-              circle at 13% 27%,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 1px,
-              transparent 1px,
-              transparent 4px
-            ),
-            repeating-radial-gradient(
-              circle at 67% 73%,
-              var(--primary-accent) 0px,
-              var(--primary-accent) 2px,
-              transparent 2px,
-              transparent 6px
-            );
-          opacity: 0.3;
-          z-index: 1;
-          pointer-events: none;
-          mix-blend-mode: overlay;
-
-          @include desktop {
-            background-image: repeating-linear-gradient(
-                17deg,
-                var(--primary-accent) 0px,
-                var(--primary-accent) 3px,
-                transparent 3px,
-                transparent 7px
-              ),
-              repeating-linear-gradient(
-                73deg,
-                var(--primary-accent) 0px,
-                var(--primary-accent) 2px,
-                transparent 2px,
-                transparent 9px
-              ),
-              repeating-linear-gradient(
-                -23deg,
-                var(--primary-accent) 0px,
-                var(--primary-accent) 4px,
-                transparent 4px,
-                transparent 10px
-              ),
-              repeating-radial-gradient(
-                circle at 13% 27%,
-                var(--primary-accent) 0px,
-                var(--primary-accent) 2px,
-                transparent 2px,
-                transparent 6px
-              ),
-              repeating-radial-gradient(
-                circle at 67% 73%,
-                var(--primary-accent) 0px,
-                var(--primary-accent) 3px,
-                transparent 3px,
-                transparent 8px
-              );
-          }
+      &.nsfw.revealed {
+        video {
+          filter: none;
+          transition: filter 0.3s ease;
         }
       }
     }
@@ -298,7 +136,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    z-index: 3;
+    transition: all 0.3s ease;
+
+    &.revealed {
+      background: rgba(0, 0, 0, 0.1);
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: mobile-vw(8px);
+
+      @include desktop {
+        padding: desktop-vw(8px);
+      }
+    }
   }
 
   .nsfwContent {
@@ -309,6 +159,11 @@
 
     @include desktop {
       gap: desktop-vw(8px);
+    }
+
+    .revealed & {
+      flex-direction: row;
+      gap: 0;
     }
   }
 
@@ -337,7 +192,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 
     @include desktop {
       border-radius: desktop-vw(4px);
@@ -346,6 +201,29 @@
 
     &:hover {
       background: rgba(255, 255, 255, 1);
+    }
+
+    &.minimal {
+      background: rgba(255, 255, 255, 0.6);
+      padding: mobile-vw(4px);
+
+      @include desktop {
+        padding: desktop-vw(4px);
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      svg {
+        width: mobile-vw(16px);
+        height: mobile-vw(16px);
+
+        @include desktop {
+          width: desktop-vw(16px);
+          height: desktop-vw(16px);
+        }
+      }
     }
 
     svg {

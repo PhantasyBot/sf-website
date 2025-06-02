@@ -2,6 +2,7 @@ import { Image } from '@studio-freight/compono'
 import cn from 'clsx'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
+import { PixelCanvas } from '../pixel-canvas'
 import s from './composable-image.module.scss'
 
 const PixelEye = dynamic(() => import('icons/pixel-eye.svg'), { ssr: false })
@@ -21,7 +22,8 @@ export function ComposableImage({
   const [showNSFW, setShowNSFW] = useState(false)
   const amount = sources.items.length
 
-  const toggleNSFW = () => {
+  const toggleNSFW = (e) => {
+    e.stopPropagation() // Prevent event bubbling to avoid triggering modal
     setShowNSFW(!showNSFW)
   }
 
@@ -36,7 +38,7 @@ export function ComposableImage({
               large && s.large,
               small && s.small,
               isNSFW && s.nsfw,
-              isNSFW && !showNSFW && s.blurred,
+              isNSFW && showNSFW && s.revealed,
             )}
             key={source.url}
           >
@@ -49,20 +51,28 @@ export function ComposableImage({
               preload="auto"
             />
             {isNSFW && (
-              <div className={s.nsfwOverlay}>
-                <div className={s.nsfwContent}>
-                  <span className={s.ageWarning}>18+</span>
-                  <button
-                    className={s.eyeButton}
-                    onClick={toggleNSFW}
-                    aria-label={
-                      showNSFW ? 'Hide NSFW content' : 'Show NSFW content'
-                    }
-                  >
-                    {showNSFW ? <PixelEyeCross /> : <PixelEye />}
-                  </button>
+              <>
+                <PixelCanvas
+                  colors={['#f598aa', '#ffb6c1', '#ff8fab']}
+                  gap={4}
+                  speed={25}
+                  isRevealing={showNSFW}
+                />
+                <div className={cn(s.nsfwOverlay, showNSFW && s.revealed)}>
+                  <div className={s.nsfwContent}>
+                    {!showNSFW && <span className={s.ageWarning}>18+</span>}
+                    <button
+                      className={cn(s.eyeButton, showNSFW && s.minimal)}
+                      onClick={toggleNSFW}
+                      aria-label={
+                        showNSFW ? 'Hide NSFW content' : 'Show NSFW content'
+                      }
+                    >
+                      {showNSFW ? <PixelEyeCross /> : <PixelEye />}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
         ) : (
@@ -73,7 +83,7 @@ export function ComposableImage({
               large && s.large,
               small && s.small,
               isNSFW && s.nsfw,
-              isNSFW && !showNSFW && s.blurred,
+              isNSFW && showNSFW && s.revealed,
             )}
           >
             <Image
@@ -88,20 +98,28 @@ export function ComposableImage({
               sizes="(max-width: 768px) 100vw, 75vw"
             />
             {isNSFW && (
-              <div className={s.nsfwOverlay}>
-                <div className={s.nsfwContent}>
-                  <span className={s.ageWarning}>18+</span>
-                  <button
-                    className={s.eyeButton}
-                    onClick={toggleNSFW}
-                    aria-label={
-                      showNSFW ? 'Hide NSFW content' : 'Show NSFW content'
-                    }
-                  >
-                    {showNSFW ? <PixelEyeCross /> : <PixelEye />}
-                  </button>
+              <>
+                <PixelCanvas
+                  colors={['#f598aa', '#ffb6c1', '#ff8fab']}
+                  gap={4}
+                  speed={25}
+                  isRevealing={showNSFW}
+                />
+                <div className={cn(s.nsfwOverlay, showNSFW && s.revealed)}>
+                  <div className={s.nsfwContent}>
+                    {!showNSFW && <span className={s.ageWarning}>18+</span>}
+                    <button
+                      className={cn(s.eyeButton, showNSFW && s.minimal)}
+                      onClick={toggleNSFW}
+                      aria-label={
+                        showNSFW ? 'Hide NSFW content' : 'Show NSFW content'
+                      }
+                    >
+                      {showNSFW ? <PixelEyeCross /> : <PixelEye />}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
         ),

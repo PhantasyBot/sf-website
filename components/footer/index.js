@@ -22,7 +22,7 @@ export function Footer({ className, style, links, selectedProject }) {
     ? `https://phantasy.bot/downloads/${selectedProject.name
         .toLowerCase()
         .replace(/\s+/g, '-')}-lite-paper.pdf`
-    : 'https://phantasy.bot/StudioFreight-Capabilities.pdf'
+    : 'https://phantasy.bot/Phantasy-Capabilities.pdf'
 
   return (
     <footer className={s.container}>

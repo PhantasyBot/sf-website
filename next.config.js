@@ -30,7 +30,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'assets.studiofreight.com',
+        hostname: 'assets.phantasy.bot',
       },
       {
         protocol: 'https',
@@ -153,7 +153,7 @@ const nextConfig = {
       },
       {
         source: '/capabilities',
-        destination: '/StudioFreight-Capabilities.pdf',
+        destination: '/Phantasy-Capabilities.pdf',
         permanent: true,
       },
     ]
