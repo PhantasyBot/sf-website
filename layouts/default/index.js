@@ -23,7 +23,6 @@ export function Layout({
   className,
   principles,
   footerLinks,
-  studioInfo,
   contactData,
   currentTheme,
   selectedProject,
@@ -40,11 +39,7 @@ export function Layout({
       >
         <Header principles={principles} contact={contactData} />
         <main className={s.main}>{children}</main>
-        <Footer
-          links={footerLinks}
-          studioInfo={studioInfo}
-          selectedProject={selectedProject}
-        />
+        <Footer links={footerLinks} selectedProject={selectedProject} />
       </div>
 
       {debug && (

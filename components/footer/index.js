@@ -7,25 +7,22 @@ import s from './footer.module.scss'
 
 const XIcon = dynamic(() => import('icons/x.svg'), { ssr: false })
 const DiscordIcon = dynamic(() => import('icons/discord.svg'), { ssr: false })
+const InstagramIcon = dynamic(() => import('icons/pixel-instagram.svg'), {
+  ssr: false,
+})
 
-export function Footer({
-  className,
-  style,
-  links,
-  studioInfo,
-  selectedProject,
-}) {
+export function Footer({ className, style, links, selectedProject }) {
   const isMobile = useMediaQuery('(max-width: 800px)')
 
   // Determine the Lite Paper text and download link
   const litePaperText = selectedProject?.name
-    ? `${selectedProject.name} Lite Paper ↓`
-    : 'Capabilities Deck ↓'
+    ? `${selectedProject.name} Lite Paper ↗`
+    : 'Capabilities Deck ↗'
   const litePaperLink = selectedProject?.name
-    ? `/downloads/${selectedProject.name
+    ? `https://phantasy.bot/downloads/${selectedProject.name
         .toLowerCase()
         .replace(/\s+/g, '-')}-lite-paper.pdf`
-    : '/StudioFreight-Capabilities.pdf'
+    : 'https://phantasy.bot/StudioFreight-Capabilities.pdf'
 
   return (
     <footer className={s.container}>
@@ -33,10 +30,11 @@ export function Footer({
       <div className={cn(s.footer, 'layout-grid', className)} style={style}>
         <a
           href={litePaperLink}
-          download
+          target="_blank"
+          rel="noopener noreferrer"
           className={cn(s.column, 'p-s')}
           onClick={() => {
-            /* va.track(`Downloaded ${litePaperText}`) */
+            /* va.track(`Opened ${litePaperText}`) */
           }}
           style={{ color: 'var(--primary-accent)' }}
         >
@@ -45,28 +43,10 @@ export function Footer({
         {isMobile === false && (
           <>
             <ul className={s.column}>
-              {links.slice(0, 2).map((link, i) => (
+              {links.map((link, i) => (
                 <li key={i}>
                   <Link className="p-s decorate" href={link.url}>
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <ul className={s.column}>
-              {links.slice(2, 4).map((link, i) => (
-                <li key={i}>
-                  <Link className="p-s decorate" href={link.url}>
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <ul className={s.column}>
-              {links.slice(4, 6).map((link, i) => (
-                <li key={i}>
-                  <Link className="p-s decorate" href={link.url}>
-                    {link.text}
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -78,23 +58,14 @@ export function Footer({
           <>
             <ul className={s.column}>
               <li className="p-s text-muted">
-                &copy; {new Date().getFullYear()}
+                &copy; {new Date().getFullYear()} Phantasy LLC
               </li>
             </ul>
             <ul className={s.column}>
-              {links.slice(0, 3).map((link, i) => (
+              {links.map((link, i) => (
                 <li key={i}>
                   <Link className="p-s decorate" href={link.url}>
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <ul className={s.column}>
-              {links.slice(3, 6).map((link, i) => (
-                <li key={i}>
-                  <Link className="p-s decorate" href={link.url}>
-                    {link.text}
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -102,25 +73,12 @@ export function Footer({
           </>
         )}
 
-        <ul className={s.column}>
-          <li>
-            <Link className="p-s decorate" href={`tel:${studioInfo.phone}`}>
-              P: {studioInfo.phone}
-            </Link>
-          </li>
-          <li>
-            <Link className="p-s decorate" href={`mailto:${studioInfo.email}`}>
-              E: {studioInfo.email}
-            </Link>
-          </li>
-        </ul>
-
         {/* Social Media Icons */}
         <ul className={cn(s.column, s.socialMedia)}>
           <li>
             <Link
               className={s.socialIcon}
-              href="https://x.com/phantasy_bot"
+              href="https://x.com/phantasydotbot"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Follow us on X"
@@ -131,7 +89,7 @@ export function Footer({
           <li>
             <Link
               className={s.socialIcon}
-              href="https://discord.gg/phantasy"
+              href="https://discord.com"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join our Discord"
@@ -139,12 +97,23 @@ export function Footer({
               <DiscordIcon />
             </Link>
           </li>
+          <li>
+            <Link
+              className={s.socialIcon}
+              href="https://instagram.com/phantasydotbot"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on Instagram"
+            >
+              <InstagramIcon />
+            </Link>
+          </li>
         </ul>
 
         {isMobile === false && (
           <ul className={s.column}>
             <li className="p-s text-muted">
-              &copy; {new Date().getFullYear()}
+              &copy; {new Date().getFullYear()} Phantasy LLC
             </li>
           </ul>
         )}

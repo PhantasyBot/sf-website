@@ -11,7 +11,7 @@ import { slugify } from 'lib/slugify'
 import { useStore } from 'lib/store'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import s from './home.module.scss'
 
 const Arrow = dynamic(() => import('icons/arrow.svg'), { ssr: false })
@@ -23,7 +23,13 @@ const Gallery = dynamic(
   },
 )
 
-export default function Home({ phantasy, footer, contact, projects }) {
+export default function Home({
+  phantasy,
+  footer,
+  contact,
+  projects,
+  aboutContent,
+}) {
   const router = useRouter()
 
   const [showInfoModal, setShowInfoModal] = useState(false)
@@ -34,6 +40,9 @@ export default function Home({ phantasy, footer, contact, projects }) {
     state.setSelectedProject,
   ])
   const [setGalleryVisible] = useStore((state) => [state.setGalleryVisible])
+
+  // State for About section content
+  const [currentAboutSection, setCurrentAboutSection] = useState(null)
 
   // Define the default project name - easy to change
   const DEFAULT_PROJECT_NAME = 'Rally'
@@ -62,25 +71,64 @@ export default function Home({ phantasy, footer, contact, projects }) {
     }
   }, [selectedProject])
 
-  // Define a mapping for project names to theme names
-  const projectThemeMap = useMemo(
-    () => ({
-      Alchemist: 'banshee', // Reusing banshee theme for Alchemist
-      Rally: 'rally',
-      Banshee: 'banshee',
-      Munny: 'munny',
-      Merchandise: 'merchandise',
-    }),
-    [],
-  )
-
-  // Determine the current theme based on the selected project
-  const currentTheme = useMemo(() => {
-    if (!selectedProject || !selectedProject.name) {
-      return 'rally' // Default theme if no project is selected or name is missing
+  // Handle About section changes based on URL query
+  useEffect(() => {
+    const section = router.query.section
+    if (section && aboutContent?.sections) {
+      const matchingSection = aboutContent.sections.find(
+        (s) => s.key === section,
+      )
+      setCurrentAboutSection(matchingSection)
+    } else {
+      // Default to the original About content
+      setCurrentAboutSection(null)
     }
-    return projectThemeMap[selectedProject.name.trim()] || 'rally' // Default to rally if no specific theme
-  }, [selectedProject, projectThemeMap])
+  }, [router.query.section, aboutContent])
+
+  // Theme switching based on project
+  const getSectionTheme = (project) => {
+    if (!project) return 'rally'
+
+    switch (project.name) {
+      case 'Rally':
+        return 'rally' // Pink theme
+      case 'Banshee':
+        return 'banshee' // Light theme
+      case 'Munny':
+        return 'munny' // Green theme
+      case 'Merchandise':
+        return 'merchandise' // Rainbow theme
+      default:
+        return 'rally' // Default theme
+    }
+  }
+
+  // Also consider About section for theme
+  const getAboutSectionTheme = (sectionKey) => {
+    if (!sectionKey) return 'rally'
+
+    switch (sectionKey) {
+      case 'legal':
+        return 'banshee' // Light theme for legal content
+      case 'disclaimers':
+        return 'munny' // Green theme for disclaimers
+      default:
+        return 'rally' // Default theme for about/studio content
+    }
+  }
+
+  const currentTheme = currentAboutSection
+    ? getAboutSectionTheme(currentAboutSection.key)
+    : getSectionTheme(selectedProject)
+
+  // Get the content and title for the About section
+  const aboutSectionContent = currentAboutSection
+    ? renderer(currentAboutSection.content)
+    : renderer(phantasy.about)
+
+  const aboutSectionTitle = currentAboutSection
+    ? currentAboutSection.name
+    : 'About'
 
   return (
     <Layout
@@ -96,7 +144,11 @@ export default function Home({ phantasy, footer, contact, projects }) {
       footerLinks={footer.linksCollection.items}
     >
       {!isDesktop ? (
-        <LayoutMobile phantasy={phantasy} projects={projects} />
+        <LayoutMobile
+          phantasy={phantasy}
+          projects={projects}
+          currentAboutSection={currentAboutSection}
+        />
       ) : (
         <ClientOnly>
           <div className={cn(s.content, 'layout-grid')}>
@@ -104,10 +156,10 @@ export default function Home({ phantasy, footer, contact, projects }) {
               <p
                 className={cn(s.title, 'p text-bold text-uppercase text-muted')}
               >
-                About
+                {aboutSectionTitle}
               </p>
               <ScrollableBox className={s.description}>
-                {renderer(phantasy.about)}
+                {aboutSectionContent}
               </ScrollableBox>
             </section>
             <section className={s.projects}>
@@ -218,12 +270,12 @@ export default function Home({ phantasy, footer, contact, projects }) {
                   className={cn(s.info, showInfoModal && s.visible)}
                   reset={!showInfoModal || resetScroll}
                 >
-                  {selectedProject.body && (
+                  {selectedProject?.body && (
                     <div className={s.description}>
                       {renderer(selectedProject.body)}
                     </div>
                   )}
-                  {selectedProject.testimonial && (
+                  {selectedProject?.testimonial && (
                     <div className={s.testimonial}>
                       <p
                         className={cn(
@@ -317,9 +369,9 @@ export async function getStaticProps() {
   const footer = {
     linksCollection: {
       items: [
-        { name: 'Twitter', url: 'https://twitter.com' },
-        { name: 'LinkedIn', url: 'https://linkedin.com' },
-        { name: 'Instagram', url: 'https://instagram.com' },
+        { name: 'About', url: '/?section=studio' },
+        { name: 'Legal', url: '/?section=legal' },
+        { name: 'Disclaimers', url: '/?section=disclaimers' },
       ],
     },
   }
@@ -704,12 +756,233 @@ export async function getStaticProps() {
     },
   }
 
+  const aboutContent = {
+    sections: [
+      {
+        key: 'studio',
+        name: 'Studio',
+        subtitle: 'Our Mission',
+        content: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Phantasy is an 18+ NSFW AI Gaming and Entertainment Studio pushing the boundaries of interactive digital experiences.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'We specialize in creating immersive AI-powered characters and experiences that blur the line between reality and fantasy.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      },
+      {
+        key: 'legal',
+        name: 'Legal',
+        subtitle: 'Terms & Privacy',
+        content: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Privacy Policy',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support. We use this information to provide, maintain, and improve our services, process transactions, and communicate with you.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Terms of Service',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'By accessing and using our services, you accept and agree to be bound by the terms and provision of this agreement. You must be at least 18 years old to use our services. Our platform contains adult content and is not suitable for minors.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'DMCA Policy',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'We respect the intellectual property rights of others and expect our users to do the same. If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement, please contact us with detailed information.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      },
+      {
+        key: 'disclaimers',
+        name: 'Disclaimers',
+        subtitle: 'Important Notices',
+        content: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Content Warning',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'This platform contains explicit adult content intended for users 18 years of age or older. All characters and interactions are AI-generated and fictional. They do not represent real individuals and should not be confused with actual persons.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Liability Disclaimer',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Your use of our services is at your sole risk. We provide our services on an "as is" and "as available" basis without any warranties of any kind. Our AI characters do not provide professional advice of any kind.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'AI Technology',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Our platform uses advanced AI technology to generate responses and content. While sophisticated, AI may occasionally produce unexpected or inconsistent responses. User interactions may be processed by AI systems to improve service quality.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      },
+    ],
+  }
+
   return {
     props: {
       phantasy,
       footer,
       contact,
       projects: projectList.listCollection,
+      aboutContent,
       id: 'home',
     },
     revalidate: 30,
