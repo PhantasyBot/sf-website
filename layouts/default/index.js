@@ -14,7 +14,7 @@ const Orchestra = dynamic(
 export function Layout({
   seo = {
     title: 'Phantasy',
-    description: 'Phantasy is an 18+ NSFW AI Entertainment Studio.',
+    description: 'Phantasy is an 18+ NSFW AI Gaming and Entertainment Studio.',
     image: { url: 'https://r2.rally.sh/photos/rally_pfp.png' },
     keywords: ['AI', 'NSFW', 'Entertainment', 'Studio', 'AI Entertainment'],
   },
@@ -25,7 +25,6 @@ export function Layout({
   footerLinks,
   contactData,
   currentTheme,
-  selectedProject,
 }) {
   const debug = useDebug()
 
@@ -39,7 +38,7 @@ export function Layout({
       >
         <Header principles={principles} contact={contactData} />
         <main className={s.main}>{children}</main>
-        <Footer links={footerLinks} selectedProject={selectedProject} />
+        <Footer links={footerLinks} />
       </div>
 
       {debug && (

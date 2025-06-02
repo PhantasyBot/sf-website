@@ -210,25 +210,73 @@
       }
 
       .description,
-      .testimonial {
+      .platform {
         grid-column: span 2;
       }
 
-      .testimonial {
+      .platform {
         p:last-child {
-          font-style: italic;
-          font-size: desktop-vh(18px);
-          line-height: 130%;
-          font-family: var(--font-tertiary);
+          margin-top: desktop-vh(8px);
         }
       }
 
-      .stack,
-      .services {
-        grid-column: span 1;
+      .agent {
+        grid-column: span 2;
 
-        p:last-child {
-          font-family: var(--font-secondary);
+        .agentDetails {
+          display: flex;
+          align-items: center;
+          gap: desktop-vw(16px);
+          margin-top: desktop-vh(8px);
+
+          .agentProfile {
+            width: desktop-vw(48px);
+            height: desktop-vw(48px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-accent);
+          }
+        }
+      }
+
+      .token {
+        grid-column: span 2;
+
+        .tokenDetails {
+          margin-top: desktop-vh(8px);
+
+          .addressContainer {
+            display: flex;
+            align-items: center;
+            gap: desktop-vw(8px);
+            margin-bottom: desktop-vh(8px);
+            padding: desktop-vw(8px);
+            background-color: var(--background-secondary);
+            border-radius: desktop-vw(4px);
+
+            code {
+              font-family: monospace;
+              font-size: desktop-vh(12px);
+              color: var(--text-primary);
+              background-color: transparent;
+              flex: 1;
+              word-break: break-all;
+            }
+
+            .copyButton {
+              background-color: var(--primary-accent);
+              border: none;
+              padding: desktop-vw(4px) desktop-vw(8px);
+              border-radius: desktop-vw(4px);
+              cursor: pointer;
+              font-size: desktop-vh(12px);
+              transition: background-color 0.3s ease;
+
+              &:hover {
+                background-color: var(--secondary-accent);
+              }
+            }
+          }
         }
       }
     }

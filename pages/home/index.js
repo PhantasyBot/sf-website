@@ -23,13 +23,7 @@ const Gallery = dynamic(
   },
 )
 
-export default function Home({
-  phantasy,
-  footer,
-  contact,
-  projects,
-  aboutContent,
-}) {
+export default function Home({ phantasy, contact, projects, aboutContent }) {
   const router = useRouter()
 
   const [showInfoModal, setShowInfoModal] = useState(false)
@@ -49,10 +43,23 @@ export default function Home({
 
   useEffect(() => {
     const searchTerm = router.asPath.substring(router.asPath.indexOf('#') + 1)
+    const projectParam = router.query.project
 
-    const matchingItem = projects.items.find((item) =>
-      slugify(item.name).includes(searchTerm),
-    )
+    let matchingItem
+
+    // First check if there's a project parameter in the URL
+    if (projectParam && projects.items) {
+      matchingItem = projects.items.find(
+        (item) => item.name.toLowerCase() === projectParam.toLowerCase(),
+      )
+    }
+
+    // If no project param match, try the hash-based search
+    if (!matchingItem && searchTerm) {
+      matchingItem = projects.items.find((item) =>
+        slugify(item.name).includes(searchTerm),
+      )
+    }
 
     // Use the configured default project instead of just the first item
     const defaultProject =
@@ -60,7 +67,7 @@ export default function Home({
       projects.items[0]
 
     setSelectedProject(matchingItem || defaultProject)
-  }, [router.asPath])
+  }, [router.asPath, router.query.project])
 
   useEffect(() => {
     if (selectedProject) {
@@ -96,8 +103,8 @@ export default function Home({
         return 'banshee' // Light theme
       case 'Munny':
         return 'munny' // Green theme
-      case 'Merchandise':
-        return 'merchandise' // Rainbow theme
+      case 'Lorelei':
+        return 'merchandise' // Rainbow theme (keeping same theme)
       case 'Alchemist':
         return 'alchemist' // Japanese cyberpunk neon red theme
       default:
@@ -117,18 +124,43 @@ export default function Home({
     ? currentAboutSection.name
     : 'About'
 
+  // Generate footer links dynamically based on selected project
+  const dynamicFooter = {
+    linksCollection: {
+      items: [
+        { name: 'About', url: '/?section=studio' },
+        {
+          name: 'Legal',
+          url: selectedProject
+            ? `/?section=legal&project=${encodeURIComponent(
+                selectedProject.name.toLowerCase(),
+              )}`
+            : '/?section=legal',
+        },
+        {
+          name: 'Disclaimers',
+          url: selectedProject
+            ? `/?section=disclaimers&project=${encodeURIComponent(
+                selectedProject.name.toLowerCase(),
+              )}`
+            : '/?section=disclaimers',
+        },
+        {
+          name: 'Store',
+          url: 'https://store.phantasy.bot',
+          external: true,
+        },
+      ],
+    },
+  }
+
   return (
     <Layout
       currentTheme={currentTheme}
-      selectedProject={selectedProject}
       theme="dark"
       principles={phantasy.principles}
-      studioInfo={{
-        phone: phantasy.phoneNumber,
-        email: phantasy.email,
-      }}
       contactData={contact}
-      footerLinks={footer.linksCollection.items}
+      footerLinks={dynamicFooter.linksCollection.items}
     >
       {!isDesktop ? (
         <LayoutMobile
@@ -153,7 +185,7 @@ export default function Home({
               <p
                 className={cn(s.title, 'p text-bold text-uppercase text-muted')}
               >
-                Projects
+                Agents
               </p>
               <ScrollableBox className={s.list}>
                 <ul>
@@ -190,7 +222,7 @@ export default function Home({
                     'p text-bold text-uppercase text-muted',
                   )}
                 >
-                  Project detail
+                  Details
                 </p>
                 <div className={s.actions}>
                   <button
@@ -263,55 +295,98 @@ export default function Home({
                       {renderer(selectedProject.body)}
                     </div>
                   )}
-                  {selectedProject?.testimonial && (
-                    <div className={s.testimonial}>
+                  {selectedProject?.platform && (
+                    <div className={s.platform}>
                       <p
                         className={cn(
                           s.title,
                           'p text-muted text-uppercase text-bold',
                         )}
                       >
-                        Testimonial
+                        Platform
                       </p>
-                      <p className="p">{selectedProject.testimonial}</p>
+                      <p className="p text-bold">
+                        {selectedProject.platform.name}
+                      </p>
+                      <p className="p-s">{selectedProject.platform.summary}</p>
+                      {selectedProject.platform.link && (
+                        <Link
+                          href={selectedProject.platform.link}
+                          className="p-s decorate"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Visit Platform ↗
+                        </Link>
+                      )}
                     </div>
                   )}
-                  {selectedProject?.services?.length > 0 && (
-                    <div className={s.services}>
+                  {selectedProject?.agent && (
+                    <div className={s.agent}>
                       <p
                         className={cn(
                           s.title,
                           'p text-muted text-uppercase text-bold',
                         )}
                       >
-                        Services
+                        Agent
                       </p>
-                      <p className="p-s text-uppercase">
-                        {selectedProject?.services?.map((service, i) =>
-                          i === selectedProject.services.length - 1
-                            ? service
-                            : `${service}, `,
+                      <div className={s.agentDetails}>
+                        {selectedProject.agent.profileImage && (
+                          <img
+                            src={selectedProject.agent.profileImage}
+                            alt={selectedProject.agent.name}
+                            className={s.agentProfile}
+                          />
                         )}
-                      </p>
+                        <div>
+                          <p className="p text-bold">
+                            {selectedProject.agent.name}
+                          </p>
+                          <p className="p-s">{selectedProject.agent.goal}</p>
+                        </div>
+                      </div>
                     </div>
                   )}
-                  {selectedProject?.stack?.length > 0 && (
-                    <div className={s.stack}>
+                  {selectedProject?.token && (
+                    <div className={s.token}>
                       <p
                         className={cn(
                           s.title,
                           'p text-muted text-uppercase text-bold',
                         )}
                       >
-                        Stack
+                        Token
                       </p>
-                      <p className="p-s text-uppercase">
-                        {selectedProject?.stack?.map((item, i) =>
-                          i === selectedProject.stack.length - 1
-                            ? item
-                            : `${item}, `,
+                      <div className={s.tokenDetails}>
+                        <div className={s.addressContainer}>
+                          <code className="p-s">
+                            {selectedProject.token.address}
+                          </code>
+                          <button
+                            className={s.copyButton}
+                            onClick={() => {
+                              navigator.clipboard.writeText(
+                                selectedProject.token.address,
+                              )
+                              // Optional: Add a toast notification here
+                            }}
+                            title="Copy address"
+                          >
+                            📋
+                          </button>
+                        </div>
+                        {selectedProject.token.dexLink && (
+                          <Link
+                            href={selectedProject.token.dexLink}
+                            className="p-s decorate"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Trade on DEX ↗
+                          </Link>
                         )}
-                      </p>
+                      </div>
                     </div>
                   )}
                 </ScrollableBox>
@@ -328,9 +403,7 @@ export default function Home({
 
 export async function getStaticProps() {
   const phantasy = {
-    principles: ['FUCK BITCHES', 'GET MONEY', 'RINSE AND REPEAT'],
-    phoneNumber: '+1 (424) 222-9967',
-    email: 'hello@phantasy.bot',
+    principles: ['AI COMPANIONS', 'NSFW ENTERTAINMENT', 'VIRTUAL LOVE'],
     about: {
       json: {
         nodeType: 'document',
@@ -351,16 +424,6 @@ export async function getStaticProps() {
           },
         ],
       },
-    },
-  }
-
-  const footer = {
-    linksCollection: {
-      items: [
-        { name: 'About', url: '/?section=studio' },
-        { name: 'Legal', url: '/?section=legal' },
-        { name: 'Disclaimers', url: '/?section=disclaimers' },
-      ],
     },
   }
 
@@ -532,7 +595,7 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'You can reach our support team at hello@phantasy.bot or through our Discord community. We respond to all inquiries within 24-48 hours.',
+                        'You can reach our support team through our Discord community or social media channels. We respond to all inquiries within 24-48 hours.',
                       marks: [],
                       data: {},
                     },
@@ -598,10 +661,22 @@ export async function getStaticProps() {
               ],
             },
           },
-          testimonial:
-            'The team delivered a fantastic product that exceeded our expectations.',
-          services: ['UX/UI', 'Development', 'Strategy'],
-          stack: ['React', 'Three.js', 'WebGL'],
+          platform: {
+            name: 'Alchemist Platform',
+            summary:
+              'Advanced AI technology platform for next-generation digital experiences.',
+            link: 'https://example.com/alchemist',
+          },
+          agent: {
+            name: 'Alchemist AI',
+            goal: 'To provide cutting-edge AI solutions and innovative technological experiences.',
+            profileImage:
+              'https://placehold.co/1026x604/111/333?text=Alchemist',
+          },
+          token: {
+            address: '0xabcdef1234567890abcdef1234567890abcdef12',
+            dexLink: 'https://app.virtuals.io',
+          },
           link: 'https://example.com/alchemist',
           assetsCollection: {
             items: [
@@ -644,10 +719,21 @@ export async function getStaticProps() {
               ],
             },
           },
-          testimonial:
-            'Working with this team was amazing. They delivered beyond our expectations.',
-          services: ['Design', 'Development', 'Animation'],
-          stack: ['React', 'Next.js', 'GSAP'],
+          platform: {
+            name: 'Rally Platform',
+            summary:
+              'An interactive AI companion platform featuring Rally, your virtual girlfriend experience.',
+            link: 'https://rally.sh',
+          },
+          agent: {
+            name: 'Rally',
+            goal: 'To provide companionship, entertainment, and NSFW interactions in a safe virtual environment.',
+            profileImage: 'https://r2.rally.sh/photos/rally_pfp.png',
+          },
+          token: {
+            address: '0x1234567890abcdef1234567890abcdef12345678',
+            dexLink: 'https://app.virtuals.io',
+          },
           link: 'https://rally.sh',
           assetsCollection: {
             items: [
@@ -727,10 +813,21 @@ export async function getStaticProps() {
               ],
             },
           },
-          testimonial:
-            'The team delivered a fantastic product that exceeded our expectations.',
-          services: ['UX/UI', 'Development', 'Strategy'],
-          stack: ['React', 'Three.js', 'WebGL'],
+          platform: {
+            name: 'Banshee Platform',
+            summary: 'Ethereal AI platform for mystical digital experiences.',
+            link: 'https://example.com/banshee',
+          },
+          agent: {
+            name: 'Banshee',
+            goal: 'To provide mystical and ethereal AI companionship experiences.',
+            profileImage:
+              'https://placehold.co/1026x604/cad2e2/fff?text=Banshee',
+          },
+          token: {
+            address: '0xbanshee1234567890abcdef1234567890abcdef',
+            dexLink: 'https://app.virtuals.io',
+          },
           link: 'https://example.com/project2',
           assetsCollection: {
             items: [
@@ -773,10 +870,21 @@ export async function getStaticProps() {
               ],
             },
           },
-          testimonial:
-            'The team delivered a fantastic product that exceeded our expectations.',
-          services: ['UX/UI', 'Development', 'Strategy'],
-          stack: ['React', 'Three.js', 'WebGL'],
+          platform: {
+            name: 'Munny Platform',
+            summary:
+              'Green technology platform for sustainable AI experiences.',
+            link: 'https://example.com/munny',
+          },
+          agent: {
+            name: 'Munny',
+            goal: 'To provide eco-friendly and sustainable AI companion services.',
+            profileImage: 'https://placehold.co/1026x604/558b2f/fff?text=Munny',
+          },
+          token: {
+            address: '0xmunny1234567890abcdef1234567890abcdefgh',
+            dexLink: 'https://app.virtuals.io',
+          },
           link: 'https://example.com/project2',
           assetsCollection: {
             items: [
@@ -796,7 +904,7 @@ export async function getStaticProps() {
         },
         {
           sys: { id: 'project4' },
-          name: 'Merchandise',
+          name: 'Lorelei',
           industry: 'Tech',
           body: {
             json: {
@@ -819,10 +927,22 @@ export async function getStaticProps() {
               ],
             },
           },
-          testimonial:
-            'The team delivered a fantastic product that exceeded our expectations.',
-          services: ['UX/UI', 'Development', 'Strategy'],
-          stack: ['React', 'Three.js', 'WebGL'],
+          platform: {
+            name: 'Lorelei Platform',
+            summary:
+              'Enchanting AI platform for mystical and alluring digital experiences.',
+            link: 'https://example.com/lorelei',
+          },
+          agent: {
+            name: 'Lorelei',
+            goal: 'To provide enchanting and mystical AI companion experiences with captivating interactions.',
+            profileImage:
+              'https://placehold.co/1026x604/a0c4ff/fff?text=Lorelei',
+          },
+          token: {
+            address: '0xlorelei1234567890abcdef1234567890abcdef',
+            dexLink: 'https://app.virtuals.io',
+          },
           link: 'https://example.com/project2',
           assetsCollection: {
             items: [
@@ -1268,7 +1388,6 @@ export async function getStaticProps() {
   return {
     props: {
       phantasy,
-      footer,
       contact,
       projects: projectList.listCollection,
       aboutContent,

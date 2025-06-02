@@ -88,9 +88,14 @@
       }
 
       &:nth-child(2) {
+        display: flex;
+        flex-direction: row;
+        gap: mobile-vw(16px);
+        grid-column: span 4;
+
         li {
           display: inline-block;
-          margin-right: mobile-vw(16px);
+          margin-right: 0;
 
           &:last-child {
             margin-right: 0;

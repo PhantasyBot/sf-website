@@ -118,8 +118,6 @@ export default function About({ phantasy, footer, contact, aboutContent }) {
 export async function getStaticProps() {
   const phantasy = {
     principles: ['AI COMPANIONS', 'NSFW ENTERTAINMENT', 'VIRTUAL LOVE'],
-    phoneNumber: '+1 (000) 000-0000',
-    email: 'hello@phantasy.bot',
   }
 
   const footer = {

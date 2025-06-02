@@ -10,19 +10,19 @@ const DiscordIcon = dynamic(() => import('icons/discord.svg'), { ssr: false })
 const InstagramIcon = dynamic(() => import('icons/pixel-instagram.svg'), {
   ssr: false,
 })
+const PixelExternalIcon = dynamic(
+  () => import('icons/pixel-external-link-solid.svg'),
+  {
+    ssr: false,
+  },
+)
 
-export function Footer({ className, style, links, selectedProject }) {
+export function Footer({ className, style, links }) {
   const isMobile = useMediaQuery('(max-width: 800px)')
 
   // Determine the Lite Paper text and download link
-  const litePaperText = selectedProject?.name
-    ? `${selectedProject.name} Lite Paper ↗`
-    : 'Capabilities Deck ↗'
-  const litePaperLink = selectedProject?.name
-    ? `https://phantasy.bot/downloads/${selectedProject.name
-        .toLowerCase()
-        .replace(/\s+/g, '-')}-lite-paper.pdf`
-    : 'https://phantasy.bot/Phantasy-Capabilities.pdf'
+  const litePaperText = 'Lite Paper'
+  const litePaperLink = 'https://lite.phantasy.bot'
 
   return (
     <footer className={s.container}>
@@ -40,18 +40,35 @@ export function Footer({ className, style, links, selectedProject }) {
           onClick={() => {
             /* va.track(`Opened ${litePaperText}`) */
           }}
-          style={{ color: 'var(--primary-accent)' }}
+          style={{
+            color: 'var(--primary-accent)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}
         >
           {litePaperText}
+          <PixelExternalIcon style={{ width: '16px', height: '16px' }} />
         </a>
         {isMobile === false && (
           <>
             <ul className={s.column}>
               {links.map((link, i) => (
                 <li key={i}>
-                  <Link className="p-s decorate" href={link.url}>
-                    {link.name}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      className="p-s decorate"
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link className="p-s decorate" href={link.url}>
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -68,9 +85,20 @@ export function Footer({ className, style, links, selectedProject }) {
             <ul className={s.column}>
               {links.map((link, i) => (
                 <li key={i}>
-                  <Link className="p-s decorate" href={link.url}>
-                    {link.name}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      className="p-s decorate"
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link className="p-s decorate" href={link.url}>
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

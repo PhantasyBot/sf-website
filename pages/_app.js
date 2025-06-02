@@ -40,7 +40,6 @@ if (typeof window !== 'undefined') {
     credits: [
       {
         name: 'Phantasy',
-        email: 'hello@phantasy.bot',
         website: 'https://phantasy.bot',
       },
     ],
