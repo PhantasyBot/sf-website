@@ -1,6 +1,5 @@
 import { Link, Marquee } from '@studio-freight/compono'
 import { useMediaQuery } from '@studio-freight/hamo'
-import va from '@vercel/analytics'
 import cn from 'clsx'
 import { ContactFormModal } from 'components/header/contact-form'
 import { Separator } from 'components/separator'
@@ -73,7 +72,6 @@ export const Header = ({ principles = [], contact }) => {
         <button
           className={cn('button', 'button-accent-strong', s.cta)}
           onClick={() => {
-            va.track('Opened Contact Form')
             setContactIsOpen(!contactIsOpen)
           }}
         >

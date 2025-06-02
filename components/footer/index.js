@@ -1,6 +1,5 @@
 import { Image, Link } from '@studio-freight/compono'
 import { useMediaQuery } from '@studio-freight/hamo'
-import va from '@vercel/analytics'
 import cn from 'clsx'
 import { Separator } from 'components/separator'
 import s from './footer.module.scss'
@@ -32,7 +31,9 @@ export function Footer({
           href={litePaperLink}
           download
           className={cn(s.column, 'p-s')}
-          onClick={() => va.track(`Downloaded ${litePaperText}`)}
+          onClick={() => {
+            /* va.track(`Downloaded ${litePaperText}`) */
+          }}
           style={{ color: 'var(--primary-accent)' }}
         >
           {litePaperText}

@@ -135,18 +135,18 @@ export function ContactFormModal({ data }) {
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
-                          <path d="M11 1H1V11" stroke="#00FF6A" />
-                          <path d="M15 1H25V11" stroke="#00FF6A" />
-                          <path d="M15 25L25 25L25 15" stroke="#00FF6A" />
-                          <path d="M11 25L1 25L1 15" stroke="#00FF6A" />
+                          <path d="M11 1H1V11" stroke="#000000" />
+                          <path d="M15 1H25V11" stroke="#000000" />
+                          <path d="M15 25L25 25L25 15" stroke="#000000" />
+                          <path d="M11 25L1 25L1 15" stroke="#000000" />
                           <g className={s.x}>
                             <path
                               d="M8.75684 8.75745L17.2421 17.2427"
-                              stroke="#00FF6A"
+                              stroke="#000000"
                             />
                             <path
                               d="M17.2422 8.75745L8.75691 17.2427"
-                              stroke="#00FF6A"
+                              stroke="#000000"
                             />
                           </g>
                         </svg>

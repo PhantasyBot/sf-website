@@ -1,7 +1,7 @@
 import { RealViewport } from '@studio-freight/compono'
 import { useLenis } from '@studio-freight/react-lenis'
 import Tempus from '@studio-freight/tempus'
-import { Analytics } from '@vercel/analytics/react'
+// import { Analytics } from '@vercel/analytics/react' // Removed Vercel Analytics
 import 'blaze-slider/dist/blaze.css'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -75,7 +75,8 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       {/* </RafDriverProvider>
       </ProjectProvider> */}
-      <Analytics />
+      {/* <Analytics /> */}
+      {/* Removed Vercel Analytics component */}
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { Cursor, CustomHead, Scrollbar } from '@studio-freight/compono'
+import { Cursor, CustomHead } from '@studio-freight/compono'
 import { useDebug } from '@studio-freight/hamo'
 import cn from 'clsx'
 import { Footer } from 'components/footer'
@@ -39,7 +39,6 @@ export function Layout({
         className={cn(`theme-${theme}`, s.layout, className)}
       >
         <Cursor />
-        <Scrollbar />
         <Header principles={principles} contact={contactData} />
         <main className={s.main}>{children}</main>
         <Footer

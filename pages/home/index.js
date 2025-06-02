@@ -1,6 +1,5 @@
 import { Link } from '@studio-freight/compono'
 import { useMediaQuery } from '@studio-freight/hamo'
-import va from '@vercel/analytics'
 import cn from 'clsx'
 import { ComposableImage } from 'components/composable-image'
 import { ClientOnly } from 'components/isomorphic'
@@ -120,9 +119,6 @@ export default function Home({ phantasy, footer, contact, projects }) {
                     >
                       <button
                         onClick={() => {
-                          va.track('Selected:', {
-                            project: project.name,
-                          })
                           setSelectedProject(project)
                         }}
                       >
@@ -152,9 +148,6 @@ export default function Home({ phantasy, footer, contact, projects }) {
                   <button
                     className="p-s decorate"
                     onClick={() => {
-                      va.track('Read info:', {
-                        project: selectedProject.name,
-                      })
                       setShowInfoModal(!showInfoModal)
                     }}
                   >
@@ -176,9 +169,6 @@ export default function Home({ phantasy, footer, contact, projects }) {
                   <button
                     className={cn(s['modal-trigger'], 'p-s')}
                     onClick={() => {
-                      va.track('Opened Gallery:', {
-                        project: selectedProject.name,
-                      })
                       setGalleryVisible(true)
                     }}
                   >
@@ -188,7 +178,7 @@ export default function Home({ phantasy, footer, contact, projects }) {
                       viewBox="0 0 26 26"
                     >
                       <path
-                        stroke="var(--green)"
+                        stroke="var(--primary-accent)"
                         d="M11 1H1v10M15 1h10v10M15 25h10V15M11 25H1V15m12-8v12m6-6H7"
                       />
                     </svg>
@@ -201,9 +191,6 @@ export default function Home({ phantasy, footer, contact, projects }) {
                           className={s.assetButton}
                           key={i}
                           onClick={() => {
-                            va.track('Opened Gallery:', {
-                              project: selectedProject.name,
-                            })
                             setGalleryVisible(true)
                           }}
                         >

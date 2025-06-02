@@ -19,14 +19,14 @@
 
 .label {
   margin-bottom: mobile-vw(8px);
-  color: var(--muted);
+  color: var(--text-secondary);
 
   @include desktop {
     margin-bottom: desktop-vw(8px);
   }
 
   .required {
-    color: var(--green);
+    color: var(--primary-accent);
     margin-left: mobile-vw(4px);
 
     @include desktop {
@@ -37,9 +37,9 @@
 
 .input {
   background: transparent;
-  border: 1px solid var(--muted);
+  border: 1px solid var(--text-secondary);
   padding: mobile-vw(10px) mobile-vw(12px);
-  color: var(--text);
+  color: var(--text-primary);
   transition: border-color 0.2s ease;
   font-family: inherit;
   font-size: mobile-vw(14px);
@@ -51,7 +51,7 @@
 
   &:focus {
     outline: none;
-    border-color: var(--green);
+    border-color: var(--primary-accent);
   }
 
   &.textarea {
@@ -76,7 +76,7 @@
 }
 
 .submitButton {
-  align-self: flex-start;
+  align-self: stretch;
   margin-top: mobile-vw(12px);
   position: relative;
   overflow: hidden;
@@ -101,7 +101,7 @@
     bottom: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--green);
+    background-color: var(--primary-accent);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;

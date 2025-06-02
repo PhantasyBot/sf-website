@@ -100,6 +100,14 @@
       text-transform: uppercase;
       font-family: var(--font-secondary);
 
+      button {
+        color: #000000;
+
+        &:hover {
+          color: #000000;
+        }
+      }
+
       *:first-child:not(:last-child) {
         margin-right: desktop-vh(16px);
       }
@@ -159,6 +167,12 @@
       .assetButton {
         display: block;
         width: 100%;
+        background-color: transparent;
+        border: none;
+
+        img {
+          background-color: transparent;
+        }
       }
 
       &:not(.visible) {

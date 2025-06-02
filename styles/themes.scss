@@ -155,8 +155,8 @@ button,
 // New style for buttons with accent background but white text/border
 .button-accent-strong {
   background-color: var(--primary-accent);
-  color: #ffffff; // Force white text
-  border: 1px solid #ffffff; // Force white border
+  color: #000000; // Changed to black text
+  border: 1px solid #000000; // Changed to black border
   padding: 0.5em 1em;
   cursor: pointer;
   transition:
@@ -167,15 +167,15 @@ button,
 
   &:hover {
     background-color: var(--secondary-accent);
-    color: #ffffff; // Keep white text
-    border-color: #ffffff; // Keep white border
+    color: #000000; // Keep black text on hover
+    border-color: #000000; // Keep black border on hover
   }
 }
 
 .text-muted {
   color: var(
     --text-secondary
-  ) !important; // Use !important if it needs to override utility classes with high specificity
+  ); // Removed !important, relying on specificity instead
 }
 
 // Active project indicator, etc.
