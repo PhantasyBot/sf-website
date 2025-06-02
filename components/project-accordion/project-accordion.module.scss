@@ -88,6 +88,38 @@
     .slides {
       grid-template-columns: 1fr;
       padding: mobile-vw(16px) 0;
+      position: relative;
+
+      // Style the pagination dots
+      :global(.blaze-pagination) {
+        position: absolute;
+        right: mobile-vw(16px);
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: mobile-vw(8px);
+        z-index: 10;
+
+        :global(.blaze-pagination-button) {
+          width: mobile-vw(8px);
+          height: mobile-vw(8px);
+          border-radius: 50%;
+          border: 1px solid var(--text-secondary);
+          background: transparent;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:global(.active) {
+            background: var(--primary-accent);
+            border-color: var(--primary-accent);
+          }
+
+          &:hover {
+            border-color: var(--primary-accent);
+          }
+        }
+      }
     }
 
     .description,
@@ -115,6 +147,69 @@
         p:last-child {
           font-family: var(--font-secondary);
           font-size: mobile-vw(10px);
+        }
+      }
+    }
+
+    .mobileInfo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: mobile-vw(12px) 0;
+      border-top: 1px solid var(--text-secondary);
+      margin-top: mobile-vw(8px);
+
+      .tokenSection {
+        display: flex;
+        align-items: center;
+        gap: mobile-vw(12px);
+
+        .tokenAddress {
+          display: flex;
+          align-items: center;
+          gap: mobile-vw(6px);
+          padding: mobile-vw(4px) mobile-vw(8px);
+          background-color: var(--background-secondary);
+          border-radius: mobile-vw(4px);
+
+          code {
+            font-family: monospace;
+            font-size: mobile-vw(10px);
+            color: var(--text-primary);
+          }
+
+          .copyButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: mobile-vw(12px);
+            padding: 0;
+          }
+        }
+
+        .dexLink {
+          color: var(--primary-accent);
+          font-size: mobile-vw(10px);
+          text-decoration: none;
+          font-weight: bold;
+          text-transform: uppercase;
+
+          &:hover {
+            color: var(--secondary-accent);
+          }
+        }
+      }
+
+      .external {
+        color: var(--primary-accent);
+        text-decoration: none;
+
+        .arrow {
+          display: inline;
+          margin-right: 0;
+          margin-left: mobile-vw(5px);
+          width: mobile-vw(6px);
+          aspect-ratio: 1;
         }
       }
     }

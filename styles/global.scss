@@ -116,3 +116,26 @@ svg.icon {
     }
   }
 }
+
+// Active project indicator, etc.
+.active-indicator-style {
+  // Example class for active items
+  background-color: var(--primary-accent);
+  color: var(--text-on-accent);
+  // Add other styles like padding, border-radius as needed
+}
+
+[data-theme='merchandise'] .active-indicator-style.use-gradient-background {
+  background: var(--primary-accent-gradient);
+  color: var(--text-on-accent); // Adjust if needed
+}
+
+// Global styles for blaze slider pagination
+.blaze-pagination {
+  .blaze-pagination-button {
+    &.active {
+      background-color: var(--primary-accent) !important;
+      border-color: var(--primary-accent) !important;
+    }
+  }
+}

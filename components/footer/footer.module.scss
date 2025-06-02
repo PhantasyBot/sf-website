@@ -9,7 +9,7 @@
       aspect-ratio: 360 / 260;
       width: 100%;
       height: mobile-vw(260px);
-      margin-top: 100px;
+      margin-top: 10px;
 
       &:before {
         content: '';
@@ -36,7 +36,7 @@
   width: 100%;
 
   @include mobile {
-    row-gap: mobile-vw(48px);
+    row-gap: mobile-vw(32px);
   }
 
   @include desktop {
@@ -96,6 +96,22 @@
         li {
           display: inline-block;
           margin-right: 0;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        li + li {
+          margin-top: 0;
+        }
+      }
+
+      // Make all columns use horizontal layout on mobile
+      &:not(:last-child) {
+        li {
+          display: inline-block;
+          margin-right: mobile-vw(16px);
 
           &:last-child {
             margin-right: 0;
@@ -170,6 +186,40 @@
     &:hover svg path {
       fill: var(--primary-accent);
       stroke: var(--primary-accent);
+    }
+  }
+
+  .mobileLinks {
+    @include mobile {
+      display: flex;
+      flex-direction: row;
+      gap: mobile-vw(16px);
+      grid-column: span 4;
+      justify-content: center;
+
+      li {
+        display: inline-block;
+        margin-right: 0;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      li + li {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .mobileTopRow {
+    @include mobile {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      grid-column: span 4;
+      margin-bottom: mobile-vw(0px);
     }
   }
 }

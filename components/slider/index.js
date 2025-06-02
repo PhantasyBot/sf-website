@@ -8,6 +8,8 @@ export default function Slider({
   slideGap = '10px',
   className,
   enableAutoplay = false,
+  autoplayInterval = 4000,
+  enablePagination = false,
 }) {
   const elRef = useBlazeSlider({
     all: {
@@ -15,6 +17,11 @@ export default function Slider({
       draggable,
       slideGap,
       enableAutoplay,
+      autoplayInterval,
+      loop: true,
+      ...(enablePagination && {
+        enablePagination: true,
+      }),
     },
   })
 
@@ -24,6 +31,7 @@ export default function Slider({
         <div className="blaze-track-container">
           <div className="blaze-track">{children}</div>
         </div>
+        {enablePagination && <div className="blaze-pagination"></div>}
       </div>
     </div>
   )

@@ -56,7 +56,12 @@ export const ProjectAccordion = ({ data }) => {
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className={s['accordion-content']}>
-              <Slider enableAutoplay={!!active} className={s.slides}>
+              <Slider
+                enableAutoplay={!!active}
+                autoplayInterval={5000}
+                enablePagination={true}
+                className={s.slides}
+              >
                 {item.assetsCollection.items.map((asset, i) => (
                   <ComposableImage
                     sources={asset.imagesCollection}
@@ -68,12 +73,47 @@ export const ProjectAccordion = ({ data }) => {
                   />
                 ))}
               </Slider>
-              {item?.link && (
-                <Link href={item?.link} className={cn('p-s', s.external)}>
-                  site
-                  <Arrow className={s.arrow} />
-                </Link>
-              )}
+
+              {/* Mobile token and link section */}
+              <div className={s.mobileInfo}>
+                {item?.token && (
+                  <div className={s.tokenSection}>
+                    <div className={s.tokenAddress}>
+                      <code>
+                        {item.token.address.slice(0, 8)}...
+                        {item.token.address.slice(-6)}
+                      </code>
+                      <button
+                        className={s.copyButton}
+                        onClick={() => {
+                          navigator.clipboard.writeText(item.token.address)
+                        }}
+                        title="Copy address"
+                      >
+                        📋
+                      </button>
+                    </div>
+                    {item.token.dexLink && (
+                      <a
+                        href={item.token.dexLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={s.dexLink}
+                      >
+                        DEX ↗
+                      </a>
+                    )}
+                  </div>
+                )}
+
+                {item?.link && (
+                  <Link href={item?.link} className={cn('p-s', s.external)}>
+                    site
+                    <Arrow className={s.arrow} />
+                  </Link>
+                )}
+              </div>
+
               {item.body && (
                 <div className={s.description}>{renderer(item.body)}</div>
               )}

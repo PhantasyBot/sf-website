@@ -12,20 +12,37 @@ export function Separator({
   hideLeftIcon = false,
   hideRightIcon = false,
   rightContent = null,
+  useStar = false,
 }) {
   const showLeftIcon = !hideIcons && !hideLeftIcon
   const showRightIcon = !hideIcons && !hideRightIcon && !rightContent
 
   return (
     <div className={cn(s.separator, className)}>
-      {showLeftIcon && <PixelPlusSolid className={s.icon} />}
+      {showLeftIcon && (
+        <>
+          {useStar ? (
+            <span className={s.icon}>✰</span>
+          ) : (
+            <PixelPlusSolid className={s.icon} />
+          )}
+        </>
+      )}
       <span
         className={cn(s.line, {
           [s.leftSpace]: showLeftIcon,
           [s.rightSpace]: showRightIcon || rightContent,
         })}
       />
-      {showRightIcon && <PixelPlusSolid className={s.icon} />}
+      {showRightIcon && (
+        <>
+          {useStar ? (
+            <span className={s.icon}>✰</span>
+          ) : (
+            <PixelPlusSolid className={s.icon} />
+          )}
+        </>
+      )}
       {rightContent && <div className={s.customContent}>{rightContent}</div>}
     </div>
   )

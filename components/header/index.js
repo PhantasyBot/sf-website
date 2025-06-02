@@ -46,7 +46,7 @@ export const Header = ({ principles = [], contact }) => {
               <p key={i} className={cn('p', s.principle)}>
                 <span>{pad(i + 1)}</span>
                 &nbsp;{principle}
-                <Separator className={s.inlineSeperator} />
+                <Separator className={s.inlineSeperator} useStar={true} />
               </p>
             ))}
           </Marquee>
@@ -76,7 +76,7 @@ export const Header = ({ principles = [], contact }) => {
             <p key={i} className={cn('p', s.principle)}>
               <span>{pad(i + 1)}</span>
               &nbsp;{principle}
-              <Separator className={s.inlineSeperator} />
+              <Separator className={s.inlineSeperator} useStar={true} />
             </p>
           ))}
         </Marquee>

@@ -221,42 +221,57 @@
       }
 
       .agent {
-        grid-column: span 2;
+        grid-column: span 1;
 
         .agentDetails {
           display: flex;
           align-items: center;
-          gap: desktop-vw(16px);
-          margin-top: desktop-vh(8px);
+          gap: desktop-vw(12px);
+          margin-top: desktop-vh(6px);
 
           .agentProfile {
-            width: desktop-vw(48px);
-            height: desktop-vw(48px);
+            width: desktop-vw(32px);
+            height: desktop-vw(32px);
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--primary-accent);
+            border: 1px solid var(--primary-accent);
+          }
+
+          div {
+            p {
+              line-height: 1.2;
+
+              &:first-child {
+                font-size: desktop-vh(14px);
+              }
+
+              &:last-child {
+                font-size: desktop-vh(11px);
+                margin-top: 2px;
+              }
+            }
           }
         }
       }
 
       .token {
-        grid-column: span 2;
+        grid-column: span 1;
 
         .tokenDetails {
-          margin-top: desktop-vh(8px);
+          margin-top: desktop-vh(6px);
 
           .addressContainer {
             display: flex;
             align-items: center;
-            gap: desktop-vw(8px);
-            margin-bottom: desktop-vh(8px);
-            padding: desktop-vw(8px);
+            gap: desktop-vw(6px);
+            margin-bottom: desktop-vh(6px);
+            padding: desktop-vw(6px);
             background-color: var(--background-secondary);
             border-radius: desktop-vw(4px);
 
             code {
               font-family: monospace;
-              font-size: desktop-vh(12px);
+              font-size: desktop-vh(10px);
               color: var(--text-primary);
               background-color: transparent;
               flex: 1;
@@ -266,10 +281,10 @@
             .copyButton {
               background-color: var(--primary-accent);
               border: none;
-              padding: desktop-vw(4px) desktop-vw(8px);
+              padding: desktop-vw(3px) desktop-vw(6px);
               border-radius: desktop-vw(4px);
               cursor: pointer;
-              font-size: desktop-vh(12px);
+              font-size: desktop-vh(10px);
               transition: background-color 0.3s ease;
 
               &:hover {

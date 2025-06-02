@@ -81,13 +81,13 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
   // Handle About section changes based on URL query
   useEffect(() => {
     const section = router.query.section
-    if (section && aboutContent?.sections) {
+    if (section && section !== 'home' && aboutContent?.sections) {
       const matchingSection = aboutContent.sections.find(
         (s) => s.key === section,
       )
       setCurrentAboutSection(matchingSection)
     } else {
-      // Default to the original About content
+      // Default to the original About content for home or no section
       setCurrentAboutSection(null)
     }
   }, [router.query.section, aboutContent])
@@ -128,7 +128,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
   const dynamicFooter = {
     linksCollection: {
       items: [
-        { name: 'About', url: '/?section=studio' },
+        { name: 'Home', url: '/?section=home' },
         {
           name: 'Legal',
           url: selectedProject
@@ -416,7 +416,20 @@ export async function getStaticProps() {
               {
                 nodeType: 'text',
                 value:
-                  'Phantasy an 18+ NSFW AI Gaming and Entertainment Studio.',
+                  'Phantasy is an 18+ NSFW AI Gaming and Entertainment Studio pushing the boundaries of interactive digital experiences.',
+                marks: [],
+                data: {},
+              },
+            ],
+          },
+          {
+            nodeType: 'paragraph',
+            data: {},
+            content: [
+              {
+                nodeType: 'text',
+                value:
+                  'We specialize in creating immersive AI-powered characters and experiences that blur the line between reality and fantasy.',
                 marks: [],
                 data: {},
               },
@@ -967,9 +980,9 @@ export async function getStaticProps() {
   const aboutContent = {
     sections: [
       {
-        key: 'studio',
-        name: 'Studio',
-        subtitle: 'Our Mission',
+        key: 'home',
+        name: 'About',
+        subtitle: 'Our Studio',
         content: {
           json: {
             nodeType: 'document',

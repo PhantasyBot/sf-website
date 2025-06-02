@@ -32,24 +32,26 @@ export function Footer({ className, style, links }) {
         className="layout-block"
       />
       <div className={cn(s.footer, 'layout-grid', className)} style={style}>
-        <a
-          href={litePaperLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(s.column, 'p-s')}
-          onClick={() => {
-            /* va.track(`Opened ${litePaperText}`) */
-          }}
-          style={{
-            color: 'var(--primary-accent)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-          }}
-        >
-          {litePaperText}
-          <PixelExternalIcon style={{ width: '16px', height: '16px' }} />
-        </a>
+        {isMobile === false && (
+          <a
+            href={litePaperLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(s.column, 'p-s')}
+            onClick={() => {
+              /* va.track(`Opened ${litePaperText}`) */
+            }}
+            style={{
+              color: 'var(--primary-accent)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+            }}
+          >
+            {litePaperText}
+            <PixelExternalIcon style={{ width: '16px', height: '16px' }} />
+          </a>
+        )}
         {isMobile === false && (
           <>
             <ul className={s.column}>
@@ -77,12 +79,33 @@ export function Footer({ className, style, links }) {
 
         {isMobile === true && (
           <>
-            <ul className={s.column}>
-              <li className="p-s text-muted">
+            {/* First row: Lite Paper and Copyright with space between */}
+            <div className={cn(s.column, s.mobileTopRow)}>
+              <a
+                href={litePaperLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-s"
+                onClick={() => {
+                  /* va.track(`Opened ${litePaperText}`) */
+                }}
+                style={{
+                  color: 'var(--primary-accent)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}
+              >
+                {litePaperText}
+                <PixelExternalIcon style={{ width: '16px', height: '16px' }} />
+              </a>
+              <span className="p-s text-muted">
                 &copy; {new Date().getFullYear()} Phantasy LLC
-              </li>
-            </ul>
-            <ul className={s.column}>
+              </span>
+            </div>
+
+            {/* Second row: Navigation links */}
+            <ul className={cn(s.column, s.mobileLinks)}>
               {links.map((link, i) => (
                 <li key={i}>
                   {link.external ? (
