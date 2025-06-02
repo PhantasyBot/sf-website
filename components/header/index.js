@@ -78,7 +78,7 @@ export const Header = ({ principles = [], contact }) => {
           Contact
         </button>
       </div>
-      <Separator />
+      <Separator hideIcons={true} className="layout-block" />
       <div className={cn(s.header, 'layout-grid')}>
         {isMobile === true ? (
           <PhantasyLogoMobile className={s.title} />
@@ -86,7 +86,7 @@ export const Header = ({ principles = [], contact }) => {
           <PhantasyLogo className={s.title} />
         )}
       </div>
-      <Separator />
+      <Separator hideIcons={true} className="layout-block" />
 
       {isMobile === true && (
         <Marquee className={s.marquee} duration={20}>

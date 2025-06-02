@@ -40,8 +40,9 @@
   .list {
     .list-item {
       padding: desktop-vw(16px) 0;
-      border-top: 1px solid var(--grey);
-      transition: color 500ms var(--ease-out-expo),
+      border-top: 1px solid var(--text-secondary);
+      transition:
+        color 500ms var(--ease-out-expo),
         padding 500ms var(--ease-out-expo);
       position: relative;
 
@@ -58,7 +59,7 @@
         left: 1%;
         top: 50%;
         border-radius: 100%;
-        background-color: var(--green);
+        background-color: var(--primary-accent);
         filter: blur(3px);
         opacity: 0;
         transform: translateY(-50%);
@@ -73,7 +74,7 @@
       }
 
       &.active {
-        color: var(--green);
+        color: var(--primary-accent);
         padding-left: desktop-vw(24px);
 
         &::before {
@@ -82,7 +83,7 @@
       }
 
       &:last-child {
-        border-bottom: 1px solid var(--grey);
+        border-bottom: 1px solid var(--text-secondary);
       }
     }
   }

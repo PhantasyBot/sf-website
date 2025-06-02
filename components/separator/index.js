@@ -6,12 +6,21 @@ const PixelPlusSolid = dynamic(() => import('icons/pixel-plus-solid.svg'), {
   ssr: false,
 })
 
-export function Separator({ className }) {
+export function Separator({
+  className,
+  hideIcons = false,
+  hideLeftIcon = true,
+  hideRightIcon = true,
+  rightContent = null,
+}) {
   return (
     <div className={cn(s.separator, className)}>
-      <PixelPlusSolid className={s.icon} />
+      {!hideIcons && !hideLeftIcon && <PixelPlusSolid className={s.icon} />}
       <span className={s.line} />
-      <PixelPlusSolid className={s.icon} />
+      {!hideIcons && !hideRightIcon && !rightContent && (
+        <PixelPlusSolid className={s.icon} />
+      )}
+      {rightContent && <div className={s.customContent}>{rightContent}</div>}
     </div>
   )
 }

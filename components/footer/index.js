@@ -26,7 +26,11 @@ export function Footer({ className, style, links, selectedProject }) {
 
   return (
     <footer className={s.container}>
-      <Separator className="layout-block" />
+      <Separator
+        hideLeftIcon={true}
+        rightContent={<span>✰✰✰</span>}
+        className="layout-block"
+      />
       <div className={cn(s.footer, 'layout-grid', className)} style={style}>
         <a
           href={litePaperLink}

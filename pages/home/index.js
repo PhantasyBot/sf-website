@@ -245,6 +245,7 @@ export default function Home({
                             priority={i === 0}
                             width={1026}
                             height={604}
+                            isNSFW={asset.isNSFW || false}
                           />
                         </button>
                       ),
@@ -562,6 +563,7 @@ export async function getStaticProps() {
                     },
                   ],
                 },
+                isNSFW: false,
               },
               {
                 imagesCollection: {
@@ -573,6 +575,7 @@ export async function getStaticProps() {
                     },
                   ],
                 },
+                isNSFW: true,
               },
               {
                 imagesCollection: {
@@ -584,6 +587,7 @@ export async function getStaticProps() {
                     },
                   ],
                 },
+                isNSFW: true,
               },
               {
                 imagesCollection: {
@@ -595,6 +599,7 @@ export async function getStaticProps() {
                     },
                   ],
                 },
+                isNSFW: false,
               },
             ],
           },

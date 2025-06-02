@@ -8,11 +8,11 @@
     padding-bottom: 0;
 
     .item {
-      border-top: 1px solid var(--grey);
+      border-top: 1px solid var(--text-secondary);
       padding: mobile-vw(16px) 0;
 
       &:last-child {
-        border-bottom: 1px solid var(--grey);
+        border-bottom: 1px solid var(--text-secondary);
       }
     }
 
@@ -52,7 +52,7 @@
 
       &[data-state='open'] {
         p {
-          color: var(--green);
+          color: var(--text-primary);
         }
         > .icon > .x {
           transform: rotate(0);
@@ -74,7 +74,7 @@
     }
 
     .external {
-      color: var(--green);
+      color: var(--primary-accent);
 
       .arrow {
         display: inline;

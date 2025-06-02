@@ -10,6 +10,94 @@
     margin-bottom: desktop-vw(8px);
   }
 
+  .imageWrapper {
+    position: relative;
+    grid-column: span 1;
+    border-radius: mobile-vw(8px);
+    overflow: hidden;
+
+    @include desktop {
+      border-radius: desktop-vw(8px);
+    }
+
+    &:only-child {
+      grid-column: span 2;
+    }
+
+    &:not(:only-child) {
+      aspect-ratio: var(--width) / var(--height);
+      height: mobile-vw(238px);
+
+      @include desktop {
+        height: desktop-vw(403px);
+      }
+    }
+
+    &.large:not(:only-child) {
+      @include desktop {
+        height: desktop-vw(611px);
+      }
+    }
+
+    &.small {
+      @include mobile {
+        height: mobile-vw(211px);
+      }
+    }
+
+    &.nsfw.blurred {
+      .image {
+        filter: blur(8px);
+        image-rendering: pixelated;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: crisp-edges;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: repeating-linear-gradient(
+            0deg,
+            var(--primary-accent) 0px,
+            var(--primary-accent) 3px,
+            transparent 3px,
+            transparent 6px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            var(--primary-accent) 0px,
+            var(--primary-accent) 3px,
+            transparent 3px,
+            transparent 6px
+          );
+        opacity: 0.4;
+        z-index: 1;
+        pointer-events: none;
+
+        @include desktop {
+          background-image: repeating-linear-gradient(
+              0deg,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 4px,
+              transparent 4px,
+              transparent 8px
+            ),
+            repeating-linear-gradient(
+              90deg,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 4px,
+              transparent 4px,
+              transparent 8px
+            );
+        }
+      }
+    }
+  }
+
   .image {
     grid-column: span 1;
     width: auto;
@@ -29,6 +117,58 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+
+      &.nsfw.blurred {
+        video {
+          filter: blur(8px);
+          image-rendering: pixelated;
+          image-rendering: -moz-crisp-edges;
+          image-rendering: crisp-edges;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: repeating-linear-gradient(
+              0deg,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 3px,
+              transparent 3px,
+              transparent 6px
+            ),
+            repeating-linear-gradient(
+              90deg,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 3px,
+              transparent 3px,
+              transparent 6px
+            );
+          opacity: 0.4;
+          z-index: 1;
+          pointer-events: none;
+
+          @include desktop {
+            background-image: repeating-linear-gradient(
+                0deg,
+                var(--primary-accent) 0px,
+                var(--primary-accent) 4px,
+                transparent 4px,
+                transparent 8px
+              ),
+              repeating-linear-gradient(
+                90deg,
+                var(--primary-accent) 0px,
+                var(--primary-accent) 4px,
+                transparent 4px,
+                transparent 8px
+              );
+          }
+        }
       }
     }
 
@@ -58,6 +198,77 @@
     &.small {
       @include mobile {
         height: mobile-vw(211px);
+      }
+    }
+  }
+
+  .nsfwOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .nsfwContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: mobile-vw(8px);
+
+    @include desktop {
+      gap: desktop-vw(8px);
+    }
+  }
+
+  .ageWarning {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    padding: mobile-vw(4px) mobile-vw(8px);
+    border-radius: mobile-vw(4px);
+    font-weight: bold;
+    font-size: mobile-vw(12px);
+    font-family: var(--font-secondary);
+
+    @include desktop {
+      padding: desktop-vw(4px) desktop-vw(8px);
+      border-radius: desktop-vw(4px);
+      font-size: desktop-vw(12px);
+    }
+  }
+
+  .eyeButton {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: mobile-vw(4px);
+    padding: mobile-vw(6px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+
+    @include desktop {
+      border-radius: desktop-vw(4px);
+      padding: desktop-vw(6px);
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+
+    svg {
+      width: mobile-vw(20px);
+      height: mobile-vw(20px);
+
+      @include desktop {
+        width: desktop-vw(20px);
+        height: desktop-vw(20px);
       }
     }
   }
