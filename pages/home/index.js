@@ -85,7 +85,7 @@ export default function Home({
     }
   }, [router.query.section, aboutContent])
 
-  // Theme switching based on project
+  // Theme switching based on project only
   const getSectionTheme = (project) => {
     if (!project) return 'rally'
 
@@ -103,23 +103,8 @@ export default function Home({
     }
   }
 
-  // Also consider About section for theme
-  const getAboutSectionTheme = (sectionKey) => {
-    if (!sectionKey) return 'rally'
-
-    switch (sectionKey) {
-      case 'legal':
-        return 'banshee' // Light theme for legal content
-      case 'disclaimers':
-        return 'munny' // Green theme for disclaimers
-      default:
-        return 'rally' // Default theme for about/studio content
-    }
-  }
-
-  const currentTheme = currentAboutSection
-    ? getAboutSectionTheme(currentAboutSection.key)
-    : getSectionTheme(selectedProject)
+  // Theme is only determined by selected project, not about section
+  const currentTheme = getSectionTheme(selectedProject)
 
   // Get the content and title for the About section
   const aboutSectionContent = currentAboutSection
@@ -812,6 +797,81 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
+                    value: 'Token Disclaimer',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Any tokens or digital assets referenced by Phantasy are not securities and are not intended to be an investment or financial instrument. Tokens are provided purely for entertainment and utility purposes within our platform ecosystem. This disclaimer applies to all current and future token offerings.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Investment Disclaimer',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Nothing on this platform constitutes investment advice, financial advice, trading advice, or any other sort of advice. You should not treat any of the content as such. Phantasy does not recommend that any cryptocurrency should be bought, sold, or held by you. Conduct your own due diligence and consult your financial advisor before making any investment decisions.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Entertainment Purposes Only',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'All content, interactions, and services provided by Phantasy are strictly for entertainment purposes only. This includes but is not limited to AI character interactions, gaming experiences, and any virtual or digital content. No real-world advice or recommendations should be derived from our entertainment content.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
                     value: 'Privacy Policy',
                     marks: [],
                     data: {},
@@ -825,7 +885,20 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support. We use this information to provide, maintain, and improve our services, process transactions, and communicate with you.',
+                      'We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support. We use this information to provide, maintain, and improve our services, process transactions, and communicate with you. We do not sell your personal information to third parties.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'We may collect wallet addresses and transaction data for blockchain interactions. This data is necessary for providing web3 functionality and may be publicly visible on blockchain networks. We implement industry-standard security measures to protect your data.',
                     marks: [],
                     data: {},
                   },
@@ -850,7 +923,20 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'By accessing and using our services, you accept and agree to be bound by the terms and provision of this agreement. You must be at least 18 years old to use our services. Our platform contains adult content and is not suitable for minors.',
+                      'By accessing and using our services, you accept and agree to be bound by the terms and provisions of this agreement. You must be at least 18 years old to use our services. Our platform contains adult content and is not suitable for minors.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'You are responsible for maintaining the security of your wallet and private keys. Phantasy is not responsible for any losses resulting from unauthorized access to your wallet or accounts. All blockchain transactions are final and irreversible.',
                     marks: [],
                     data: {},
                   },
@@ -875,7 +961,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'We respect the intellectual property rights of others and expect our users to do the same. If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement, please contact us with detailed information.',
+                      'We respect the intellectual property rights of others and expect our users to do the same. If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement, please contact us with detailed information including proof of ownership and location of the infringing material.',
                     marks: [],
                     data: {},
                   },
@@ -925,6 +1011,56 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
+                    value: 'Regulatory Disclaimer',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Cryptocurrency regulations vary by jurisdiction and are rapidly evolving. It is your responsibility to ensure compliance with local laws and regulations. Phantasy operates globally and does not provide legal advice regarding regulatory compliance in your specific jurisdiction.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Technical Risk Disclaimer',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Blockchain technology and smart contracts carry inherent risks including but not limited to: network congestion, gas fee fluctuations, smart contract vulnerabilities, and potential loss of funds. Phantasy cannot guarantee the security or functionality of third-party blockchain networks or protocols.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
                     value: 'Liability Disclaimer',
                     marks: [],
                     data: {},
@@ -938,7 +1074,32 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Your use of our services is at your sole risk. We provide our services on an "as is" and "as available" basis without any warranties of any kind. Our AI characters do not provide professional advice of any kind.',
+                      'Your use of our services is at your sole risk. We provide our services on an "as is" and "as available" basis without any warranties of any kind. Our AI characters do not provide professional advice of any kind. Phantasy shall not be liable for any direct, indirect, incidental, special, or consequential damages.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Platform Availability',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Service availability is not guaranteed and may be subject to downtime, maintenance, or interruption. We reserve the right to modify, suspend, or discontinue any aspect of our services at any time without prior notice. Your access may be restricted based on geographic location or other factors.',
                     marks: [],
                     data: {},
                   },
@@ -963,7 +1124,32 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Our platform uses advanced AI technology to generate responses and content. While sophisticated, AI may occasionally produce unexpected or inconsistent responses. User interactions may be processed by AI systems to improve service quality.',
+                      'Our platform uses advanced AI technology to generate responses and content. While sophisticated, AI may occasionally produce unexpected, inappropriate, or inconsistent responses. User interactions may be processed by AI systems to improve service quality. AI-generated content should not be considered factual or reliable information.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Third-Party Services',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Our platform may integrate with third-party services, wallets, and protocols. We are not responsible for the performance, security, or availability of these external services. Users interact with third-party services at their own risk and should review their respective terms and conditions.',
                     marks: [],
                     data: {},
                   },
