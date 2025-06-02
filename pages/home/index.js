@@ -35,6 +35,9 @@ export default function Home({ phantasy, footer, contact, projects }) {
   ])
   const [setGalleryVisible] = useStore((state) => [state.setGalleryVisible])
 
+  // Define the default project name - easy to change
+  const DEFAULT_PROJECT_NAME = 'Rally'
+
   useEffect(() => {
     const searchTerm = router.asPath.substring(router.asPath.indexOf('#') + 1)
 
@@ -42,7 +45,12 @@ export default function Home({ phantasy, footer, contact, projects }) {
       slugify(item.name).includes(searchTerm),
     )
 
-    setSelectedProject(matchingItem || projects.items[0])
+    // Use the configured default project instead of just the first item
+    const defaultProject =
+      projects.items.find((item) => item.name === DEFAULT_PROJECT_NAME) ||
+      projects.items[0]
+
+    setSelectedProject(matchingItem || defaultProject)
   }, [router.asPath])
 
   useEffect(() => {
@@ -57,9 +65,10 @@ export default function Home({ phantasy, footer, contact, projects }) {
   // Define a mapping for project names to theme names
   const projectThemeMap = useMemo(
     () => ({
+      Alchemist: 'banshee', // Reusing banshee theme for Alchemist
       Rally: 'rally',
       Banshee: 'banshee',
-      Munny: 'munny', // Assuming Okiya was renamed to Munny
+      Munny: 'munny',
       Merchandise: 'merchandise',
     }),
     [],
@@ -429,6 +438,52 @@ export async function getStaticProps() {
     listCollection: {
       items: [
         {
+          sys: { id: 'project5' },
+          name: 'Alchemist',
+          industry: 'Tech',
+          body: {
+            json: {
+              nodeType: 'document',
+              data: {},
+              content: [
+                {
+                  nodeType: 'paragraph',
+                  data: {},
+                  content: [
+                    {
+                      nodeType: 'text',
+                      value:
+                        'An innovative tech platform with cutting-edge features.',
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          testimonial:
+            'The team delivered a fantastic product that exceeded our expectations.',
+          services: ['UX/UI', 'Development', 'Strategy'],
+          stack: ['React', 'Three.js', 'WebGL'],
+          link: 'https://example.com/alchemist',
+          assetsCollection: {
+            items: [
+              {
+                imagesCollection: {
+                  items: [
+                    {
+                      url: 'https://placehold.co/1026x604/111/333?text=Alchemist',
+                      width: 1026,
+                      height: 604,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+        {
           sys: { id: 'project1' },
           name: 'Rally',
           industry: 'Virtual Girlfriend',
@@ -602,52 +657,6 @@ export async function getStaticProps() {
         {
           sys: { id: 'project4' },
           name: 'Merchandise',
-          industry: 'Tech',
-          body: {
-            json: {
-              nodeType: 'document',
-              data: {},
-              content: [
-                {
-                  nodeType: 'paragraph',
-                  data: {},
-                  content: [
-                    {
-                      nodeType: 'text',
-                      value:
-                        'An innovative tech platform with cutting-edge features.',
-                      marks: [],
-                      data: {},
-                    },
-                  ],
-                },
-              ],
-            },
-          },
-          testimonial:
-            'The team delivered a fantastic product that exceeded our expectations.',
-          services: ['UX/UI', 'Development', 'Strategy'],
-          stack: ['React', 'Three.js', 'WebGL'],
-          link: 'https://example.com/project2',
-          assetsCollection: {
-            items: [
-              {
-                imagesCollection: {
-                  items: [
-                    {
-                      url: 'https://placehold.co/1026x604/111/333?text=Project+Two',
-                      width: 1026,
-                      height: 604,
-                    },
-                  ],
-                },
-              },
-            ],
-          },
-        },
-        {
-          sys: { id: 'project5' },
-          name: 'Banshee',
           industry: 'Tech',
           body: {
             json: {

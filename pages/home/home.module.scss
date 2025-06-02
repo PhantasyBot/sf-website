@@ -57,11 +57,20 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        background-color: #ffffff;
+        border: none;
+        padding: desktop-vw(10px);
+        border-radius: desktop-vw(5px);
       }
 
       &.active {
         color: var(--primary-accent);
         padding-left: desktop-vw(24px);
+
+        button {
+          background-color: var(--primary-accent);
+          color: var(--text-on-accent);
+        }
 
         &::before {
           opacity: 1;
