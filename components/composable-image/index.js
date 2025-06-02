@@ -2,7 +2,6 @@ import { Image } from '@studio-freight/compono'
 import cn from 'clsx'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
-import { PixelCanvas } from '../pixel-canvas'
 import s from './composable-image.module.scss'
 
 const PixelEye = dynamic(() => import('icons/pixel-eye.svg'), { ssr: false })
@@ -51,28 +50,20 @@ export function ComposableImage({
               preload="auto"
             />
             {isNSFW && (
-              <>
-                <PixelCanvas
-                  colors={['#f598aa', '#ffb6c1', '#ff8fab']}
-                  gap={4}
-                  speed={25}
-                  isRevealing={showNSFW}
-                />
-                <div className={cn(s.nsfwOverlay, showNSFW && s.revealed)}>
-                  <div className={s.nsfwContent}>
-                    {!showNSFW && <span className={s.ageWarning}>18+</span>}
-                    <button
-                      className={cn(s.eyeButton, showNSFW && s.minimal)}
-                      onClick={toggleNSFW}
-                      aria-label={
-                        showNSFW ? 'Hide NSFW content' : 'Show NSFW content'
-                      }
-                    >
-                      {showNSFW ? <PixelEyeCross /> : <PixelEye />}
-                    </button>
-                  </div>
+              <div className={cn(s.nsfwOverlay, showNSFW && s.revealed)}>
+                <div className={s.nsfwContent}>
+                  {!showNSFW && <span className={s.ageWarning}>18+</span>}
+                  <button
+                    className={cn(s.eyeButton, showNSFW && s.minimal)}
+                    onClick={toggleNSFW}
+                    aria-label={
+                      showNSFW ? 'Hide NSFW content' : 'Show NSFW content'
+                    }
+                  >
+                    {showNSFW ? <PixelEyeCross /> : <PixelEye />}
+                  </button>
                 </div>
-              </>
+              </div>
             )}
           </div>
         ) : (
@@ -98,28 +89,20 @@ export function ComposableImage({
               sizes="(max-width: 768px) 100vw, 75vw"
             />
             {isNSFW && (
-              <>
-                <PixelCanvas
-                  colors={['#f598aa', '#ffb6c1', '#ff8fab']}
-                  gap={4}
-                  speed={25}
-                  isRevealing={showNSFW}
-                />
-                <div className={cn(s.nsfwOverlay, showNSFW && s.revealed)}>
-                  <div className={s.nsfwContent}>
-                    {!showNSFW && <span className={s.ageWarning}>18+</span>}
-                    <button
-                      className={cn(s.eyeButton, showNSFW && s.minimal)}
-                      onClick={toggleNSFW}
-                      aria-label={
-                        showNSFW ? 'Hide NSFW content' : 'Show NSFW content'
-                      }
-                    >
-                      {showNSFW ? <PixelEyeCross /> : <PixelEye />}
-                    </button>
-                  </div>
+              <div className={cn(s.nsfwOverlay, showNSFW && s.revealed)}>
+                <div className={s.nsfwContent}>
+                  {!showNSFW && <span className={s.ageWarning}>18+</span>}
+                  <button
+                    className={cn(s.eyeButton, showNSFW && s.minimal)}
+                    onClick={toggleNSFW}
+                    aria-label={
+                      showNSFW ? 'Hide NSFW content' : 'Show NSFW content'
+                    }
+                  >
+                    {showNSFW ? <PixelEyeCross /> : <PixelEye />}
+                  </button>
                 </div>
-              </>
+              </div>
             )}
           </div>
         ),

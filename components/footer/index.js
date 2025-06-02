@@ -82,23 +82,23 @@ export function Footer({ className, style, links, selectedProject }) {
           <li>
             <Link
               className={s.socialIcon}
-              href="https://x.com/phantasydotbot"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Follow us on X"
-            >
-              <XIcon />
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={s.socialIcon}
               href="https://discord.com"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join our Discord"
             >
               <DiscordIcon />
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={s.socialIcon}
+              href="https://x.com/phantasydotbot"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on X"
+            >
+              <XIcon />
             </Link>
           </li>
           <li>

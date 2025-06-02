@@ -117,8 +117,8 @@ export default function About({ phantasy, footer, contact, aboutContent }) {
 
 export async function getStaticProps() {
   const phantasy = {
-    principles: ['FUCK BITCHES', 'GET MONEY', 'RINSE AND REPEAT'],
-    phoneNumber: '+1 (424) 222-9967',
+    principles: ['AI COMPANIONS', 'NSFW ENTERTAINMENT', 'VIRTUAL LOVE'],
+    phoneNumber: '+1 (000) 000-0000',
     email: 'hello@phantasy.bot',
   }
 
