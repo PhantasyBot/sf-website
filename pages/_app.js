@@ -8,12 +8,12 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useStore } from 'lib/store'
 // import { ProjectProvider, RafDriverProvider } from 'lib/theatre'
 import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import 'styles/global.scss'
 import 'styles/themes.scss'
 
-const Noise = dynamic(
-  () => import('components/noise').then(({ Noise }) => Noise),
+const Dither = dynamic(
+  () => import('components/dither').then(({ Dither }) => Dither),
   {
     ssr: false,
   },
@@ -50,7 +50,45 @@ if (typeof window !== 'undefined') {
 function MyApp({ Component, pageProps }) {
   const overflow = useStore(({ overflow }) => overflow)
   const lenis = useLenis(ScrollTrigger.update)
+  const [currentTheme, setCurrentTheme] = useState('rally')
+
   useEffect(ScrollTrigger.refresh, [lenis])
+
+  // Watch for theme changes in the DOM
+  useEffect(() => {
+    const checkTheme = () => {
+      // Look for any element with data-theme attribute
+      const themeElement = document.querySelector('[data-theme]')
+      if (themeElement) {
+        const theme = themeElement.getAttribute('data-theme') || 'rally'
+        setCurrentTheme(theme)
+      }
+    }
+
+    // Check theme immediately
+    checkTheme()
+
+    // Create observer for any DOM changes that might affect theme
+    const observer = new MutationObserver(() => {
+      checkTheme()
+    })
+
+    // Observe the body for changes
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+
+    // Also check periodically as a fallback
+    const interval = setInterval(checkTheme, 1000)
+
+    return () => {
+      observer.disconnect()
+      clearInterval(interval)
+    }
+  }, [])
 
   useEffect(() => {
     if (overflow) {
@@ -66,7 +104,7 @@ function MyApp({ Component, pageProps }) {
     <>
       {/* <PageTransition /> */}
       <RealViewport />
-      <Noise />
+      <Dither currentTheme={currentTheme} />
       {/* <ProjectProvider
         id="Satus"
         config="/config/Satus-2023-04-17T12_55_21.json"
