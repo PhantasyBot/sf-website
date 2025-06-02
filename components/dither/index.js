@@ -34,6 +34,11 @@ export function Dither({ currentTheme = 'rally' }) {
         secondary: '#ffd6a5', // Orange from gradient
         hover: '#bdb2ff', // Purple from gradient
       },
+      alchemist: {
+        primary: '#ff0033', // Bright Neon Red
+        secondary: '#ff3366', // Lighter Neon Red
+        hover: '#ff6699', // Pinkish Red
+      },
     }),
     [],
   )

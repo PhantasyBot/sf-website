@@ -98,6 +98,8 @@ export default function Home({
         return 'munny' // Green theme
       case 'Merchandise':
         return 'merchandise' // Rainbow theme
+      case 'Alchemist':
+        return 'alchemist' // Japanese cyberpunk neon red theme
       default:
         return 'rally' // Default theme
     }
@@ -421,7 +423,7 @@ export async function getStaticProps() {
     faqsCollection: {
       items: [
         {
-          title: 'How do I get started?',
+          title: 'What is Phantasy?',
           content: {
             json: {
               nodeType: 'document',
@@ -434,7 +436,7 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'Contact us to discuss your project and we will provide a free consultation.',
+                        'Phantasy is an 18+ NSFW AI Gaming and Entertainment Studio that creates virtual companions and adult-oriented AI experiences. We specialize in AI companions, NSFW entertainment, and virtual relationships.',
                       marks: [],
                       data: {},
                     },
@@ -445,7 +447,7 @@ export async function getStaticProps() {
           },
         },
         {
-          title: 'What services do you offer?',
+          title: 'How do I access your services?',
           content: {
             json: {
               nodeType: 'document',
@@ -458,7 +460,103 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'We offer web design, development, and digital marketing services.',
+                        'You can access our services through our platform. All users must be 18+ years old and verify their age to use our NSFW content and AI companions.',
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
+        {
+          title: 'What age restrictions apply?',
+          content: {
+            json: {
+              nodeType: 'document',
+              data: {},
+              content: [
+                {
+                  nodeType: 'paragraph',
+                  data: {},
+                  content: [
+                    {
+                      nodeType: 'text',
+                      value:
+                        'Our platform is strictly for users 18 years of age or older. We require age verification and do not allow minors to access any of our content or services.',
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
+        {
+          title: 'Are the AI characters real people?',
+          content: {
+            json: {
+              nodeType: 'document',
+              data: {},
+              content: [
+                {
+                  nodeType: 'paragraph',
+                  data: {},
+                  content: [
+                    {
+                      nodeType: 'text',
+                      value:
+                        'No, all characters and interactions are AI-generated and completely fictional. They do not represent real individuals and should not be confused with actual persons.',
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
+        {
+          title: 'How do I contact support?',
+          content: {
+            json: {
+              nodeType: 'document',
+              data: {},
+              content: [
+                {
+                  nodeType: 'paragraph',
+                  data: {},
+                  content: [
+                    {
+                      nodeType: 'text',
+                      value:
+                        'You can reach our support team at hello@phantasy.bot or through our Discord community. We respond to all inquiries within 24-48 hours.',
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
+        {
+          title: 'What technologies do you use?',
+          content: {
+            json: {
+              nodeType: 'document',
+              data: {},
+              content: [
+                {
+                  nodeType: 'paragraph',
+                  data: {},
+                  content: [
+                    {
+                      nodeType: 'text',
+                      value:
+                        'We use cutting-edge AI technologies including advanced language models, computer vision, and machine learning algorithms to create realistic and engaging virtual companions.',
                       marks: [],
                       data: {},
                     },

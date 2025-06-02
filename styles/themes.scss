@@ -90,6 +90,19 @@
   }
 }
 
+[data-theme='alchemist'] {
+  // Japanese Cyberpunk Neon Red
+  --primary-accent: #ff0033; // Bright Neon Red
+  --secondary-accent: #ff3366; // Lighter Neon Red
+  --background-primary: #0a0a0a; // Almost Black
+  --background-secondary: #1a1a1a; // Very Dark Grey
+  --text-primary: #ffffff; // Pure White
+  --text-secondary: #ff6699; // Pinkish Red
+  --text-on-accent: #000000; // Black text on red accents
+  --theme-mode: 'dark';
+  --primary-accent-gradient: linear-gradient(90deg, #ff0033, #ff3366, #ff6699);
+}
+
 // Apply base styles using CSS variables
 body {
   background-color: var(--background-primary);

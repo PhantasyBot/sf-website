@@ -57,7 +57,7 @@ export const Header = ({ principles = [], contact }) => {
             setContactIsOpen(!contactIsOpen)
           }}
         >
-          Contact
+          FAQ
         </button>
       </div>
       <Separator hideIcons={true} className="layout-block" />

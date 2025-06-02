@@ -36,3 +36,8 @@
   mix-blend-mode: overlay; // Good for colorful theme
   opacity: 0.6;
 }
+
+[data-theme='alchemist'] .canvas {
+  mix-blend-mode: screen; // Good for neon red on dark
+  opacity: 0.8;
+}

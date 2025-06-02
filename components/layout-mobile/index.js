@@ -2,9 +2,12 @@ import { Image } from '@studio-freight/compono'
 import cn from 'clsx'
 import { ProjectAccordion } from 'components/project-accordion'
 import { renderer } from 'lib/compatibility/renderer'
+import { useEffect, useRef } from 'react'
 import s from './layout-mobile.module.scss'
 
 const LayoutMobile = ({ projects, phantasy, currentAboutSection }) => {
+  const aboutSectionRef = useRef(null)
+
   // Determine what content to show in the About section
   const aboutSectionContent = currentAboutSection
     ? renderer(currentAboutSection.content)
@@ -16,6 +19,19 @@ const LayoutMobile = ({ projects, phantasy, currentAboutSection }) => {
 
   // Handle case where projects might be undefined
   const projectsData = projects?.items || []
+
+  // Scroll to about section when it changes and user is on mobile
+  useEffect(() => {
+    if (currentAboutSection && aboutSectionRef.current) {
+      // Add a small delay to ensure content is rendered
+      setTimeout(() => {
+        aboutSectionRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }, 100)
+    }
+  }, [currentAboutSection])
 
   return (
     <div className={s.content}>
@@ -36,7 +52,7 @@ const LayoutMobile = ({ projects, phantasy, currentAboutSection }) => {
           fill
         />
       </section>
-      <section className={cn(s.about, 'layout-block')}>
+      <section className={cn(s.about, 'layout-block')} ref={aboutSectionRef}>
         <p className={cn(s.title, 'p text-bold text-uppercase text-muted')}>
           {aboutSectionTitle}
         </p>
