@@ -47,7 +47,7 @@
 
     &.nsfw.blurred {
       .image {
-        filter: blur(8px);
+        filter: blur(12px);
         image-rendering: pixelated;
         image-rendering: -moz-crisp-edges;
         image-rendering: crisp-edges;
@@ -61,36 +61,79 @@
         right: 0;
         bottom: 0;
         background-image: repeating-linear-gradient(
-            0deg,
+            17deg,
             var(--primary-accent) 0px,
-            var(--primary-accent) 3px,
-            transparent 3px,
-            transparent 6px
+            var(--primary-accent) 2px,
+            transparent 2px,
+            transparent 5px
           ),
           repeating-linear-gradient(
-            90deg,
+            73deg,
+            var(--primary-accent) 0px,
+            var(--primary-accent) 1px,
+            transparent 1px,
+            transparent 7px
+          ),
+          repeating-linear-gradient(
+            -23deg,
             var(--primary-accent) 0px,
             var(--primary-accent) 3px,
             transparent 3px,
+            transparent 8px
+          ),
+          repeating-radial-gradient(
+            circle at 13% 27%,
+            var(--primary-accent) 0px,
+            var(--primary-accent) 1px,
+            transparent 1px,
+            transparent 4px
+          ),
+          repeating-radial-gradient(
+            circle at 67% 73%,
+            var(--primary-accent) 0px,
+            var(--primary-accent) 2px,
+            transparent 2px,
             transparent 6px
           );
-        opacity: 0.4;
+        opacity: 0.3;
         z-index: 1;
         pointer-events: none;
+        mix-blend-mode: overlay;
 
         @include desktop {
           background-image: repeating-linear-gradient(
-              0deg,
+              17deg,
               var(--primary-accent) 0px,
-              var(--primary-accent) 4px,
-              transparent 4px,
-              transparent 8px
+              var(--primary-accent) 3px,
+              transparent 3px,
+              transparent 7px
             ),
             repeating-linear-gradient(
-              90deg,
+              73deg,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 2px,
+              transparent 2px,
+              transparent 9px
+            ),
+            repeating-linear-gradient(
+              -23deg,
               var(--primary-accent) 0px,
               var(--primary-accent) 4px,
               transparent 4px,
+              transparent 10px
+            ),
+            repeating-radial-gradient(
+              circle at 13% 27%,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 2px,
+              transparent 2px,
+              transparent 6px
+            ),
+            repeating-radial-gradient(
+              circle at 67% 73%,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 3px,
+              transparent 3px,
               transparent 8px
             );
         }
@@ -121,7 +164,7 @@
 
       &.nsfw.blurred {
         video {
-          filter: blur(8px);
+          filter: blur(12px);
           image-rendering: pixelated;
           image-rendering: -moz-crisp-edges;
           image-rendering: crisp-edges;
@@ -135,36 +178,79 @@
           right: 0;
           bottom: 0;
           background-image: repeating-linear-gradient(
-              0deg,
+              17deg,
               var(--primary-accent) 0px,
-              var(--primary-accent) 3px,
-              transparent 3px,
-              transparent 6px
+              var(--primary-accent) 2px,
+              transparent 2px,
+              transparent 5px
             ),
             repeating-linear-gradient(
-              90deg,
+              73deg,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 1px,
+              transparent 1px,
+              transparent 7px
+            ),
+            repeating-linear-gradient(
+              -23deg,
               var(--primary-accent) 0px,
               var(--primary-accent) 3px,
               transparent 3px,
+              transparent 8px
+            ),
+            repeating-radial-gradient(
+              circle at 13% 27%,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 1px,
+              transparent 1px,
+              transparent 4px
+            ),
+            repeating-radial-gradient(
+              circle at 67% 73%,
+              var(--primary-accent) 0px,
+              var(--primary-accent) 2px,
+              transparent 2px,
               transparent 6px
             );
-          opacity: 0.4;
+          opacity: 0.3;
           z-index: 1;
           pointer-events: none;
+          mix-blend-mode: overlay;
 
           @include desktop {
             background-image: repeating-linear-gradient(
-                0deg,
+                17deg,
                 var(--primary-accent) 0px,
-                var(--primary-accent) 4px,
-                transparent 4px,
-                transparent 8px
+                var(--primary-accent) 3px,
+                transparent 3px,
+                transparent 7px
               ),
               repeating-linear-gradient(
-                90deg,
+                73deg,
+                var(--primary-accent) 0px,
+                var(--primary-accent) 2px,
+                transparent 2px,
+                transparent 9px
+              ),
+              repeating-linear-gradient(
+                -23deg,
                 var(--primary-accent) 0px,
                 var(--primary-accent) 4px,
                 transparent 4px,
+                transparent 10px
+              ),
+              repeating-radial-gradient(
+                circle at 13% 27%,
+                var(--primary-accent) 0px,
+                var(--primary-accent) 2px,
+                transparent 2px,
+                transparent 6px
+              ),
+              repeating-radial-gradient(
+                circle at 67% 73%,
+                var(--primary-accent) 0px,
+                var(--primary-accent) 3px,
+                transparent 3px,
                 transparent 8px
               );
           }

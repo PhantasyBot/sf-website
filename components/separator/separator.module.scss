@@ -7,14 +7,14 @@
 
   .icon {
     display: block;
-    width: mobile-vw(0px);
-    height: mobile-vw(0px);
+    width: mobile-vw(12px);
+    height: mobile-vw(12px);
     color: var(--text-secondary);
     flex-shrink: 0;
 
     @include desktop {
-      width: desktop-vw(0px);
-      height: desktop-vw(0px);
+      width: desktop-vw(12px);
+      height: desktop-vw(12px);
     }
 
     // Style the SVG icon to use current color
@@ -33,11 +33,23 @@
     flex: 1;
     height: 2px;
     background-color: var(--text-secondary);
-    margin: 0 mobile-vw(8px);
-    min-width: 0; // Allows flex shrinking
+    margin: 0;
+    min-width: 0;
 
-    @include desktop {
-      margin: 0 desktop-vw(8px);
+    &.leftSpace {
+      margin-left: mobile-vw(8px);
+
+      @include desktop {
+        margin-left: desktop-vw(8px);
+      }
+    }
+
+    &.rightSpace {
+      margin-right: mobile-vw(8px);
+
+      @include desktop {
+        margin-right: desktop-vw(8px);
+      }
     }
   }
 
@@ -47,11 +59,9 @@
     color: var(--text-secondary);
     font-size: mobile-vw(12px);
     flex-shrink: 0;
-    padding-left: mobile-vw(8px);
 
     @include desktop {
       font-size: desktop-vw(12px);
-      padding-left: desktop-vw(8px);
     }
   }
 }
