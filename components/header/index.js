@@ -9,16 +9,21 @@ import s from './header.module.scss'
 
 const PhantasyLogo = dynamic(() => import('icons/phantasy-logo.svg'), {
   ssr: false,
+  loading: () => <div style={{ width: '200px', height: '40px' }} />,
 })
 const PhantasyLogoMobile = dynamic(
   () => import('icons/phantasy-logo-mobile.svg'),
   {
     ssr: false,
+    loading: () => <div style={{ width: '150px', height: '40px' }} />,
   },
 )
 const PhantasyLettermark = dynamic(
   () => import('icons/phantasy-lettermark.svg'),
-  { ssr: false },
+  {
+    ssr: false,
+    loading: () => <div style={{ width: '40px', height: '40px' }} />,
+  },
 )
 
 export const Header = ({ principles = [], contact }) => {
