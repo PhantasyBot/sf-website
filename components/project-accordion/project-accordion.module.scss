@@ -203,11 +203,17 @@
 
     .mobileInfo {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: mobile-vw(8px);
       padding: mobile-vw(12px) 0;
       border-top: 1px solid var(--text-secondary);
       margin-top: mobile-vw(8px);
+
+      .tokenInfoRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
       .tokenSection {
         display: flex;
@@ -221,6 +227,13 @@
           padding: mobile-vw(4px) mobile-vw(8px);
           background-color: var(--background-secondary);
           border-radius: mobile-vw(4px);
+
+          .tokenIcon {
+            width: mobile-vw(12px);
+            height: mobile-vw(12px);
+            flex-shrink: 0;
+            opacity: 0.8;
+          }
 
           code {
             font-family: monospace;
@@ -262,6 +275,14 @@
             color: var(--secondary-accent);
           }
         }
+      }
+
+      .tokenDisclaimer {
+        font-size: mobile-vw(8px);
+        color: var(--text-secondary);
+        text-align: center;
+        font-style: italic;
+        margin-top: mobile-vw(4px);
       }
 
       .external {

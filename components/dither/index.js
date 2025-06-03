@@ -20,24 +20,24 @@ export function Dither({ currentTheme = 'rally' }) {
         hover: '#ff8fab', // From gradient
       },
       banshee: {
-        primary: '#cad2e2', // Pale blue/grey
-        secondary: '#e0d8e9', // Pale lavender/grey
-        hover: '#b8c6db', // Slightly deeper than primary
+        primary: '#d0d0d0', // Light gray for better readability
+        secondary: '#e0e0e0', // Even lighter gray
+        hover: '#d8d8d8', // Medium gray between primary and secondary
       },
       munny: {
-        primary: '#558b2f', // Matcha Green
-        secondary: '#a5d6a7', // Lighter green
-        hover: '#7cb342', // From gradient
+        primary: '#f0f8e6', // Super light matcha green, almost white
+        secondary: '#f5faf0', // Even lighter, almost pure white with green hint
+        hover: '#f2f9eb', // Medium between primary and secondary
       },
-      merchandise: {
-        primary: '#a0c4ff', // Blue from gradient
-        secondary: '#ffd6a5', // Orange from gradient
-        hover: '#bdb2ff', // Purple from gradient
+      lorelei: {
+        primary: '#b3d9ff', // Much lighter Japanese blue
+        secondary: '#d4e6ff', // Even lighter blue
+        hover: '#c4e0ff', // Medium blue between primary and secondary
       },
       alchemist: {
         primary: '#ff0033', // Bright Neon Red
         secondary: '#ff3366', // Lighter Neon Red
-        hover: '#ff6699', // Pinkish Red
+        hover: '#ff1a4d', // Medium red
       },
     }),
     [],

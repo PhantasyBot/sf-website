@@ -1,5 +1,4 @@
 import * as Accordion from '@radix-ui/react-accordion'
-import { Link } from '@studio-freight/compono'
 import cn from 'clsx'
 import { ComposableImage } from 'components/composable-image'
 import Slider from 'components/slider'
@@ -11,6 +10,9 @@ import s from './project-accordion.module.scss'
 
 const Arrow = dynamic(() => import('icons/arrow.svg'), { ssr: false })
 const PixelCopySolid = dynamic(() => import('icons/pixel-copy-solid.svg'), {
+  ssr: false,
+})
+const TokenBaseIcon = dynamic(() => import('icons/token-base.svg'), {
   ssr: false,
 })
 
@@ -89,41 +91,53 @@ export const ProjectAccordion = ({
 
               {/* Mobile token and link section */}
               <div className={s.mobileInfo}>
-                {item?.token && (
-                  <div className={s.tokenSection}>
-                    <div className={s.tokenAddress}>
-                      <code>
-                        {item.token.address.slice(0, 8)}...
-                        {item.token.address.slice(-6)}
-                      </code>
-                      <button
-                        className={s.copyButton}
-                        onClick={() => {
-                          navigator.clipboard.writeText(item.token.address)
-                        }}
-                        title="Copy address"
-                      >
-                        <PixelCopySolid />
-                      </button>
+                <div className={s.tokenInfoRow}>
+                  {item?.token && (
+                    <div className={s.tokenSection}>
+                      <div className={s.tokenAddress}>
+                        <TokenBaseIcon className={s.tokenIcon} />
+                        <code>
+                          {item.token.address.slice(0, 8)}...
+                          {item.token.address.slice(-6)}
+                        </code>
+                        <button
+                          className={s.copyButton}
+                          onClick={() => {
+                            navigator.clipboard.writeText(item.token.address)
+                          }}
+                          title="Copy address"
+                        >
+                          <PixelCopySolid />
+                        </button>
+                      </div>
+                      {item.token.dexLink && (
+                        <a
+                          href={item.token.dexLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={s.dexLink}
+                        >
+                          DEX ↗
+                        </a>
+                      )}
                     </div>
-                    {item.token.dexLink && (
-                      <a
-                        href={item.token.dexLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={s.dexLink}
-                      >
-                        DEX ↗
-                      </a>
-                    )}
-                  </div>
-                )}
-
-                {item?.link && (
-                  <Link href={item?.link} className={cn('p-s', s.external)}>
-                    site
-                    <Arrow className={s.arrow} />
-                  </Link>
+                  )}
+                  {item?.link && (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={s.external}
+                    >
+                      Visit
+                      <Arrow className={s.arrow} />
+                    </a>
+                  )}
+                </div>
+                {item?.token && (
+                  <p className={s.tokenDisclaimer}>
+                    Not an investment • No value • Entertainment purposes only
+                  </p>
                 )}
               </div>
 

@@ -125,11 +125,6 @@ svg.icon {
   // Add other styles like padding, border-radius as needed
 }
 
-[data-theme='merchandise'] .active-indicator-style.use-gradient-background {
-  background: var(--primary-accent-gradient);
-  color: var(--text-on-accent); // Adjust if needed
-}
-
 // Global styles for blaze slider pagination
 .blaze-pagination {
   .blaze-pagination-button {

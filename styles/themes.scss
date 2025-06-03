@@ -4,11 +4,12 @@
   // Default Theme (Fallback, can be based on Rally or your initial dark theme)
   --primary-accent: #f598aa;
   --secondary-accent: #ffb6c1;
-  --background-primary: #1a1a1d;
-  --background-secondary: #2c2c30;
-  --text-primary: #f5f5f5;
+  --background-primary: #1a1a1a;
+  --background-secondary: #2c2c2c;
+  --text-primary: #ffffff;
   --text-secondary: #a9a9a9;
-  --text-on-accent: #1a1a1d;
+  --text-on-accent: #000000;
+  --text-black: #000000; // Consistent black across all themes
   --theme-mode: 'dark'; // Helps differentiate general light/dark styles
   --primary-accent-gradient: linear-gradient(
     90deg,
@@ -20,85 +21,68 @@
 [data-theme='rally'] {
   --primary-accent: #f598aa; // Sakura Pink
   --secondary-accent: #ffb6c1; // Light Pink
-  --background-primary: #121212; // Very Dark Grey
-  --background-secondary: #1e1e1e; // Dark Grey
-  --text-primary: #e0e0e0; // Off-white
-  --text-secondary: #b3b3b3; // Grey
-  --text-on-accent: #121212; // Dark text on pink accents
+  --background-primary: #1a1a1a; // Dark background
+  --background-secondary: #2c2c2c; // Darker secondary
+  --text-primary: #ffffff; // White text
+  --text-secondary: #a9a9a9; // Gray text
+  --text-on-accent: #000000; // Black text on pink accents
+  --text-black: #000000; // Consistent black
   --theme-mode: 'dark';
   --primary-accent-gradient: linear-gradient(90deg, #f598aa, #ff8fab);
 }
 
 [data-theme='banshee'] {
-  // Ghost Japanese White - light, ethereal
-  --primary-accent: #cad2e2; // Pale, desaturated blue/grey
-  --secondary-accent: #e0d8e9; // Pale lavender/grey
-  --background-primary: #f7f7f9; // Very light grey, almost white
-  --background-secondary: #e9e9ed; // Light grey
-  --text-primary: #3d3d4a; // Dark grey for contrast
-  --text-secondary: #6c6c78; // Medium grey
-  --text-on-accent: #3d3d4a; // Dark text on light accents
-  --theme-mode: 'light';
-  --primary-accent-gradient: linear-gradient(90deg, #cad2e2, #e0d8e9);
+  // Japanese Light Gray - dark theme with light gray accents
+  --primary-accent: #d0d0d0; // Light gray for better readability
+  --secondary-accent: #e0e0e0; // Even lighter gray
+  --background-primary: #1a1a1a; // Dark background
+  --background-secondary: #2c2c2c; // Darker secondary
+  --text-primary: #ffffff; // Pure white text for maximum contrast
+  --text-secondary: #a9a9a9; // Consistent gray across themes
+  --text-on-accent: #000000; // Black text on light gray accents
+  --text-black: #000000; // Consistent black
+  --theme-mode: 'dark';
+  --primary-accent-gradient: linear-gradient(90deg, #d0d0d0, #e0e0e0);
 }
 
 [data-theme='munny'] {
-  // Light Mode, Japanese Green
-  --primary-accent: #558b2f; // Matcha-like Green
-  --secondary-accent: #a5d6a7; // Lighter, complementary green
-  --background-primary: #fbfff8; // Very light, slightly warm off-white
-  --background-secondary: #e8f5e9; // Soft green-tinted background
-  --text-primary: #2e2e2e; // Dark, readable text
-  --text-secondary: #5a5a5a; // Softer grey for secondary text
-  --text-on-accent: #fbfff8; // Light text on green accents
-  --theme-mode: 'light';
-  --primary-accent-gradient: linear-gradient(90deg, #558b2f, #7cb342);
+  // Japanese Super Light Matcha Green - almost white with subtle green tint
+  --primary-accent: #f0f8e6; // Super light matcha green, almost white
+  --secondary-accent: #f5faf0; // Even lighter, almost pure white with green hint
+  --background-primary: #1a1a1a; // Dark background
+  --background-secondary: #2c2c2c; // Darker secondary
+  --text-primary: #ffffff; // White text
+  --text-secondary: #a9a9a9; // Consistent gray across themes
+  --text-on-accent: #000000; // Black text on light accents for readability
+  --text-black: #000000; // Consistent black
+  --theme-mode: 'dark';
+  --primary-accent-gradient: linear-gradient(90deg, #f0f8e6, #f5faf0);
 }
 
-[data-theme='merchandise'] {
-  --primary-accent-gradient: linear-gradient(
-    90deg,
-    #ffadad,
-    #ffd6a5,
-    #fdffb6,
-    #caffbf,
-    #9bf6ff,
-    #a0c4ff,
-    #bdb2ff,
-    #ffc6ff
-  ); // Pastel Rainbow
-  --primary-accent: #a0c4ff; // Representative solid color (blue from gradient)
-  --secondary-accent: #ffd6a5; // Representative solid color (orange from gradient)
-  --background-primary: #ffffff; // White
-  --background-secondary: #f0f0f0; // Light grey
-  --text-primary: #2c2c2c; // Dark grey/black
-  --text-secondary: #585858; // Medium grey
-  --text-on-accent: #2c2c2c; // Dark text on light accents
-  --theme-mode: 'light';
-
-  // Helper classes for merchandise theme
-  .use-gradient-background {
-    background: var(--primary-accent-gradient);
-    border: none; // Gradients often look better without borders
-  }
-  .use-gradient-text {
-    background: var(--primary-accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-  }
+[data-theme='lorelei'] {
+  // Japanese Light Blue - lighter than before to match tone of other themes
+  --primary-accent: #b3d9ff; // Much lighter Japanese blue
+  --secondary-accent: #d4e6ff; // Even lighter blue
+  --background-primary: #1a1a1a; // Dark background
+  --background-secondary: #2c2c2c; // Darker secondary
+  --text-primary: #ffffff; // White text
+  --text-secondary: #a9a9a9; // Consistent gray across themes
+  --text-on-accent: #000000; // Black text on blue accents
+  --text-black: #000000; // Consistent black
+  --theme-mode: 'dark';
+  --primary-accent-gradient: linear-gradient(90deg, #b3d9ff, #d4e6ff);
 }
 
 [data-theme='alchemist'] {
   // Japanese Cyberpunk Neon Red
   --primary-accent: #ff0033; // Bright Neon Red
   --secondary-accent: #ff3366; // Lighter Neon Red
-  --background-primary: #0a0a0a; // Almost Black
-  --background-secondary: #1a1a1a; // Very Dark Grey
-  --text-primary: #ffffff; // Pure White
-  --text-secondary: #b3b3b3; // Neutral Grey (like other dark themes)
+  --background-primary: #1a1a1a; // Dark background
+  --background-secondary: #2c2c2c; // Darker secondary
+  --text-primary: #ffffff; // White text
+  --text-secondary: #a9a9a9; // Consistent gray across themes
   --text-on-accent: #000000; // Black text on red accents
+  --text-black: #000000; // Consistent black
   --theme-mode: 'dark';
   --primary-accent-gradient: linear-gradient(90deg, #ff0033, #ff3366, #ff6699);
 }
@@ -148,11 +132,10 @@ button,
   }
 }
 
-// For specific themes that might override general button styles:
-[data-theme='merchandise'] {
+[data-theme='lorelei'] {
   button.use-gradient-background,
   .button-style.use-gradient-background {
-    // If a button in merchandise theme should have gradient
+    // If a button in lorelei theme should have gradient
     background: var(--primary-accent-gradient);
     color: var(
       --text-on-accent
@@ -165,11 +148,11 @@ button,
   }
 }
 
-// New style for buttons with accent background but white text/border
+// New style for buttons with accent background but black text/border
 .button-accent-strong {
   background-color: var(--primary-accent);
-  color: #000000; // Changed to black text
-  border: 1px solid #000000; // Changed to black border
+  color: var(--text-black); // Use consistent variable
+  border: 1px solid var(--text-black); // Use consistent variable
   padding: 0.5em 1em;
   cursor: pointer;
   transition:
@@ -180,13 +163,15 @@ button,
 
   &:hover {
     background-color: var(--secondary-accent);
-    color: #000000; // Keep black text on hover
-    border-color: #000000; // Keep black border on hover
+    color: var(--text-black); // Keep black text on hover
+    border-color: var(--text-black); // Keep black border on hover
   }
 }
 
 .text-muted {
-  color: #a9a9a9; // Consistent light gray across all themes
+  color: var(
+    --text-secondary
+  ); // Use consistent variable instead of hardcoded color
 }
 
 // Active project indicator, etc.
@@ -197,7 +182,70 @@ button,
   // Add other styles like padding, border-radius as needed
 }
 
-[data-theme='merchandise'] .active-indicator-style.use-gradient-background {
+[data-theme='lorelei'] .active-indicator-style.use-gradient-background {
   background: var(--primary-accent-gradient);
   color: var(--text-on-accent); // Adjust if needed
+}
+
+// Fix Munny theme text colors to prevent green bleeding
+[data-theme='munny'] {
+  // Ensure all buttons and interactive elements stay black
+  button,
+  .button-style,
+  .project-details .actions button,
+  .project-details .actions a {
+    color: var(--text-black) !important;
+  }
+
+  // Ensure accordion and mobile layout titles stay black
+  .accordion .trigger p,
+  .accordion .trigger .category span,
+  .accordion .trigger,
+  .accordion .name {
+    color: var(--text-black) !important;
+  }
+
+  // Ensure FAQ and other heading text stays correct
+  .heading p,
+  .accordion p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-primary) !important;
+  }
+
+  // Ensure section titles use muted color
+  .about .title,
+  .projects .title,
+  .project-details .title {
+    color: var(--text-secondary) !important;
+  }
+
+  // Ensure project list items stay their intended color
+  .projects .list .list-item button p {
+    color: var(--text-black) !important;
+  }
+
+  // Fix any text that might be inheriting green color
+  p,
+  span,
+  div,
+  a:not(.decorate) {
+    color: inherit !important;
+  }
+
+  // Ensure navigation and links use theme colors appropriately
+  .decorate {
+    color: var(--primary-accent) !important;
+  }
+
+  // Fix mobile accordion content
+  .project-accordion-content p,
+  .project-accordion-content span,
+  .project-accordion-content div {
+    color: var(--text-black) !important;
+  }
 }

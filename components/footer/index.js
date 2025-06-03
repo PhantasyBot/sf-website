@@ -39,7 +39,7 @@ export function Footer({ className, style, links }) {
             href={litePaperLink}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(s.column, 'p-s')}
+            className={cn(s.column, 'p-s footer-lite-paper-link')}
             onClick={() => {
               /* va.track(`Opened ${litePaperText}`) */
             }}
@@ -93,7 +93,7 @@ export function Footer({ className, style, links }) {
                 href={litePaperLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-s"
+                className="p-s footer-lite-paper-link"
                 onClick={() => {
                   /* va.track(`Opened ${litePaperText}`) */
                 }}

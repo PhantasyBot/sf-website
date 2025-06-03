@@ -14,8 +14,10 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import s from './home.module.scss'
 
-const Arrow = dynamic(() => import('icons/arrow.svg'), { ssr: false })
 const PixelCopySolid = dynamic(() => import('icons/pixel-copy-solid.svg'), {
+  ssr: false,
+})
+const TokenBaseIcon = dynamic(() => import('icons/token-base.svg'), {
   ssr: false,
 })
 
@@ -107,7 +109,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
       case 'Munny':
         return 'munny' // Green theme
       case 'Lorelei':
-        return 'merchandise' // Rainbow theme (keeping same theme)
+        return 'lorelei' // Rainbow theme (changed from merchandise)
       case 'Alchemist':
         return 'alchemist' // Japanese cyberpunk neon red theme
       default:
@@ -220,34 +222,15 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
               </ScrollableBox>
             </section>
             <section className={s['project-details']}>
-              <div className={s.heading}>
-                <p
-                  className={cn(
-                    s.title,
-                    'p text-bold text-uppercase text-muted',
-                  )}
+              <div className={s.actions}>
+                <button
+                  className="p-s decorate"
+                  onClick={() => {
+                    setShowInfoModal(!showInfoModal)
+                  }}
                 >
-                  Details
-                </p>
-                <div className={s.actions}>
-                  <button
-                    className="p-s decorate"
-                    onClick={() => {
-                      setShowInfoModal(!showInfoModal)
-                    }}
-                  >
-                    {showInfoModal ? 'gallery' : 'close'}
-                  </button>
-                  {selectedProject?.link && (
-                    <Link
-                      href={selectedProject?.link}
-                      className={cn('p-s decorate', s.external)}
-                    >
-                      site
-                      <Arrow className={s.arrow} />
-                    </Link>
-                  )}
-                </div>
+                  {showInfoModal ? 'gallery' : 'close'}
+                </button>
               </div>
               <div className={s['details-content']}>
                 <div className={cn(s.images, !showInfoModal && s.visible)}>
@@ -295,37 +278,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                   className={cn(s.info, showInfoModal && s.visible)}
                   reset={!showInfoModal || resetScroll}
                 >
-                  {selectedProject?.body && (
-                    <div className={s.description}>
-                      {renderer(selectedProject.body)}
-                    </div>
-                  )}
-                  {selectedProject?.platform && (
-                    <div className={s.platform}>
-                      <p
-                        className={cn(
-                          s.title,
-                          'p text-muted text-uppercase text-bold',
-                        )}
-                      >
-                        Platform
-                      </p>
-                      <p className="p text-bold">
-                        {selectedProject.platform.name}
-                      </p>
-                      <p className="p-s">{selectedProject.platform.summary}</p>
-                      {selectedProject.platform.link && (
-                        <Link
-                          href={selectedProject.platform.link}
-                          className="p-s decorate"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Visit Platform ↗
-                        </Link>
-                      )}
-                    </div>
-                  )}
                   {selectedProject?.agent && (
                     <div className={s.agent}>
                       <p
@@ -356,6 +308,47 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       </div>
                     </div>
                   )}
+                  {selectedProject?.platform && (
+                    <div className={s.platform}>
+                      <p
+                        className={cn(
+                          s.title,
+                          'p text-muted text-uppercase text-bold',
+                        )}
+                      >
+                        Platform
+                      </p>
+                      <div className={s.platformDetails}>
+                        <div className={s.platformContent}>
+                          {selectedProject.platform.image && (
+                            <img
+                              src={selectedProject.platform.image}
+                              alt={selectedProject.platform.name}
+                              className={s.platformImage}
+                            />
+                          )}
+                          <div className={s.platformInfo}>
+                            <p className="p text-bold">
+                              {selectedProject.platform.name}
+                            </p>
+                            <p className="p-s">
+                              {selectedProject.platform.summary}
+                            </p>
+                          </div>
+                        </div>
+                        {selectedProject.platform.link && (
+                          <Link
+                            href={selectedProject.platform.link}
+                            className={cn('p-s', s.platformButton)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Visit Platform ↗
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  )}
                   {selectedProject?.token && (
                     <div className={s.token}>
                       <p
@@ -368,6 +361,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       </p>
                       <div className={s.tokenDetails}>
                         <div className={s.addressContainer}>
+                          <TokenBaseIcon className={s.tokenIcon} />
                           <code className="p-s">
                             {selectedProject.token.address}
                           </code>
@@ -383,17 +377,21 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                           >
                             <PixelCopySolid />
                           </button>
+                          {selectedProject.token.dexLink && (
+                            <Link
+                              href={selectedProject.token.dexLink}
+                              className="p-s decorate"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Trade on DEX ↗
+                            </Link>
+                          )}
                         </div>
-                        {selectedProject.token.dexLink && (
-                          <Link
-                            href={selectedProject.token.dexLink}
-                            className="p-s decorate"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Trade on DEX ↗
-                          </Link>
-                        )}
+                        <p className={s.tokenDisclaimer}>
+                          Not an investment • No value • Entertainment purposes
+                          only
+                        </p>
                       </div>
                     </div>
                   )}
@@ -687,6 +685,7 @@ export async function getStaticProps() {
             summary:
               'Advanced AI technology platform for next-generation digital experiences.',
             link: 'https://example.com/alchemist',
+            image: 'https://placehold.co/48x48/ff0033/fff?text=A',
           },
           agent: {
             name: 'Alchemist',
@@ -745,6 +744,7 @@ export async function getStaticProps() {
             summary:
               'An interactive AI companion platform featuring Rally, your virtual girlfriend experience.',
             link: 'https://rally.sh',
+            image: 'https://r2.rally.sh/photos/rally_pfp.png',
           },
           agent: {
             name: 'Rally',
@@ -838,6 +838,7 @@ export async function getStaticProps() {
             name: 'Banshee Platform',
             summary: 'Ethereal AI platform for mystical digital experiences.',
             link: 'https://example.com/banshee',
+            image: 'https://placehold.co/48x48/d0d0d0/000?text=B',
           },
           agent: {
             name: 'Banshee',
@@ -896,6 +897,7 @@ export async function getStaticProps() {
             summary:
               'A bounty hunting platform featuring gig-style jobs and task completion rewards. Coming soon.',
             link: 'https://munny.fun',
+            image: 'https://placehold.co/48x48/f0f8e6/2d4a22?text=M',
           },
           agent: {
             name: 'Munny',
@@ -953,6 +955,7 @@ export async function getStaticProps() {
             summary:
               'An everlasting visual novel platform powered by AI that creates infinite stories and worlds. Coming soon.',
             link: 'https://lorelei.app',
+            image: 'https://placehold.co/48x48/64b5f6/000?text=L',
           },
           agent: {
             name: 'Lorelei',

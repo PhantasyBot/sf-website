@@ -1,9 +1,8 @@
-import { Link, Marquee } from '@studio-freight/compono'
+import { Marquee } from '@studio-freight/compono'
 import { useMediaQuery } from '@studio-freight/hamo'
 import cn from 'clsx'
 import { ContactFormModal } from 'components/header/contact-form'
 import { Separator } from 'components/separator'
-import { pad } from 'lib/maths'
 import { useStore } from 'lib/store'
 import dynamic from 'next/dynamic'
 import s from './header.module.scss'
@@ -17,7 +16,10 @@ const PhantasyLogoMobile = dynamic(
     ssr: false,
   },
 )
-const Stard = dynamic(() => import('icons/stard.svg'), { ssr: false })
+const PhantasyLettermark = dynamic(
+  () => import('icons/phantasy-lettermark.svg'),
+  { ssr: false },
+)
 
 export const Header = ({ principles = [], contact }) => {
   const isMobile = useMediaQuery('(max-width: 800px)')
@@ -32,20 +34,15 @@ export const Header = ({ principles = [], contact }) => {
     <header className={cn(s.container, 'layout-block')}>
       <div className={cn(s.top, 'layout-grid')}>
         <div className={s.eggs}>
-          <Link
-            name="easter egg"
-            className={s.egg}
-            href="https://github.com/studio-freight/sf-website"
-          >
-            <Stard />
-          </Link>
+          <a name="easter egg" className={s.egg} href="https://phantasy.bot">
+            <PhantasyLettermark />
+          </a>
         </div>
         {isMobile === false && (
           <Marquee className={s.marquee} duration={20}>
             {principles.map((principle, i) => (
               <p key={i} className={cn('p', s.principle)}>
-                <span>{pad(i + 1)}</span>
-                &nbsp;{principle}
+                {principle}
                 <span className={s.separator}>✰</span>
               </p>
             ))}
@@ -74,8 +71,7 @@ export const Header = ({ principles = [], contact }) => {
         <Marquee className={s.marquee} duration={20}>
           {principles.map((principle, i) => (
             <p key={i} className={cn('p', s.principle)}>
-              <span>{pad(i + 1)}</span>
-              &nbsp;{principle}
+              {principle}
               <span className={s.separator}>✰</span>
             </p>
           ))}
