@@ -273,8 +273,18 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
               className={s['project-details']}
               aria-labelledby="project-details-heading"
             >
-              <div className={s.actions}>
+              <div className={s['project-header']}>
+                <h2
+                  id="project-details-heading"
+                  className={cn(
+                    'h3 text-bold text-uppercase',
+                    s['project-title'],
+                  )}
+                >
+                  {selectedProject?.name}
+                </h2>
                 <button
+                  className={s['toggle-button']}
                   onClick={() => {
                     setShowInfoModal(!showInfoModal)
                   }}
@@ -287,9 +297,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                 </button>
               </div>
               <div className={s['details-content']}>
-                <h2 id="project-details-heading" className="sr-only">
-                  {selectedProject?.name} Project Details
-                </h2>
                 <div className={cn(s.images, !showInfoModal && s.visible)}>
                   <div className={s.buttonsContainer}>
                     <button
@@ -360,14 +367,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                 >
                   {selectedProject?.platform && (
                     <div className={s.platform}>
-                      <p
-                        className={cn(
-                          s.title,
-                          'p text-muted text-uppercase text-bold',
-                        )}
-                      >
-                        App
-                      </p>
                       <div className={s.platformLayout}>
                         <div className={s.platformDetails}>
                           <div className={s.platformContent}>

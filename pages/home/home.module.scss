@@ -125,13 +125,21 @@
   width: 100%;
   min-width: 0;
 
-  .actions {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 2;
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: desktop-vh(16px);
+    border-bottom: 1px solid var(--text-secondary);
+    margin-bottom: desktop-vh(24px);
 
-    button {
+    .project-title {
+      color: var(--text-primary);
+      margin: 0;
+      flex: 1;
+    }
+
+    .toggle-button {
       color: var(--primary-accent);
       background: none;
       border: none;
@@ -142,6 +150,7 @@
       padding: desktop-vh(4px) desktop-vw(8px);
       border-radius: desktop-vw(4px);
       transition: all 0.3s ease;
+      margin-left: desktop-vw(16px);
 
       &:hover {
         color: var(--secondary-accent);
@@ -160,7 +169,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding-top: desktop-vh(32px);
+    padding-top: desktop-vh(0px);
     width: 100%;
     min-width: 0;
 
@@ -291,12 +300,11 @@
       }
 
       .platform {
-        margin-bottom: desktop-vh(16px);
+        margin-bottom: desktop-vh(32px);
         padding-bottom: desktop-vh(32px);
         border-bottom: 1px solid var(--text-secondary);
 
         .platformLayout {
-          margin-top: desktop-vh(16px);
           display: flex;
           gap: desktop-vw(16px);
           align-items: flex-start;
@@ -389,12 +397,11 @@
       }
 
       .agent {
-        margin-bottom: desktop-vh(16px);
+        margin-bottom: desktop-vh(32px);
         padding-bottom: desktop-vh(32px);
         border-bottom: 1px solid var(--text-secondary);
 
         .agentLayout {
-          margin-top: desktop-vh(16px);
           display: flex;
           gap: desktop-vw(16px);
           align-items: flex-start;
@@ -496,10 +503,9 @@
       }
 
       .token {
-        margin-bottom: desktop-vh(16px);
+        margin-bottom: desktop-vh(32px);
 
         .tokenLayout {
-          margin-top: desktop-vh(6px);
           display: flex;
           gap: desktop-vw(16px);
           align-items: flex-start;
