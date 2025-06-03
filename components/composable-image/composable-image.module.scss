@@ -15,6 +15,7 @@
     grid-column: span 1;
     border-radius: mobile-vw(8px);
     overflow: hidden;
+    cursor: pointer;
 
     @include desktop {
       border-radius: desktop-vw(8px);
@@ -61,10 +62,9 @@
   }
 
   .image {
-    grid-column: span 1;
-    width: auto;
+    width: 100%;
+    height: 100%;
     border-radius: mobile-vw(8px);
-    overflow: hidden;
 
     @include desktop {
       border-radius: desktop-vw(8px);
@@ -72,6 +72,7 @@
 
     &.videoWrap {
       position: relative;
+      cursor: default;
 
       video {
         position: absolute;
@@ -79,6 +80,67 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: mobile-vw(8px);
+
+        @include desktop {
+          border-radius: desktop-vw(8px);
+        }
+
+        &::-webkit-media-controls-panel {
+          background: rgba(0, 0, 0, 0.8);
+          border-radius: 0 0 mobile-vw(8px) mobile-vw(8px);
+
+          @include desktop {
+            border-radius: 0 0 desktop-vw(8px) desktop-vw(8px);
+          }
+        }
+
+        &::-webkit-media-controls-play-button,
+        &::-webkit-media-controls-volume-slider,
+        &::-webkit-media-controls-timeline,
+        &::-webkit-media-controls-current-time-display,
+        &::-webkit-media-controls-time-remaining-display {
+          filter: brightness(1.2);
+        }
+
+        &::-webkit-media-controls-timeline {
+          background: rgba(255, 255, 255, 0.2);
+        }
+
+        &::-webkit-media-controls-timeline::-webkit-slider-thumb {
+          background: var(--primary-accent);
+        }
+      }
+
+      &:only-child {
+        grid-column: span 2;
+        height: auto;
+        width: 100%;
+
+        video {
+          position: relative;
+        }
+      }
+
+      &:not(:only-child) {
+        aspect-ratio: var(--width) / var(--height);
+        height: mobile-vw(238px);
+
+        @include desktop {
+          height: desktop-vw(403px);
+        }
+      }
+
+      &.large:not(:only-child) {
+        @include desktop {
+          height: desktop-vw(611px);
+        }
+      }
+
+      &.small {
+        @include mobile {
+          height: mobile-vw(211px);
+        }
       }
 
       &.nsfw:not(.revealed) {
@@ -93,35 +155,6 @@
           filter: none;
           transition: filter 0.3s ease;
         }
-      }
-    }
-
-    &:only-child {
-      grid-column: span 2;
-      height: auto;
-      width: 100%;
-
-      &.videoWrap video {
-        position: relative;
-      }
-    }
-    &:not(:only-child) {
-      aspect-ratio: var(--width) / var(--height);
-      height: mobile-vw(238px);
-
-      @include desktop {
-        height: desktop-vw(403px);
-      }
-    }
-
-    &.large:not(:only-child) {
-      @include desktop {
-        height: desktop-vw(611px);
-      }
-    }
-    &.small {
-      @include mobile {
-        height: mobile-vw(211px);
       }
     }
   }
@@ -140,13 +173,18 @@
     transition: all 0.3s ease;
 
     &.revealed {
-      background: rgba(0, 0, 0, 0.1);
+      background: transparent;
       align-items: flex-start;
       justify-content: flex-end;
       padding: mobile-vw(8px);
+      pointer-events: none;
 
       @include desktop {
         padding: desktop-vw(8px);
+      }
+
+      .nsfwContent {
+        pointer-events: auto;
       }
     }
   }

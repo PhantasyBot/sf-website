@@ -162,16 +162,10 @@
         }
       }
 
-      .assetButton {
+      .assetContainer {
         display: block;
         width: 100%;
-        background-color: transparent;
-        border: none;
-        padding: 0;
-
-        img {
-          background-color: transparent;
-        }
+        cursor: pointer;
       }
 
       &:not(.visible) {
@@ -281,6 +275,13 @@
           white-space: nowrap;
           transition: background-color 0.3s ease;
           align-self: flex-end;
+          border: none;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: desktop-vw(80px);
+          height: desktop-vh(28px);
 
           &:hover {
             background-color: var(--secondary-accent);
@@ -362,6 +363,11 @@
               transition: background-color 0.3s ease;
               align-self: flex-end;
               cursor: pointer;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              min-width: desktop-vw(80px);
+              height: desktop-vh(28px);
 
               &:hover {
                 background-color: var(--secondary-accent);

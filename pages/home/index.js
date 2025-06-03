@@ -245,21 +245,16 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                   <ScrollableBox reset={showInfoModal || resetScroll}>
                     {selectedProject?.assetsCollection?.items.map(
                       (asset, i) => (
-                        <button
-                          className={s.assetButton}
-                          key={i}
-                          onClick={() => {
-                            setGalleryVisible(true)
-                          }}
-                        >
+                        <div className={s.assetContainer} key={i}>
                           <ComposableImage
                             sources={asset.imagesCollection}
                             priority={i === 0}
                             width={1026}
                             height={604}
                             isNSFW={asset.isNSFW || false}
+                            onImageClick={() => setGalleryVisible(true)}
                           />
-                        </button>
+                        </div>
                       ),
                     )}
                   </ScrollableBox>
@@ -719,6 +714,19 @@ export async function getStaticProps() {
                     },
                   ],
                 },
+                isNSFW: false,
+              },
+              {
+                imagesCollection: {
+                  items: [
+                    {
+                      url: '/alchemist.mp4',
+                      width: 1026,
+                      height: 604,
+                    },
+                  ],
+                },
+                isNSFW: true,
               },
             ],
           },
@@ -779,6 +787,18 @@ export async function getStaticProps() {
                   ],
                 },
                 isNSFW: false,
+              },
+              {
+                imagesCollection: {
+                  items: [
+                    {
+                      url: '/alchemist.mp4',
+                      width: 1026,
+                      height: 604,
+                    },
+                  ],
+                },
+                isNSFW: true,
               },
               {
                 imagesCollection: {

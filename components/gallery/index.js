@@ -1,4 +1,3 @@
-import { useOutsideClickEvent } from '@studio-freight/hamo'
 import cn from 'clsx'
 import { ComposableImage } from 'components/composable-image'
 import { useStore } from 'lib/store'
@@ -18,17 +17,31 @@ export function Gallery() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const totalImages = selectedProject?.assetsCollection?.items?.length || 0
 
-  useOutsideClickEvent(contentRef, () => setGalleryVisible(false))
+  // Handle backdrop clicks to close gallery
+  const handleBackdropClick = (e) => {
+    // Only close if clicking directly on the gallery backdrop (not on children)
+    if (e.target === e.currentTarget) {
+      setGalleryVisible(false)
+    }
+  }
 
   const goToPrevious = (e) => {
     e?.preventDefault()
     e?.stopPropagation()
+    // Only navigate if we're not interacting with video controls
+    if (e?.target?.tagName === 'VIDEO' || e?.target?.closest('video')) {
+      return
+    }
     setCurrentImageIndex((prev) => (prev === 0 ? totalImages - 1 : prev - 1))
   }
 
   const goToNext = (e) => {
     e?.preventDefault()
     e?.stopPropagation()
+    // Only navigate if we're not interacting with video controls
+    if (e?.target?.tagName === 'VIDEO' || e?.target?.closest('video')) {
+      return
+    }
     setCurrentImageIndex((prev) => (prev === totalImages - 1 ? 0 : prev + 1))
   }
 
@@ -61,8 +74,11 @@ export function Gallery() {
   }, [galleryVisible, selectedProject])
 
   return (
-    <div className={cn(s.gallery, galleryVisible && s.visible)}>
-      <div className={s.controls}>
+    <div
+      className={cn(s.gallery, galleryVisible && s.visible)}
+      onClick={handleBackdropClick}
+    >
+      <div className={cn(s.controls, 'gallery-controls')}>
         <button className={s.close} onClick={() => setGalleryVisible(false)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -17,6 +17,7 @@ export function ComposableImage({
   small = false,
   priority = false,
   isNSFW = false,
+  onImageClick = null,
 }) {
   const [showNSFW, setShowNSFW] = useState(false)
   const amount = sources.items.length
@@ -26,10 +27,18 @@ export function ComposableImage({
     setShowNSFW(!showNSFW)
   }
 
+  const handleImageClick = (e) => {
+    // For images, trigger the modal
+    if (onImageClick) {
+      onImageClick(e)
+    }
+  }
+
   return (
     <div className={s.images}>
       {sources.items.map((source) =>
-        source.url.includes('videos.ctfassets.net') ? (
+        source.url.includes('videos.ctfassets.net') ||
+        source.url.match(/\.(mp4|webm|ogg)$/i) ? (
           <div
             className={cn(
               s.image,
@@ -43,11 +52,16 @@ export function ComposableImage({
           >
             <video
               src={source.url}
-              muted
+              controls
+              controlsList="nodownload"
               loop
-              autoPlay
               playsInline
-              preload="auto"
+              preload="metadata"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
             />
             {isNSFW && (
               <div className={cn(s.nsfwOverlay, showNSFW && s.revealed)}>
@@ -76,6 +90,7 @@ export function ComposableImage({
               isNSFW && s.nsfw,
               isNSFW && showNSFW && s.revealed,
             )}
+            onClick={handleImageClick}
           >
             <Image
               src={source.url}
