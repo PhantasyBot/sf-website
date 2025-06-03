@@ -617,7 +617,7 @@
               svg {
                 width: desktop-vh(12px);
                 height: desktop-vh(12px);
-                color: var(--text-black);
+                fill: var(--text-black);
               }
 
               &:hover,
@@ -703,7 +703,7 @@
               svg {
                 width: desktop-vh(12px);
                 height: desktop-vh(12px);
-                color: var(--text-black);
+                fill: var(--text-black);
               }
 
               &:hover,
@@ -782,7 +782,7 @@
       width: desktop-vh(12px);
       height: desktop-vh(12px);
       margin-left: desktop-vw(6px);
-      fill: var(--text-black);
+      fill: var(--primary-accent);
       flex-shrink: 0;
     }
   }

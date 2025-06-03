@@ -242,7 +242,7 @@
   .externalIcon {
     width: desktop-vh(12px);
     height: desktop-vh(12px);
-    fill: var(--text-black);
+    fill: var(--text-primary);
     flex-shrink: 0;
 
     @include mobile {

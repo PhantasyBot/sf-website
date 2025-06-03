@@ -297,7 +297,7 @@
             svg {
               width: mobile-vw(12px);
               height: mobile-vw(12px);
-              color: #e1dcdc;
+              fill: #e1dcdc;
             }
 
             &:hover {
@@ -310,7 +310,7 @@
               transform: scale(0.95);
 
               svg {
-                color: var(--text-on-accent);
+                fill: var(--text-on-accent);
               }
             }
           }
@@ -380,12 +380,13 @@
       }
     }
 
-    .externalIcon {
-      width: mobile-vh(10px);
-      height: mobile-vh(10px);
-      margin-left: mobile-vw(4px);
-      fill: var(--text-black);
-      flex-shrink: 0;
+    /* Removed conflicting externalIcon rule that forced black color */
+
+    // Mobile-specific overrides for better visibility
+    @include mobile {
+      .mobileInfo .tokenSection .tokenAddress .copyButton svg {
+        fill: #e1dcdc !important;
+      }
     }
 
     &[data-state='open'] {
