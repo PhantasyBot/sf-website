@@ -47,12 +47,15 @@ export function ContactFormModal({ data }) {
       <div className={s.overlay} onClick={closeContactTab} />
       <div className={cn(s.wrapper, contactIsOpen && s.open)} ref={menuRef}>
         <div className={s.heading}>
-          <button
-            className={cn('button', 'button-accent-strong', s.cta)}
-            onClick={closeContactTab}
-          >
-            close
-          </button>
+          <div className={s.headerRow}>
+            <p className={cn('p text-uppercase text-bold', s.faqTitle)}>FAQ</p>
+            <button
+              className={cn('button', 'button-accent-strong', s.cta)}
+              onClick={closeContactTab}
+            >
+              close
+            </button>
+          </div>
           <Separator
             className={s.separator}
             hideIcons={true}
@@ -63,7 +66,6 @@ export function ContactFormModal({ data }) {
         </div>
         <ScrollableBox className={s.scrollable} shadow={false}>
           <div className={s.accordion}>
-            <p className="p text-uppercase text-bold text-muted">FAQ</p>
             <Accordion.Root
               type="single"
               className={s['accordion-root']}
@@ -73,7 +75,7 @@ export function ContactFormModal({ data }) {
                 <Accordion.Item
                   value={slugify(faq.title)}
                   key={i}
-                  className={s.item}
+                  className={cn(s.item, i === 0 && s.firstItem)}
                 >
                   <Accordion.Header>
                     <Accordion.Trigger className={s.trigger}>

@@ -296,14 +296,20 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             className={s.agentProfile}
                           />
                         )}
-                        <div>
-                          <p className="p text-bold">
+                        <div className={s.agentInfo}>
+                          <p className={cn('p text-bold', s.agentName)}>
                             {selectedProject.agent.name}
                           </p>
-                          <p className="p-s">
+                          <p className={cn('p-s', s.agentGoal)}>
                             <span className="text-muted">GOAL:</span>{' '}
                             {selectedProject.agent.goal}
                           </p>
+                          <div className={s.agentSkills}>
+                            <p className={cn('p-s', s.skillsLabel)}>SKILLS:</p>
+                            <p className={cn('p-s', s.skillsList)}>
+                              {selectedProject.agent.skills}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -328,24 +334,26 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             />
                           )}
                           <div className={s.platformInfo}>
-                            <p className="p text-bold">
-                              {selectedProject.platform.name}
-                            </p>
-                            <p className="p-s">
-                              {selectedProject.platform.summary}
-                            </p>
+                            <div className={s.platformText}>
+                              <p className="p text-bold">
+                                {selectedProject.platform.name}
+                              </p>
+                              <p className="p-s">
+                                {selectedProject.platform.summary}
+                              </p>
+                            </div>
+                            {selectedProject.platform.link && (
+                              <Link
+                                href={selectedProject.platform.link}
+                                className={cn('p-s', s.platformButton)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Visit Platform ↗
+                              </Link>
+                            )}
                           </div>
                         </div>
-                        {selectedProject.platform.link && (
-                          <Link
-                            href={selectedProject.platform.link}
-                            className={cn('p-s', s.platformButton)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Visit Platform ↗
-                          </Link>
-                        )}
                       </div>
                     </div>
                   )}
@@ -689,7 +697,8 @@ export async function getStaticProps() {
           },
           agent: {
             name: 'Alchemist',
-            goal: 'An AI agent with deep research abilities specializing in uncovering hidden knowledge and conducting thorough analysis. Designed for 18+ users seeking intelligent, NSFW-capable AI companionship with advanced research capabilities.',
+            goal: 'Deep research and analysis specialist',
+            skills: 'Deep Research, Data Analysis, Knowledge Discovery',
             profileImage:
               'https://placehold.co/1026x604/111/333?text=Alchemist',
           },
@@ -740,7 +749,7 @@ export async function getStaticProps() {
             },
           },
           platform: {
-            name: 'Rally Platform',
+            name: 'Rally.sh',
             summary:
               'An interactive AI companion platform featuring Rally, your virtual girlfriend experience.',
             link: 'https://rally.sh',
@@ -748,7 +757,8 @@ export async function getStaticProps() {
           },
           agent: {
             name: 'Rally',
-            goal: 'An AI agent that excels in marketing and promotions, creating engaging campaigns and building connections. She offers NSFW-capable companionship for 18+ users, combining promotional expertise with intimate virtual girlfriend experiences.',
+            goal: 'Marketing and promotional campaigns specialist',
+            skills: 'Marketing, Promotions, Community Building',
             profileImage: 'https://r2.rally.sh/photos/rally_pfp.png',
           },
           token: {
@@ -842,7 +852,9 @@ export async function getStaticProps() {
           },
           agent: {
             name: 'Banshee',
-            goal: 'An AI agent specializing in live cam experiences and real-time interactive entertainment. She provides immersive, NSFW-capable AI companionship for 18+ users through dynamic live streaming and personalized interactive sessions.',
+            goal: 'Live streaming and interactive entertainment specialist',
+            skills:
+              'Live Streaming, Interactive Entertainment, Real-time Engagement',
             profileImage:
               'https://placehold.co/1026x604/cad2e2/fff?text=Banshee',
           },
@@ -901,7 +913,8 @@ export async function getStaticProps() {
           },
           agent: {
             name: 'Munny',
-            goal: 'An AI agent focused on facilitating and evaluating bounty hunts through the munny.fun platform. She manages gig-style jobs and task evaluations while providing NSFW-capable AI companionship for 18+ users in a professional yet intimate setting.',
+            goal: 'Bounty hunting and task evaluation specialist',
+            skills: 'Bounty Hunting, Task Evaluation, Gig Management',
             profileImage: 'https://placehold.co/1026x604/558b2f/fff?text=Munny',
           },
           token: {
@@ -959,7 +972,8 @@ export async function getStaticProps() {
           },
           agent: {
             name: 'Lorelei',
-            goal: 'An AI agent focused on creating stories and immersive worlds through the lorelei.app platform. She crafts everlasting visual novels that evolve infinitely, offering NSFW-capable storytelling experiences for 18+ users seeking narrative-driven AI companionship.',
+            goal: 'Storytelling and world creation specialist',
+            skills: 'Storytelling, World Building, Visual Novel Creation',
             profileImage:
               'https://placehold.co/1026x604/a0c4ff/fff?text=Lorelei',
           },

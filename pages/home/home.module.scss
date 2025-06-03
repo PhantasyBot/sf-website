@@ -100,7 +100,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 10;
+    z-index: 2;
 
     button {
       color: var(--primary-accent);
@@ -204,7 +204,6 @@
         .platformDetails {
           margin-top: desktop-vh(8px);
           display: flex;
-          justify-content: space-between;
           align-items: flex-start;
           gap: desktop-vh(16px);
         }
@@ -212,20 +211,41 @@
         .platformContent {
           display: flex;
           align-items: flex-start;
-          gap: desktop-vw(12px);
+          gap: desktop-vw(16px);
           flex: 1;
         }
 
         .platformImage {
-          width: desktop-vw(48px);
-          height: desktop-vw(48px);
+          width: desktop-vw(64px);
+          height: desktop-vw(64px);
           border-radius: desktop-vw(8px);
           object-fit: cover;
+          border: 2px solid var(--primary-accent);
           flex-shrink: 0;
         }
 
         .platformInfo {
           flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: desktop-vw(64px);
+
+          .platformText {
+            p {
+              line-height: 1.3;
+
+              &:first-child {
+                font-size: desktop-vh(16px);
+                margin-bottom: desktop-vh(4px);
+              }
+
+              &:last-child {
+                font-size: desktop-vh(12px);
+                margin-top: 0;
+              }
+            }
+          }
         }
 
         .platformButton {
@@ -239,6 +259,7 @@
           font-size: desktop-vh(10px);
           white-space: nowrap;
           transition: background-color 0.3s ease;
+          align-self: flex-end;
 
           &:hover {
             background-color: var(--secondary-accent);
@@ -265,20 +286,32 @@
             flex-shrink: 0;
           }
 
-          div {
+          .agentInfo {
             flex: 1;
 
-            p {
+            .agentName {
+              font-size: desktop-vh(16px);
+              margin-bottom: desktop-vh(4px);
               line-height: 1.3;
+            }
 
-              &:first-child {
-                font-size: desktop-vh(16px);
-                margin-bottom: desktop-vh(4px);
+            .agentGoal {
+              font-size: desktop-vh(12px);
+              margin-bottom: desktop-vh(8px);
+              line-height: 1.3;
+            }
+
+            .agentSkills {
+              .skillsLabel {
+                font-size: desktop-vh(12px);
+                color: var(--text-secondary);
+                text-transform: uppercase;
+                margin-bottom: desktop-vh(2px);
               }
 
-              &:last-child {
+              .skillsList {
                 font-size: desktop-vh(12px);
-                margin-top: 0;
+                line-height: 1.3;
               }
             }
           }

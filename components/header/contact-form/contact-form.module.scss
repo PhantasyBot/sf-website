@@ -7,7 +7,7 @@
   max-height: 100vh;
   min-height: 100vh;
   background-color: var(--black);
-  z-index: 3;
+  z-index: 10;
   transition: transform 1s var(--ease-out-expo);
   width: 100%;
   padding: mobile-vw(16px) var(--layout-columns-gap) mobile-vw(8px)
@@ -29,16 +29,40 @@
     align-items: flex-end;
     justify-content: flex-end;
 
-    .cta {
-      margin-bottom: mobile-vw(19px);
+    .headerRow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: mobile-vw(32px);
+
       @include desktop {
-        margin-bottom: desktop-vw(19px);
+        margin-bottom: desktop-vw(32px);
       }
+    }
+
+    .faqTitle {
+      color: var(--text-primary);
+      font-size: mobile-vw(24px);
+      font-weight: 700;
+
+      @include desktop {
+        font-size: desktop-vw(24px);
+      }
+    }
+
+    .cta {
+      // Remove individual margin since it's now in headerRow
     }
   }
 
   .separator {
     transform: translateY(-85%);
+    margin-bottom: mobile-vw(4px);
+
+    @include desktop {
+      margin-bottom: desktop-vw(4px);
+    }
   }
 
   .content {
@@ -99,11 +123,7 @@
 }
 
 .accordion {
-  padding: mobile-vw(48px) 0 mobile-vw(24px) 0;
-
-  @include desktop {
-    padding: desktop-vw(48px) 0 desktop-vw(24px) 0;
-  }
+  padding: 0;
 
   .title {
     padding-bottom: mobile-vw(24px);
@@ -114,12 +134,7 @@
   }
 
   &-root {
-    padding: mobile-vw(24px) 0;
-    padding-bottom: 0;
-
-    @include desktop {
-      padding: desktop-vw(24px) 0;
-    }
+    padding: 0;
 
     .item {
       border-top: 1px solid var(--grey);
@@ -127,6 +142,10 @@
 
       @include desktop {
         padding: desktop-vw(16px) 0;
+      }
+
+      &.firstItem {
+        border-top: none;
       }
 
       &:last-child {
