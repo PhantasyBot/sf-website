@@ -197,6 +197,21 @@ button,
     color: var(--text-black) !important;
   }
 
+  // More specific overrides for project detail buttons
+  .project-details .info .platform .platformActions .platformButton,
+  .project-details .info .agent .agentActions .galleryButton,
+  .project-details .info .token .tokenActions .dexButton,
+  .platformButton,
+  .galleryButton,
+  .dexButton {
+    color: var(--text-black) !important;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--text-black) !important;
+    }
+  }
+
   // Ensure accordion and mobile layout titles stay black
   .accordion .trigger p,
   .accordion .trigger .category span,
@@ -217,11 +232,13 @@ button,
     color: var(--text-primary) !important;
   }
 
-  // Ensure section titles use muted color
+  // Ensure section titles use the appropriate color
   .about .title,
   .projects .title,
-  .project-details .title {
-    color: var(--text-secondary) !important;
+  .project-details .title,
+  .agentTitle,
+  .tokenTitle {
+    color: var(--text-primary) !important;
   }
 
   // Ensure project list items stay their intended color
@@ -247,5 +264,16 @@ button,
   .project-accordion-content span,
   .project-accordion-content div {
     color: var(--text-black) !important;
+  }
+}
+
+// For all other themes, ensure titles are darkened
+[data-theme='rally'],
+[data-theme='banshee'],
+[data-theme='lorelei'],
+[data-theme='alchemist'] {
+  .agentTitle,
+  .tokenTitle {
+    color: var(--text-secondary) !important;
   }
 }

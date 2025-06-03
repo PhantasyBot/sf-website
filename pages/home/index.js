@@ -302,7 +302,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                 <h2
                   id="project-details-heading"
                   className={cn(
-                    'h3 text-bold text-uppercase',
+                    'p text-bold text-uppercase text-muted',
                     s['project-title'],
                   )}
                 >
@@ -432,21 +432,23 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                   )}
                   {selectedProject?.agent && (
                     <div className={s.agent}>
-                      <p
-                        className={cn(
-                          s.title,
-                          'p text-muted text-uppercase text-bold',
-                        )}
-                      >
-                        Agent
-                      </p>
                       <div className={s.agentLayout}>
                         <div className={s.agentDetails}>
-                          <img
-                            src={selectedProject.agent.profileImage}
-                            alt={selectedProject.agent.name}
-                            className={s.agentProfile}
-                          />
+                          <div className={s.agentProfileContainer}>
+                            <p
+                              className={cn(
+                                s.agentTitle,
+                                'p-s text-uppercase text-bold',
+                              )}
+                            >
+                              Agent
+                            </p>
+                            <img
+                              src={selectedProject.agent.profileImage}
+                              alt={selectedProject.agent.name}
+                              className={s.agentProfile}
+                            />
+                          </div>
                           <div className={s.agentInfo}>
                             <div className={s.agentText}>
                               <p className={cn('p text-bold', s.agentName)}>
@@ -486,8 +488,8 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                     <div className={s.token}>
                       <p
                         className={cn(
-                          s.title,
-                          'p text-muted text-uppercase text-bold',
+                          s.tokenTitle,
+                          'p-s text-uppercase text-bold',
                         )}
                       >
                         Token

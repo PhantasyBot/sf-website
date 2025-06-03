@@ -129,7 +129,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: desktop-vh(16px);
+    padding-bottom: desktop-vh(24px);
     border-bottom: 1px solid var(--text-secondary);
     margin-bottom: desktop-vh(24px);
 
@@ -401,6 +401,13 @@
         padding-bottom: desktop-vh(32px);
         border-bottom: 1px solid var(--text-secondary);
 
+        .agentTitle {
+          color: var(--text-secondary);
+          margin: 0 0 desktop-vh(16px) 0;
+          text-align: center;
+          font-size: desktop-vh(20px);
+        }
+
         .agentLayout {
           display: flex;
           gap: desktop-vw(16px);
@@ -413,6 +420,13 @@
           align-items: flex-start;
           gap: desktop-vw(16px);
           min-height: desktop-vw(80px);
+
+          .agentProfileContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+          }
 
           .agentProfile {
             width: desktop-vw(80px);
@@ -504,6 +518,12 @@
 
       .token {
         margin-bottom: desktop-vh(32px);
+
+        .tokenTitle {
+          color: var(--text-secondary);
+          margin: 0 0 desktop-vh(16px) 0;
+          font-size: desktop-vh(24px);
+        }
 
         .tokenLayout {
           display: flex;
