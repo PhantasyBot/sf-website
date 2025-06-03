@@ -135,15 +135,24 @@
       height: 100%;
       position: relative;
 
+      .buttonsContainer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
       .modal-trigger {
         display: flex;
         align-items: center;
-        position: absolute;
-        bottom: 0;
-        z-index: 1;
         color: var(--primary-accent);
         background-color: transparent;
         border: none;
+        cursor: pointer;
 
         svg {
           aspect-ratio: 1;
@@ -159,6 +168,25 @@
           svg path {
             stroke: var(--secondary-accent);
           }
+        }
+      }
+
+      .back-to-project {
+        display: flex;
+        align-items: center;
+        color: var(--primary-accent);
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        svg {
+          aspect-ratio: 1;
+          flex-shrink: 0;
+          width: desktop-vw(24px);
+          margin-right: desktop-vw(10px);
+        }
+        &:hover {
+          color: var(--secondary-accent);
         }
       }
 

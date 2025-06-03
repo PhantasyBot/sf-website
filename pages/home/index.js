@@ -224,24 +224,48 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
             <section className={s['project-details']}>
               <div className={s['details-content']}>
                 <div className={cn(s.images, !showInfoModal && s.visible)}>
-                  <button
-                    className={cn(s['modal-trigger'], 'p-s')}
-                    onClick={() => {
-                      setGalleryVisible(true)
-                    }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 26 26"
+                  <div className={s.buttonsContainer}>
+                    <button
+                      className={cn(s['modal-trigger'], 'p-s')}
+                      onClick={() => {
+                        setGalleryVisible(true)
+                      }}
                     >
-                      <path
-                        stroke="var(--primary-accent)"
-                        d="M11 1H1v10M15 1h10v10M15 25h10V15M11 25H1V15m12-8v12m6-6H7"
-                      />
-                    </svg>
-                    Enlarge
-                  </button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 26 26"
+                      >
+                        <path
+                          stroke="var(--primary-accent)"
+                          d="M11 1H1v10M15 1h10v10M15 25h10V15M11 25H1V15m12-8v12m6-6H7"
+                        />
+                      </svg>
+                      Enlarge
+                    </button>
+
+                    <button
+                      className={cn(s['back-to-project'], 'p-s')}
+                      onClick={() => {
+                        setShowInfoModal(true)
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      Back to Project
+                    </button>
+                  </div>
                   <ScrollableBox reset={showInfoModal || resetScroll}>
                     {selectedProject?.assetsCollection?.items.map(
                       (asset, i) => (
