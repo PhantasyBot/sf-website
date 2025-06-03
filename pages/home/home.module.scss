@@ -95,6 +95,8 @@
 .project-details {
   grid-column: span 4;
   position: relative;
+  width: 100%;
+  min-width: 0;
 
   .actions {
     position: absolute;
@@ -124,6 +126,8 @@
     display: flex;
     flex-direction: column;
     padding-top: desktop-vh(8px);
+    width: 100%;
+    min-width: 0;
 
     .images {
       display: flex;
@@ -182,12 +186,19 @@
       top: 0;
       max-height: 100%;
       transition: opacity 1s var(--ease-out-expo);
+      width: 100%;
 
       > div {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: desktop-vh(24px);
-        max-width: desktop-vh(508px);
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+
+        @include desktop-xl {
+          grid-gap: desktop-vh(32px);
+        }
       }
 
       &:not(.visible) {
@@ -196,11 +207,17 @@
       }
 
       .description,
-      .platform {
+      .platform,
+      .agent,
+      .token {
         grid-column: span 2;
       }
 
       .platform {
+        margin-bottom: desktop-vh(16px);
+        padding-bottom: desktop-vh(16px);
+        border-bottom: 1px solid var(--text-secondary);
+
         .platformDetails {
           margin-top: desktop-vh(8px);
           display: flex;
@@ -216,8 +233,8 @@
         }
 
         .platformImage {
-          width: desktop-vw(64px);
-          height: desktop-vw(64px);
+          width: desktop-vw(80px);
+          height: desktop-vw(80px);
           border-radius: desktop-vw(8px);
           object-fit: cover;
           border: 2px solid var(--primary-accent);
@@ -229,7 +246,7 @@
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          min-height: desktop-vw(64px);
+          min-height: desktop-vw(80px);
 
           .platformText {
             p {
@@ -244,6 +261,10 @@
                 font-size: desktop-vh(12px);
                 margin-top: 0;
               }
+            }
+
+            .platformSummary {
+              text-transform: none;
             }
           }
         }
@@ -268,8 +289,10 @@
       }
 
       .agent {
-        grid-column: span 2;
         margin-bottom: desktop-vh(16px);
+        padding-bottom: desktop-vh(16px);
+        border-bottom: 1px solid var(--text-secondary);
+        position: relative;
 
         .agentDetails {
           display: flex;
@@ -278,8 +301,8 @@
           margin-top: desktop-vh(8px);
 
           .agentProfile {
-            width: desktop-vw(64px);
-            height: desktop-vw(64px);
+            width: desktop-vw(80px);
+            height: desktop-vw(80px);
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--primary-accent);
@@ -288,30 +311,60 @@
 
           .agentInfo {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: desktop-vw(80px);
 
-            .agentName {
-              font-size: desktop-vh(16px);
-              margin-bottom: desktop-vh(4px);
-              line-height: 1.3;
-            }
-
-            .agentGoal {
-              font-size: desktop-vh(12px);
-              margin-bottom: desktop-vh(8px);
-              line-height: 1.3;
-            }
-
-            .agentSkills {
-              .skillsLabel {
-                font-size: desktop-vh(12px);
-                color: var(--text-secondary);
-                text-transform: uppercase;
-                margin-bottom: desktop-vh(2px);
+            .agentText {
+              .agentName {
+                font-size: desktop-vh(16px);
+                margin-bottom: desktop-vh(4px);
+                line-height: 1.3;
               }
 
-              .skillsList {
+              .agentGoal {
                 font-size: desktop-vh(12px);
+                margin-bottom: desktop-vh(4px);
                 line-height: 1.3;
+              }
+
+              .agentSkills {
+                display: flex;
+                align-items: baseline;
+                gap: desktop-vw(8px);
+
+                .skillsLabel {
+                  font-size: desktop-vh(12px);
+                  color: var(--text-secondary);
+                  text-transform: uppercase;
+                  flex-shrink: 0;
+                }
+
+                .skillsList {
+                  font-size: desktop-vh(12px);
+                  line-height: 1.3;
+                  flex: 1;
+                }
+              }
+            }
+
+            .galleryButton {
+              background-color: var(--primary-accent);
+              color: var(--text-on-accent);
+              padding: desktop-vh(6px) desktop-vw(12px);
+              border-radius: desktop-vw(4px);
+              border: none;
+              font-weight: bold;
+              text-transform: uppercase;
+              font-size: desktop-vh(10px);
+              white-space: nowrap;
+              transition: background-color 0.3s ease;
+              align-self: flex-end;
+              cursor: pointer;
+
+              &:hover {
+                background-color: var(--secondary-accent);
               }
             }
           }
@@ -319,7 +372,7 @@
       }
 
       .token {
-        grid-column: span 2;
+        margin-bottom: desktop-vh(16px);
 
         .tokenDetails {
           margin-top: desktop-vh(6px);
@@ -388,8 +441,9 @@
             margin-top: desktop-vh(6px);
             font-size: desktop-vh(9px);
             color: var(--text-secondary);
-            text-align: center;
-            font-style: italic;
+            text-align: left;
+            font-style: normal;
+            line-height: 1.3;
           }
         }
       }

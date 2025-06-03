@@ -31,24 +31,33 @@
         background-color 0.3s ease,
         color 0.3s ease;
 
+      // Non-active state should have black text and black icons
+      color: #000000;
+
+      .icon {
+        path {
+          stroke: #000000 !important;
+        }
+      }
+
       &:hover:not(.active) {
         background-color: #f5f5f5;
       }
 
       &.active {
         background-color: var(--primary-accent);
-        color: var(--text-on-accent);
+        color: var(--text-primary);
 
         p {
-          color: var(--text-on-accent);
+          color: var(--text-primary);
         }
 
         .category span {
-          color: var(--text-on-accent);
+          color: var(--text-primary);
         }
 
         .icon path {
-          stroke: var(--text-on-accent);
+          stroke: var(--text-primary) !important;
         }
       }
 
@@ -70,6 +79,12 @@
         width: mobile-vw(24px);
         height: mobile-vw(24px);
         margin-left: auto;
+
+        path {
+          stroke: currentColor;
+          stroke-width: 1;
+          fill: none;
+        }
 
         .x {
           transform-origin: center center;
@@ -93,13 +108,13 @@
     overflow: hidden;
     height: 100%;
     position: relative;
-    color: #2c2c2c;
+    color: #ffffff;
 
     p,
     span,
     code,
     li {
-      color: #2c2c2c !important;
+      color: #ffffff !important;
     }
 
     .external {
@@ -134,41 +149,62 @@
       padding: mobile-vw(16px) 0;
       position: relative;
 
-      // Style the pagination dots
+      // Override default blaze slider pagination styles
       :global(.blaze-pagination) {
         position: absolute;
         right: mobile-vw(16px);
         top: 50%;
         transform: translateY(-50%);
-        display: flex;
+        display: flex !important;
         flex-direction: column;
-        gap: mobile-vw(4px);
+        gap: mobile-vw(6px);
         z-index: 10;
 
         :global(.blaze-pagination-button) {
-          width: mobile-vw(6px);
-          height: mobile-vw(6px);
-          border-radius: 50%;
-          border: none;
-          background: rgba(255, 255, 255, 0.4);
+          width: mobile-vw(8px) !important;
+          height: mobile-vw(8px) !important;
+          border-radius: 50% !important;
+          border: none !important;
+          background: rgba(255, 255, 255, 0.3) !important;
           cursor: pointer;
-          transition: all 0.3s ease;
-          padding: 0;
-          font-size: 0; // Hide any text/numbers
+          transition: all 0.3s ease !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          font-size: 0 !important; // Hide any text/numbers
+          text-indent: -9999px !important; // Hide text completely
+          line-height: 0 !important;
+          overflow: hidden !important;
+
+          // Remove any content
+          &::before,
+          &::after {
+            display: none !important;
+          }
 
           &:global(.active) {
-            background: var(--primary-accent);
-            transform: scale(1.2);
+            background: var(--primary-accent) !important;
+            transform: scale(1.3) !important;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
           }
 
           &:hover {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.6) !important;
           }
 
           &:global(.active):hover {
-            background: var(--primary-accent);
+            background: var(--primary-accent) !important;
           }
         }
+      }
+
+      // Additional styling for the blaze slider container
+      :global(.blaze-slider) {
+        border-radius: mobile-vw(8px);
+        overflow: hidden;
+      }
+
+      :global(.blaze-track) {
+        border-radius: mobile-vw(8px);
       }
     }
 
@@ -238,7 +274,7 @@
           code {
             font-family: monospace;
             font-size: mobile-vw(10px);
-            color: #2c2c2c !important;
+            color: #ffffff !important;
           }
 
           .copyButton {
@@ -279,7 +315,7 @@
 
       .tokenDisclaimer {
         font-size: mobile-vw(8px);
-        color: var(--text-secondary);
+        color: #ffffff;
         text-align: center;
         font-style: italic;
         margin-top: mobile-vw(4px);

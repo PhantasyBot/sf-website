@@ -1,7 +1,7 @@
 {
   "name": "Phantasy",
   "short_name": "Phantasy",
-  "description": "A design studio built on principle. We grow brands by making them easy to understand and impossible to ignore. Our creative experts support with branding, art direction, strategy, web design, web development, packaging, copywriting, lettering, illustration, photography, murals, signage, video, and beyond.",
+  "description": "Phantasy is an 18+ NSFW AI Entertainment Studio specializing in AI-powered characters and interactive digital experiences that blur the line between reality and fantasy.",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -16,8 +16,8 @@
       "purpose": "any"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#ff2147",
+  "background_color": "#000000",
   "start_url": "/",
   "scope": ".",
   "display": "standalone",

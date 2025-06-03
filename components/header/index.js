@@ -33,8 +33,8 @@ export const Header = ({ principles = [], contact }) => {
   return (
     <header className={cn(s.container, 'layout-block')}>
       <div className={cn(s.top, 'layout-grid')}>
-        <div className={s.eggs}>
-          <a name="easter egg" className={s.egg} href="https://phantasy.bot">
+        <div className={s.branding}>
+          <a name="branding" className={s.logo} href="https://phantasy.bot">
             <PhantasyLettermark />
           </a>
         </div>

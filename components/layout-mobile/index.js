@@ -43,7 +43,7 @@ const LayoutMobile = ({
     <div className={s.content}>
       <section className={s['hero-image']}>
         <Image
-          src="/mobile-temp-images/tetsuo.jpg"
+          src="/mobile-temp-images/rally_pfp.png"
           alt="tetsuo placeholder face"
           fill
         />
@@ -57,7 +57,7 @@ const LayoutMobile = ({
       </section>
       <section className={s.image}>
         <Image
-          src={'/mobile-temp-images/sf-game-boy.png'}
+          src={'/mobile-temp-images/rally_pfp.png'}
           alt={'tetsuo placeholder face'}
           fill
         />

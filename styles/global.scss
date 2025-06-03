@@ -127,20 +127,40 @@ svg.icon {
 
 // Global styles for blaze slider pagination
 .blaze-pagination {
-  .blaze-pagination-button {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.4);
+  .blaze-pagination-button,
+  .custom-pagination-dot {
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    border: none !important;
+    background: rgba(255, 255, 255, 0.4) !important;
     cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-    font-size: 0; // Hide any text/numbers
+    transition: all 0.3s ease !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 0 !important; // Hide any text/numbers
+    text-indent: -9999px !important; // Hide text completely
+    line-height: 0 !important;
+    overflow: hidden !important;
+    color: transparent !important;
+    text-align: center !important;
+    display: inline-block !important;
+
+    // Remove any content or pseudo-elements
+    &::before,
+    &::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    // Hide any child elements
+    * {
+      display: none !important;
+    }
 
     &.active {
       background: var(--primary-accent) !important;
-      transform: scale(1.2);
+      transform: scale(1.2) !important;
     }
 
     &:hover {
@@ -150,5 +170,22 @@ svg.icon {
     &.active:hover {
       background: var(--primary-accent) !important;
     }
+  }
+}
+
+// Additional override for numbered pagination
+.blaze-pagination button {
+  background: rgba(255, 255, 255, 0.4) !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  text-indent: -9999px !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  border: none !important;
+
+  &::before,
+  &::after {
+    display: none !important;
   }
 }

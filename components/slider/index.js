@@ -21,6 +21,7 @@ export default function Slider({
       loop: true,
       ...(enablePagination && {
         enablePagination: true,
+        paginationButtonClassName: 'custom-pagination-dot',
       }),
     },
   })
@@ -31,7 +32,11 @@ export default function Slider({
         <div className="blaze-track-container">
           <div className="blaze-track">{children}</div>
         </div>
-        {enablePagination && <div className="blaze-pagination"></div>}
+        {enablePagination && (
+          <div className="blaze-pagination">
+            {/* This will be populated by blaze slider */}
+          </div>
+        )}
       </div>
     </div>
   )

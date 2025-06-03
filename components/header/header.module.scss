@@ -12,14 +12,14 @@
       padding-bottom: desktop-vw(8px);
     }
 
-    .eggs {
+    .branding {
       grid-column: span 2;
 
       @include desktop {
         grid-column: span 1;
       }
 
-      .egg {
+      .logo {
         display: inline-block;
         aspect-ratio: 1;
         width: mobile-vw(24px);
@@ -29,7 +29,7 @@
           width: desktop-vw(24px);
         }
 
-        + .egg {
+        + .logo {
           margin-left: mobile-vw(9px);
 
           @include desktop {

@@ -3,9 +3,12 @@
   inset: 0;
   z-index: 3;
   height: 100%;
-  padding: desktop-vh(110px) desktop-vw(201px);
+  padding: desktop-vh(60px) desktop-vw(60px);
   display: flex;
-  transition: opacity 500ms var(--ease-out-expo),
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity 500ms var(--ease-out-expo),
     transform 500ms var(--ease-out-expo);
 
   &::before {
@@ -13,26 +16,123 @@
     position: absolute;
     inset: 0;
     background-color: var(--black);
-    opacity: 0.8;
+    opacity: 0.9;
     pointer-events: none;
   }
 
-  .scroller {
-    border-top-right-radius: desktop-vw(8px);
-    border-top-left-radius: desktop-vw(8px);
+  .controls {
+    position: absolute;
+    top: desktop-vh(60px);
+    left: desktop-vw(60px);
+    right: desktop-vw(60px);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 4;
+    pointer-events: none;
+
+    > * {
+      pointer-events: auto;
+    }
   }
 
   .close {
-    position: absolute;
-    left: desktop-vw(154px);
-    top: desktop-vh(110px);
-    width: desktop-vw(24px);
-    height: desktop-vw(24px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: desktop-vh(8px);
+    background: none;
+    border: none;
+    color: var(--primary-accent);
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    svg {
+      width: desktop-vw(24px);
+      height: desktop-vh(24px);
+    }
 
     .text {
-      display: block;
-      transform: translateY(180%) rotate(-90deg);
+      font-size: desktop-vh(10px);
+      text-transform: uppercase;
+      writing-mode: horizontal-tb;
+      transform: none;
     }
+
+    &:hover {
+      color: var(--secondary-accent);
+    }
+  }
+
+  .navButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: desktop-vh(8px);
+    background: none;
+    border: none;
+    color: var(--primary-accent);
+    cursor: pointer;
+    transition:
+      color 0.3s ease,
+      opacity 0.3s ease;
+
+    svg {
+      width: desktop-vw(24px);
+      height: desktop-vh(24px);
+    }
+
+    .text {
+      font-size: desktop-vh(10px);
+      text-transform: uppercase;
+    }
+
+    &:hover:not(:disabled) {
+      color: var(--secondary-accent);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  .prevButton {
+    // Specific styles for previous button if needed
+  }
+
+  .nextButton {
+    // Specific styles for next button if needed
+  }
+
+  .imageContainer {
+    position: relative;
+    max-width: calc(100vw - #{desktop-vw(120px)});
+    max-height: calc(100vh - #{desktop-vh(120px)});
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: desktop-vw(8px);
+    }
+  }
+
+  .imageCounter {
+    position: absolute;
+    bottom: desktop-vh(-40px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--primary-accent);
+    padding: desktop-vh(4px) desktop-vw(12px);
+    border-radius: desktop-vw(12px);
+    font-size: desktop-vh(10px);
+    text-transform: uppercase;
   }
 
   &:not(.visible) {

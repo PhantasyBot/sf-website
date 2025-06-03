@@ -160,11 +160,27 @@
       text-transform: uppercase;
       width: 100%;
       user-select: none;
+      gap: mobile-vw(16px);
+
+      @include desktop {
+        gap: desktop-vw(16px);
+      }
+
+      p {
+        flex: 1;
+        margin: 0;
+        padding-right: mobile-vw(8px);
+
+        @include desktop {
+          padding-right: desktop-vw(8px);
+        }
+      }
 
       .icon {
         aspect-ratio: 1;
         width: mobile-vw(26px);
         height: mobile-vw(26px);
+        flex-shrink: 0;
 
         @include desktop {
           width: desktop-vw(26px);

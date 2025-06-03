@@ -222,16 +222,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
               </ScrollableBox>
             </section>
             <section className={s['project-details']}>
-              <div className={s.actions}>
-                <button
-                  className="p-s decorate"
-                  onClick={() => {
-                    setShowInfoModal(!showInfoModal)
-                  }}
-                >
-                  {showInfoModal ? 'gallery' : 'close'}
-                </button>
-              </div>
               <div className={s['details-content']}>
                 <div className={cn(s.images, !showInfoModal && s.visible)}>
                   <button
@@ -278,42 +268,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                   className={cn(s.info, showInfoModal && s.visible)}
                   reset={!showInfoModal || resetScroll}
                 >
-                  {selectedProject?.agent && (
-                    <div className={s.agent}>
-                      <p
-                        className={cn(
-                          s.title,
-                          'p text-muted text-uppercase text-bold',
-                        )}
-                      >
-                        Agent
-                      </p>
-                      <div className={s.agentDetails}>
-                        {selectedProject.agent.profileImage && (
-                          <img
-                            src={selectedProject.agent.profileImage}
-                            alt={selectedProject.agent.name}
-                            className={s.agentProfile}
-                          />
-                        )}
-                        <div className={s.agentInfo}>
-                          <p className={cn('p text-bold', s.agentName)}>
-                            {selectedProject.agent.name}
-                          </p>
-                          <p className={cn('p-s', s.agentGoal)}>
-                            <span className="text-muted">GOAL:</span>{' '}
-                            {selectedProject.agent.goal}
-                          </p>
-                          <div className={s.agentSkills}>
-                            <p className={cn('p-s', s.skillsLabel)}>SKILLS:</p>
-                            <p className={cn('p-s', s.skillsList)}>
-                              {selectedProject.agent.skills}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
                   {selectedProject?.platform && (
                     <div className={s.platform}>
                       <p
@@ -322,7 +276,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                           'p text-muted text-uppercase text-bold',
                         )}
                       >
-                        Platform
+                        App
                       </p>
                       <div className={s.platformDetails}>
                         <div className={s.platformContent}>
@@ -338,7 +292,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                               <p className="p text-bold">
                                 {selectedProject.platform.name}
                               </p>
-                              <p className="p-s">
+                              <p className={cn('p-s', s.platformSummary)}>
                                 {selectedProject.platform.summary}
                               </p>
                             </div>
@@ -349,10 +303,56 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                Visit Platform ↗
+                                Visit App ↗
                               </Link>
                             )}
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {selectedProject?.agent && (
+                    <div className={s.agent}>
+                      <p
+                        className={cn(
+                          s.title,
+                          'p text-muted text-uppercase text-bold',
+                        )}
+                      >
+                        Agent
+                      </p>
+                      <div className={s.agentDetails}>
+                        <img
+                          src={selectedProject.agent.profileImage}
+                          alt={selectedProject.agent.name}
+                          className={s.agentProfile}
+                        />
+                        <div className={s.agentInfo}>
+                          <div className={s.agentText}>
+                            <p className={cn('p text-bold', s.agentName)}>
+                              {selectedProject.agent.name}
+                            </p>
+                            <p className={cn('p-s', s.agentGoal)}>
+                              <span className="text-muted">GOAL:</span>{' '}
+                              {selectedProject.agent.goal}
+                            </p>
+                            <div className={s.agentSkills}>
+                              <span className={cn('p-s', s.skillsLabel)}>
+                                SKILLS:
+                              </span>
+                              <span className={cn('p-s', s.skillsList)}>
+                                {selectedProject.agent.skills}
+                              </span>
+                            </div>
+                          </div>
+                          <button
+                            className={s.galleryButton}
+                            onClick={() => {
+                              setShowInfoModal(!showInfoModal)
+                            }}
+                          >
+                            Gallery
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -397,8 +397,8 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                           )}
                         </div>
                         <p className={s.tokenDisclaimer}>
-                          Not an investment • No value • Entertainment purposes
-                          only
+                          This token is provided for entertainment purposes only
+                          and does not constitute an investment opportunity.
                         </p>
                       </div>
                     </div>
@@ -1058,7 +1058,7 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
-                    value: 'Token Disclaimer',
+                    value: 'Terms of Service',
                     marks: [],
                     data: {},
                   },
@@ -1071,57 +1071,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Any tokens or digital assets referenced by Phantasy are not securities and are not intended to be an investment or financial instrument. Tokens are provided purely for entertainment and utility purposes within our platform ecosystem. This disclaimer applies to all current and future token offerings.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'heading',
-                data: { level: 2 },
-                content: [
-                  {
-                    nodeType: 'text',
-                    value: 'Investment Disclaimer',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'paragraph',
-                data: {},
-                content: [
-                  {
-                    nodeType: 'text',
-                    value:
-                      'Nothing on this platform constitutes investment advice, financial advice, trading advice, or any other sort of advice. You should not treat any of the content as such. Phantasy does not recommend that any cryptocurrency should be bought, sold, or held by you. Conduct your own due diligence and consult your financial advisor before making any investment decisions.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'heading',
-                data: { level: 2 },
-                content: [
-                  {
-                    nodeType: 'text',
-                    value: 'Entertainment Purposes Only',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'paragraph',
-                data: {},
-                content: [
-                  {
-                    nodeType: 'text',
-                    value:
-                      'All content, interactions, and services provided by Phantasy are strictly for entertainment purposes only. This includes but is not limited to AI character interactions, gaming experiences, and any virtual or digital content. No real-world advice or recommendations should be derived from our entertainment content.',
+                      'By using our services, you accept these terms. You must be 18+ to access our platform. All blockchain transactions are final and irreversible.',
                     marks: [],
                     data: {},
                   },
@@ -1146,20 +1096,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support. We use this information to provide, maintain, and improve our services, process transactions, and communicate with you. We do not sell your personal information to third parties.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'paragraph',
-                data: {},
-                content: [
-                  {
-                    nodeType: 'text',
-                    value:
-                      'We may collect wallet addresses and transaction data for blockchain interactions. This data is necessary for providing web3 functionality and may be publicly visible on blockchain networks. We implement industry-standard security measures to protect your data.',
+                      'We collect information you provide directly and use industry-standard security measures. We do not sell your personal information to third parties. Wallet addresses and transaction data may be publicly visible on blockchain networks.',
                     marks: [],
                     data: {},
                   },
@@ -1171,7 +1108,7 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
-                    value: 'Terms of Service',
+                    value: 'Token Disclaimer',
                     marks: [],
                     data: {},
                   },
@@ -1184,20 +1121,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'By accessing and using our services, you accept and agree to be bound by the terms and provisions of this agreement. You must be at least 18 years old to use our services. Our platform contains adult content and is not suitable for minors.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'paragraph',
-                data: {},
-                content: [
-                  {
-                    nodeType: 'text',
-                    value:
-                      'You are responsible for maintaining the security of your wallet and private keys. Phantasy is not responsible for any losses resulting from unauthorized access to your wallet or accounts. All blockchain transactions are final and irreversible.',
+                      'Tokens are not securities or financial instruments. They are provided for entertainment and utility purposes only within our platform ecosystem.',
                     marks: [],
                     data: {},
                   },
@@ -1222,7 +1146,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'We respect the intellectual property rights of others and expect our users to do the same. If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement, please contact us with detailed information including proof of ownership and location of the infringing material.',
+                      'We respect intellectual property rights. Contact us with proof of ownership and location of infringing material for DMCA takedown requests.',
                     marks: [],
                     data: {},
                   },
@@ -1260,7 +1184,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'This platform contains explicit adult content intended for users 18 years of age or older. All characters and interactions are AI-generated and fictional. They do not represent real individuals and should not be confused with actual persons.',
+                      'This platform contains explicit adult content for users 18+. All characters are AI-generated and fictional, not representing real individuals.',
                     marks: [],
                     data: {},
                   },
@@ -1272,7 +1196,7 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
-                    value: 'Regulatory Disclaimer',
+                    value: 'Investment Warning',
                     marks: [],
                     data: {},
                   },
@@ -1285,7 +1209,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Cryptocurrency regulations vary by jurisdiction and are rapidly evolving. It is your responsibility to ensure compliance with local laws and regulations. Phantasy operates globally and does not provide legal advice regarding regulatory compliance in your specific jurisdiction.',
+                      'Nothing on this platform constitutes investment advice. Do not treat any content as financial guidance. Conduct your own research and consult financial advisors before making investment decisions.',
                     marks: [],
                     data: {},
                   },
@@ -1297,7 +1221,7 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
-                    value: 'Technical Risk Disclaimer',
+                    value: 'Technical Risks',
                     marks: [],
                     data: {},
                   },
@@ -1310,7 +1234,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Blockchain technology and smart contracts carry inherent risks including but not limited to: network congestion, gas fee fluctuations, smart contract vulnerabilities, and potential loss of funds. Phantasy cannot guarantee the security or functionality of third-party blockchain networks or protocols.',
+                      'Blockchain technology carries inherent risks including network congestion, gas fee fluctuations, and potential loss of funds. We cannot guarantee security of third-party networks.',
                     marks: [],
                     data: {},
                   },
@@ -1322,7 +1246,7 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
-                    value: 'Liability Disclaimer',
+                    value: 'Liability & Service Availability',
                     marks: [],
                     data: {},
                   },
@@ -1335,7 +1259,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Your use of our services is at your sole risk. We provide our services on an "as is" and "as available" basis without any warranties of any kind. Our AI characters do not provide professional advice of any kind. Phantasy shall not be liable for any direct, indirect, incidental, special, or consequential damages.',
+                      'Services are provided "as is" without warranties. We are not liable for damages. Service availability is not guaranteed and may be subject to interruption or geographic restrictions.',
                     marks: [],
                     data: {},
                   },
@@ -1347,7 +1271,7 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
-                    value: 'Platform Availability',
+                    value: 'AI Technology & Third-Party Services',
                     marks: [],
                     data: {},
                   },
@@ -1360,57 +1284,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Service availability is not guaranteed and may be subject to downtime, maintenance, or interruption. We reserve the right to modify, suspend, or discontinue any aspect of our services at any time without prior notice. Your access may be restricted based on geographic location or other factors.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'heading',
-                data: { level: 2 },
-                content: [
-                  {
-                    nodeType: 'text',
-                    value: 'AI Technology',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'paragraph',
-                data: {},
-                content: [
-                  {
-                    nodeType: 'text',
-                    value:
-                      'Our platform uses advanced AI technology to generate responses and content. While sophisticated, AI may occasionally produce unexpected, inappropriate, or inconsistent responses. User interactions may be processed by AI systems to improve service quality. AI-generated content should not be considered factual or reliable information.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'heading',
-                data: { level: 2 },
-                content: [
-                  {
-                    nodeType: 'text',
-                    value: 'Third-Party Services',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'paragraph',
-                data: {},
-                content: [
-                  {
-                    nodeType: 'text',
-                    value:
-                      'Our platform may integrate with third-party services, wallets, and protocols. We are not responsible for the performance, security, or availability of these external services. Users interact with third-party services at their own risk and should review their respective terms and conditions.',
+                      'AI may occasionally produce unexpected responses. AI-generated content should not be considered factual. Third-party integrations carry their own risks - review their terms independently.',
                     marks: [],
                     data: {},
                   },
