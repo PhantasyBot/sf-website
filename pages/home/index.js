@@ -297,36 +297,40 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       >
                         App
                       </p>
-                      <div className={s.platformDetails}>
-                        <div className={s.platformContent}>
-                          {selectedProject.platform.image && (
-                            <img
-                              src={selectedProject.platform.image}
-                              alt={selectedProject.platform.name}
-                              className={s.platformImage}
-                            />
-                          )}
-                          <div className={s.platformInfo}>
-                            <div className={s.platformText}>
-                              <p className="p text-bold">
-                                {selectedProject.platform.name}
-                              </p>
-                              <p className={cn('p-s', s.platformSummary)}>
-                                {selectedProject.platform.summary}
-                              </p>
-                            </div>
-                            {selectedProject.platform.link && (
-                              <Link
-                                href={selectedProject.platform.link}
-                                className={cn('p-s', s.platformButton)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                Visit App ↗
-                              </Link>
+                      <div className={s.platformLayout}>
+                        <div className={s.platformDetails}>
+                          <div className={s.platformContent}>
+                            {selectedProject.platform.image && (
+                              <img
+                                src={selectedProject.platform.image}
+                                alt={selectedProject.platform.name}
+                                className={s.platformImage}
+                              />
                             )}
+                            <div className={s.platformInfo}>
+                              <div className={s.platformText}>
+                                <p className="p text-bold">
+                                  {selectedProject.platform.name}
+                                </p>
+                                <p className={cn('p-s', s.platformSummary)}>
+                                  {selectedProject.platform.summary}
+                                </p>
+                              </div>
+                            </div>
                           </div>
                         </div>
+                        {selectedProject.platform.link && (
+                          <div className={s.platformActions}>
+                            <Link
+                              href={selectedProject.platform.link}
+                              className={s.platformButton}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Visit App ↗
+                            </Link>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
@@ -340,30 +344,34 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       >
                         Agent
                       </p>
-                      <div className={s.agentDetails}>
-                        <img
-                          src={selectedProject.agent.profileImage}
-                          alt={selectedProject.agent.name}
-                          className={s.agentProfile}
-                        />
-                        <div className={s.agentInfo}>
-                          <div className={s.agentText}>
-                            <p className={cn('p text-bold', s.agentName)}>
-                              {selectedProject.agent.name}
-                            </p>
-                            <p className={cn('p-s', s.agentGoal)}>
-                              <span className="text-muted">GOAL:</span>{' '}
-                              {selectedProject.agent.goal}
-                            </p>
-                            <div className={s.agentSkills}>
-                              <span className={cn('p-s', s.skillsLabel)}>
-                                SKILLS:
-                              </span>
-                              <span className={cn('p-s', s.skillsList)}>
-                                {selectedProject.agent.skills}
-                              </span>
+                      <div className={s.agentLayout}>
+                        <div className={s.agentDetails}>
+                          <img
+                            src={selectedProject.agent.profileImage}
+                            alt={selectedProject.agent.name}
+                            className={s.agentProfile}
+                          />
+                          <div className={s.agentInfo}>
+                            <div className={s.agentText}>
+                              <p className={cn('p text-bold', s.agentName)}>
+                                {selectedProject.agent.name}
+                              </p>
+                              <p className={cn('p-s', s.agentGoal)}>
+                                <span className="text-muted">GOAL:</span>{' '}
+                                {selectedProject.agent.goal}
+                              </p>
+                              <div className={s.agentSkills}>
+                                <span className={cn('p-s', s.skillsLabel)}>
+                                  SKILLS:
+                                </span>
+                                <span className={cn('p-s', s.skillsList)}>
+                                  {selectedProject.agent.skills}
+                                </span>
+                              </div>
                             </div>
                           </div>
+                        </div>
+                        <div className={s.agentActions}>
                           <button
                             className={s.galleryButton}
                             onClick={() => {
@@ -386,39 +394,44 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       >
                         Token
                       </p>
-                      <div className={s.tokenDetails}>
-                        <div className={s.addressContainer}>
-                          <TokenBaseIcon className={s.tokenIcon} />
-                          <code className="p-s">
-                            {selectedProject.token.address}
-                          </code>
-                          <button
-                            className={s.copyButton}
-                            onClick={() => {
-                              navigator.clipboard.writeText(
-                                selectedProject.token.address,
-                              )
-                              // Optional: Add a toast notification here
-                            }}
-                            title="Copy address"
-                          >
-                            <PixelCopySolid />
-                          </button>
-                          {selectedProject.token.dexLink && (
+                      <div className={s.tokenLayout}>
+                        <div className={s.tokenDetails}>
+                          <div className={s.addressContainer}>
+                            <TokenBaseIcon className={s.tokenIcon} />
+                            <code className="p-s">
+                              {selectedProject.token.address}
+                            </code>
+                            <button
+                              className={s.copyButton}
+                              onClick={() => {
+                                navigator.clipboard.writeText(
+                                  selectedProject.token.address,
+                                )
+                                // Optional: Add a toast notification here
+                              }}
+                              title="Copy address"
+                            >
+                              <PixelCopySolid />
+                            </button>
+                          </div>
+                          <p className={s.tokenDisclaimer}>
+                            This token is provided for entertainment purposes
+                            only and does not constitute an investment
+                            opportunity.
+                          </p>
+                        </div>
+                        {selectedProject.token.dexLink && (
+                          <div className={s.tokenActions}>
                             <Link
                               href={selectedProject.token.dexLink}
-                              className="p-s decorate"
+                              className={s.dexButton}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              Trade on DEX ↗
+                              Trade
                             </Link>
-                          )}
-                        </div>
-                        <p className={s.tokenDisclaimer}>
-                          This token is provided for entertainment purposes only
-                          and does not constitute an investment opportunity.
-                        </p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}

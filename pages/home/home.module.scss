@@ -237,97 +237,112 @@
 
       .platform {
         margin-bottom: desktop-vh(16px);
-        padding-bottom: desktop-vh(16px);
+        padding-bottom: desktop-vh(32px);
         border-bottom: 1px solid var(--text-secondary);
 
-        .platformDetails {
+        .platformLayout {
           margin-top: desktop-vh(8px);
           display: flex;
-          align-items: flex-start;
-          gap: desktop-vh(16px);
-        }
-
-        .platformContent {
-          display: flex;
-          align-items: flex-start;
           gap: desktop-vw(16px);
-          flex: 1;
+          align-items: flex-start;
         }
 
-        .platformImage {
-          width: desktop-vw(80px);
-          height: desktop-vw(80px);
-          border-radius: desktop-vw(8px);
-          object-fit: cover;
-          border: 2px solid var(--primary-accent);
-          flex-shrink: 0;
-        }
+        .platformDetails {
+          flex: 0 0 66.67%;
 
-        .platformInfo {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          min-height: desktop-vw(80px);
+          .platformContent {
+            display: flex;
+            align-items: flex-start;
+            gap: desktop-vw(16px);
+            min-height: desktop-vw(80px);
+          }
 
-          .platformText {
-            p {
-              line-height: 1.3;
+          .platformImage {
+            width: desktop-vw(80px);
+            height: desktop-vw(80px);
+            border-radius: desktop-vw(8px);
+            object-fit: cover;
+            border: 2px solid var(--primary-accent);
+            flex-shrink: 0;
+          }
 
-              &:first-child {
-                font-size: desktop-vh(16px);
-                margin-bottom: desktop-vh(4px);
+          .platformInfo {
+            flex: 1;
+
+            .platformText {
+              p {
+                line-height: 1.3;
+
+                &:first-child {
+                  font-size: desktop-vh(16px);
+                  margin-bottom: desktop-vh(4px);
+                }
+
+                &:last-child {
+                  font-size: desktop-vh(12px);
+                  margin-top: 0;
+                }
               }
 
-              &:last-child {
-                font-size: desktop-vh(12px);
-                margin-top: 0;
+              .platformSummary {
+                text-transform: none;
               }
-            }
-
-            .platformSummary {
-              text-transform: none;
             }
           }
         }
 
-        .platformButton {
-          background-color: var(--primary-accent);
-          color: var(--text-on-accent);
-          padding: desktop-vh(6px) desktop-vw(12px);
-          border-radius: desktop-vw(4px);
-          text-decoration: none;
-          font-weight: bold;
-          text-transform: uppercase;
-          font-size: desktop-vh(10px);
-          white-space: nowrap;
-          transition: background-color 0.3s ease;
-          align-self: flex-end;
-          border: none;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-width: desktop-vw(80px);
-          height: desktop-vh(28px);
+        .platformActions {
+          flex: 0 0 33.33%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          min-height: desktop-vw(80px);
+          padding-right: desktop-vw(24px);
 
-          &:hover {
-            background-color: var(--secondary-accent);
+          .platformButton {
+            background-color: var(--primary-accent);
+            color: var(--text-on-accent);
+            padding: desktop-vh(6px) desktop-vw(12px);
+            border-radius: desktop-vw(4px);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: desktop-vh(10px);
+            white-space: nowrap;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: desktop-vw(80px);
+            height: desktop-vh(28px);
+
+            &:hover {
+              background-color: var(--secondary-accent);
+            }
           }
         }
       }
 
       .agent {
         margin-bottom: desktop-vh(16px);
-        padding-bottom: desktop-vh(16px);
+        padding-bottom: desktop-vh(32px);
         border-bottom: 1px solid var(--text-secondary);
-        position: relative;
+
+        .agentLayout {
+          margin-top: desktop-vh(8px);
+          display: flex;
+          gap: desktop-vw(16px);
+          align-items: flex-start;
+        }
 
         .agentDetails {
+          flex: 0 0 66.67%;
           display: flex;
           align-items: flex-start;
           gap: desktop-vw(16px);
-          margin-top: desktop-vh(8px);
+          min-height: desktop-vw(80px);
 
           .agentProfile {
             width: desktop-vw(80px);
@@ -340,10 +355,6 @@
 
           .agentInfo {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: desktop-vw(80px);
 
             .agentText {
               .agentName {
@@ -377,29 +388,37 @@
                 }
               }
             }
+          }
+        }
 
-            .galleryButton {
-              background-color: var(--primary-accent);
-              color: var(--text-on-accent);
-              padding: desktop-vh(6px) desktop-vw(12px);
-              border-radius: desktop-vw(4px);
-              border: none;
-              font-weight: bold;
-              text-transform: uppercase;
-              font-size: desktop-vh(10px);
-              white-space: nowrap;
-              transition: background-color 0.3s ease;
-              align-self: flex-end;
-              cursor: pointer;
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              min-width: desktop-vw(80px);
-              height: desktop-vh(28px);
+        .agentActions {
+          flex: 0 0 33.33%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          min-height: desktop-vw(80px);
+          padding-right: desktop-vw(24px);
 
-              &:hover {
-                background-color: var(--secondary-accent);
-              }
+          .galleryButton {
+            background-color: var(--primary-accent);
+            color: var(--text-on-accent);
+            padding: desktop-vh(6px) desktop-vw(12px);
+            border-radius: desktop-vw(4px);
+            border: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: desktop-vh(10px);
+            white-space: nowrap;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: desktop-vw(80px);
+            height: desktop-vh(28px);
+
+            &:hover {
+              background-color: var(--secondary-accent);
             }
           }
         }
@@ -408,8 +427,15 @@
       .token {
         margin-bottom: desktop-vh(16px);
 
-        .tokenDetails {
+        .tokenLayout {
           margin-top: desktop-vh(6px);
+          display: flex;
+          gap: desktop-vw(16px);
+          align-items: flex-start;
+        }
+
+        .tokenDetails {
+          flex: 0 0 66.67%;
 
           .addressContainer {
             display: flex;
@@ -456,19 +482,6 @@
                 background-color: var(--secondary-accent);
               }
             }
-
-            a {
-              color: var(--primary-accent);
-              text-decoration: none;
-              font-size: desktop-vh(10px);
-              font-weight: bold;
-              text-transform: uppercase;
-              white-space: nowrap;
-
-              &:hover {
-                color: var(--secondary-accent);
-              }
-            }
           }
 
           .tokenDisclaimer {
@@ -478,6 +491,38 @@
             text-align: left;
             font-style: normal;
             line-height: 1.3;
+          }
+        }
+
+        .tokenActions {
+          flex: 0 0 33.33%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-start;
+          padding-right: desktop-vw(24px);
+
+          .dexButton {
+            background-color: var(--primary-accent);
+            color: var(--text-on-accent);
+            padding: desktop-vh(6px) desktop-vw(12px);
+            border-radius: desktop-vw(4px);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: desktop-vh(10px);
+            white-space: nowrap;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: desktop-vw(80px);
+            height: desktop-vh(28px);
+
+            &:hover {
+              background-color: var(--secondary-accent);
+            }
           }
         }
       }
