@@ -17,6 +17,31 @@
     padding: desktop-vw(16px) 0 desktop-vw(24px) 0;
   }
 
+  // Add focus styles for all links
+  a {
+    transition: all 0.3s ease;
+    border-radius: desktop-vw(4px);
+    padding: desktop-vh(2px) desktop-vw(4px);
+    margin: desktop-vh(-2px) desktop-vw(-4px);
+
+    @include mobile {
+      border-radius: mobile-vw(4px);
+      padding: mobile-vh(2px) mobile-vw(4px);
+      margin: mobile-vh(-2px) mobile-vw(-4px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-accent);
+      outline-offset: 2px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--primary-accent);
+    }
+  }
+
   .column {
     grid-column: span 2;
 
@@ -134,13 +159,23 @@
     width: mobile-vw(16px);
     height: mobile-vw(16px);
     transition: transform 0.2s ease;
+    border-radius: mobile-vw(4px);
+    padding: mobile-vw(2px);
 
     @include desktop {
       width: desktop-vw(16px);
       height: desktop-vw(16px);
+      border-radius: desktop-vw(4px);
+      padding: desktop-vw(2px);
     }
 
     &:hover {
+      transform: scale(1.1);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-accent);
+      outline-offset: 2px;
       transform: scale(1.1);
     }
 
@@ -157,7 +192,8 @@
       }
     }
 
-    &:hover svg path {
+    &:hover svg path,
+    &:focus-visible svg path {
       fill: var(--primary-accent);
       stroke: var(--primary-accent);
     }

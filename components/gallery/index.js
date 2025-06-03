@@ -77,22 +77,79 @@ export function Gallery({ onBackToProject }) {
   useEffect(() => {
     if (galleryVisible) {
       setCurrentImageIndex(0)
+      // Focus management - focus the close button when gallery opens
+      setTimeout(() => {
+        const closeButton = document.querySelector(`.${s.close}`)
+        if (closeButton) {
+          closeButton.focus()
+        }
+      }, 100)
     }
   }, [galleryVisible, selectedProject])
+
+  // Focus trap for gallery modal
+  useEffect(() => {
+    if (!galleryVisible) return
+
+    const focusableElements = [
+      `.${s.close}`,
+      `.${s.backToProject}`,
+      `.${s.prevButton}`,
+      `.${s.nextButton}`,
+    ].join(', ')
+
+    const handleTabKeyPress = (e) => {
+      if (e.key !== 'Tab') return
+
+      const focusable = Array.from(
+        document.querySelectorAll(focusableElements),
+      ).filter((el) => !el.disabled && el.offsetParent !== null)
+
+      if (focusable.length === 0) return
+
+      const firstElement = focusable[0]
+      const lastElement = focusable[focusable.length - 1]
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault()
+          lastElement.focus()
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault()
+          firstElement.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleTabKeyPress)
+    return () => document.removeEventListener('keydown', handleTabKeyPress)
+  }, [galleryVisible, totalImages])
 
   return (
     <div
       className={cn(s.gallery, galleryVisible && s.visible)}
       onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image gallery"
+      aria-describedby="gallery-counter"
     >
       <div className={cn(s.controls, 'gallery-controls')}>
-        <button className={s.close} onClick={() => setGalleryVisible(false)}>
+        <button
+          className={s.close}
+          onClick={() => setGalleryVisible(false)}
+          aria-label="Close gallery"
+          autoFocus={galleryVisible}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -103,13 +160,18 @@ export function Gallery({ onBackToProject }) {
           <span className={cn(s.text, 'p-xs text-uppercase')}>Close</span>
         </button>
 
-        <button className={s.backToProject} onClick={handleBackToProject}>
+        <button
+          className={s.backToProject}
+          onClick={handleBackToProject}
+          aria-label="Return to project information"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -128,6 +190,7 @@ export function Gallery({ onBackToProject }) {
               className={cn(s.navButton, s.prevButton)}
               onClick={goToPrevious}
               disabled={totalImages <= 1}
+              aria-label="Previous image"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -135,6 +198,7 @@ export function Gallery({ onBackToProject }) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -149,6 +213,7 @@ export function Gallery({ onBackToProject }) {
               className={cn(s.navButton, s.nextButton)}
               onClick={goToNext}
               disabled={totalImages <= 1}
+              aria-label="Next image"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -156,6 +221,7 @@ export function Gallery({ onBackToProject }) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -169,7 +235,14 @@ export function Gallery({ onBackToProject }) {
         )}
       </div>
 
-      <div className={s.imageContainer} ref={contentRef}>
+      <div
+        className={s.imageContainer}
+        ref={contentRef}
+        role="img"
+        aria-label={`Image ${currentImageIndex + 1} of ${totalImages} from ${
+          selectedProject?.name || 'project'
+        } gallery`}
+      >
         {selectedProject?.assetsCollection?.items?.[currentImageIndex] && (
           <ComposableImage
             sources={
@@ -183,7 +256,11 @@ export function Gallery({ onBackToProject }) {
         )}
 
         {totalImages > 1 && (
-          <div className={s.imageCounter}>
+          <div
+            className={s.imageCounter}
+            id="gallery-counter"
+            aria-live="polite"
+          >
             <span className="p-xs">
               {currentImageIndex + 1} / {totalImages}
             </span>

@@ -46,6 +46,41 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
   // Define the default project name - easy to change
   const DEFAULT_PROJECT_NAME = 'Rally'
 
+  // Copy to clipboard function
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      // Optional: Add a toast notification here
+    } catch (err) {
+      console.error('Failed to copy: ', err)
+    }
+  }
+
+  // Keyboard event handler for gallery
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      // Only handle if gallery is visible
+      if (!useStore.getState().galleryVisible) return
+
+      switch (event.key) {
+        case 'Escape':
+          setGalleryVisible(false)
+          break
+        case 'ArrowLeft':
+          // Gallery component will handle these
+          break
+        case 'ArrowRight':
+          // Gallery component will handle these
+          break
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
+
   useEffect(() => {
     const searchTerm = router.asPath.substring(router.asPath.indexOf('#') + 1)
     const projectParam = router.query.project
@@ -178,24 +213,26 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
       ) : (
         <ClientOnly>
           <div className={cn(s.content, 'layout-grid')}>
-            <section className={s.about}>
-              <p
+            <section className={s.about} aria-labelledby="about-heading">
+              <h1
+                id="about-heading"
                 className={cn(s.title, 'p text-bold text-uppercase text-muted')}
               >
                 {aboutSectionTitle}
-              </p>
+              </h1>
               <ScrollableBox className={s.description}>
                 {aboutSectionContent}
               </ScrollableBox>
             </section>
-            <section className={s.projects}>
-              <p
+            <section className={s.projects} aria-labelledby="projects-heading">
+              <h2
+                id="projects-heading"
                 className={cn(s.title, 'p text-bold text-uppercase text-muted')}
               >
                 Apps & Games
-              </p>
+              </h2>
               <ScrollableBox className={s.list}>
-                <ul>
+                <ul role="listbox" aria-label="Project selection">
                   {projects.items.map((project) => (
                     <li
                       key={project.sys.id}
@@ -203,16 +240,27 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                         selectedProject?.sys?.id === project.sys.id && s.active,
                         s['list-item'],
                       )}
+                      role="option"
+                      aria-selected={
+                        selectedProject?.sys?.id === project.sys.id
+                      }
                     >
                       <button
                         onClick={() => {
                           setSelectedProject(project)
                         }}
+                        aria-pressed={
+                          selectedProject?.sys?.id === project.sys.id
+                        }
+                        aria-describedby={`project-${project.sys.id}-description`}
                       >
                         <p className="p text-bold text-uppercase">
                           {project.name}
                         </p>
-                        <p className="p-xs text-uppercase">
+                        <p
+                          className="p-xs text-uppercase"
+                          id={`project-${project.sys.id}-description`}
+                        >
                           {project.industry}
                         </p>
                       </button>
@@ -221,8 +269,27 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                 </ul>
               </ScrollableBox>
             </section>
-            <section className={s['project-details']}>
+            <main
+              className={s['project-details']}
+              aria-labelledby="project-details-heading"
+            >
+              <div className={s.actions}>
+                <button
+                  onClick={() => {
+                    setShowInfoModal(!showInfoModal)
+                  }}
+                  aria-label={`${
+                    showInfoModal ? 'Hide' : 'Show'
+                  } project information`}
+                  aria-pressed={showInfoModal}
+                >
+                  {showInfoModal ? 'Hide Info' : 'Show Info'}
+                </button>
+              </div>
               <div className={s['details-content']}>
+                <h2 id="project-details-heading" className="sr-only">
+                  {selectedProject?.name} Project Details
+                </h2>
                 <div className={cn(s.images, !showInfoModal && s.visible)}>
                   <div className={s.buttonsContainer}>
                     <button
@@ -230,11 +297,13 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       onClick={() => {
                         setGalleryVisible(true)
                       }}
+                      aria-label="Open gallery in full screen mode"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 26 26"
+                        aria-hidden="true"
                       >
                         <path
                           stroke="var(--primary-accent)"
@@ -249,6 +318,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       onClick={() => {
                         setShowInfoModal(true)
                       }}
+                      aria-label="Return to project information"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -256,6 +326,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                         strokeWidth={2}
+                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
@@ -326,6 +397,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                               className={s.platformButton}
                               target="_blank"
                               rel="noopener noreferrer"
+                              aria-label={`Visit ${selectedProject.platform.name} app in new tab`}
                             >
                               Visit App ↗
                             </Link>
@@ -377,6 +449,8 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             onClick={() => {
                               setShowInfoModal(!showInfoModal)
                             }}
+                            aria-label="Toggle between project gallery and information"
+                            aria-pressed={!showInfoModal}
                           >
                             Gallery
                           </button>
@@ -403,13 +477,11 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             </code>
                             <button
                               className={s.copyButton}
-                              onClick={() => {
-                                navigator.clipboard.writeText(
-                                  selectedProject.token.address,
-                                )
-                                // Optional: Add a toast notification here
-                              }}
-                              title="Copy address"
+                              onClick={() =>
+                                copyToClipboard(selectedProject.token.address)
+                              }
+                              aria-label={`Copy token address ${selectedProject.token.address} to clipboard`}
+                              title="Copy address to clipboard"
                             >
                               <PixelCopySolid />
                             </button>
@@ -427,6 +499,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                               className={s.dexButton}
                               target="_blank"
                               rel="noopener noreferrer"
+                              aria-label={`Trade ${selectedProject.name} token on decentralized exchange in new tab`}
                             >
                               Trade
                             </Link>
@@ -437,7 +510,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                   )}
                 </ScrollableBox>
               </div>
-            </section>
+            </main>
           </div>
         </ClientOnly>
       )}

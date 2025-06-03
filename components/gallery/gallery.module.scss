@@ -45,7 +45,7 @@
     border: none;
     color: var(--primary-accent);
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 
     svg {
       width: desktop-vw(24px);
@@ -59,8 +59,16 @@
       transform: none;
     }
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       color: var(--secondary-accent);
+      transform: scale(1.05);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-accent);
+      outline-offset: 4px;
+      border-radius: desktop-vw(4px);
     }
   }
 
@@ -73,7 +81,7 @@
     border: none;
     color: var(--primary-accent);
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 
     svg {
       width: desktop-vw(24px);
@@ -87,8 +95,16 @@
       transform: none;
     }
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       color: var(--secondary-accent);
+      transform: scale(1.05);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-accent);
+      outline-offset: 4px;
+      border-radius: desktop-vw(4px);
     }
   }
 
@@ -103,7 +119,8 @@
     cursor: pointer;
     transition:
       color 0.3s ease,
-      opacity 0.3s ease;
+      opacity 0.3s ease,
+      transform 0.3s ease;
 
     svg {
       width: desktop-vw(24px);
@@ -115,8 +132,16 @@
       text-transform: uppercase;
     }
 
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
       color: var(--secondary-accent);
+      transform: scale(1.05);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-accent);
+      outline-offset: 4px;
+      border-radius: desktop-vw(4px);
     }
 
     &:disabled {
