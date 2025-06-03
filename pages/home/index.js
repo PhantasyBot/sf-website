@@ -91,14 +91,26 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const actionButtonSelectors = [
+    // Gallery button (should be focusable when info is hidden)
+    const galleryButtons = document.querySelectorAll(`.${s.galleryButton}`)
+    galleryButtons.forEach((element) => {
+      if (showInfoModal) {
+        // Make gallery button unfocusable when info is shown
+        element.setAttribute('tabindex', '-1')
+      } else {
+        // Allow gallery button to be focusable when info is hidden
+        element.removeAttribute('tabindex')
+      }
+    })
+
+    // Action buttons in info section (should be focusable when info is shown)
+    const infoActionSelectors = [
       `.${s.platformButton}`,
-      `.${s.galleryButton}`,
       `.${s.copyButton}`,
       `.${s.dexButton}`,
     ]
 
-    actionButtonSelectors.forEach((selector) => {
+    infoActionSelectors.forEach((selector) => {
       const elements = document.querySelectorAll(`.${s.info} ${selector}`)
       elements.forEach((element) => {
         if (showInfoModal) {
