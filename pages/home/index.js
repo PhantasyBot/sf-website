@@ -501,44 +501,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       </div>
                     </div>
                   )}
-                  {selectedProject?.agent?.walletAddress && (
-                    <div className={s.wallet}>
-                      <p
-                        className={cn(
-                          s.walletTitle,
-                          'p-xs text-uppercase text-bold',
-                        )}
-                      >
-                        Wallet
-                      </p>
-                      <div className={s.walletLayout}>
-                        <div className={s.walletDetails}>
-                          <div className={s.addressContainer}>
-                            <TokenBaseIcon className={s.walletIcon} />
-                            <code className="p-s">
-                              {selectedProject.agent.walletAddress}
-                            </code>
-                            <button
-                              className={s.copyButton}
-                              onClick={() =>
-                                copyToClipboard(
-                                  selectedProject.agent.walletAddress,
-                                )
-                              }
-                              aria-label={`Copy agent wallet address ${selectedProject.agent.walletAddress} to clipboard`}
-                              title="Copy address to clipboard"
-                            >
-                              <PixelCopySolid />
-                            </button>
-                          </div>
-                          <p className={s.walletDisclaimer}>
-                            This is the agent's on-chain wallet address for
-                            direct interactions.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
                   {selectedProject?.token && (
                     <div className={s.token}>
                       <p
@@ -586,6 +548,44 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             This token is provided for entertainment purposes
                             only and does not constitute an investment
                             opportunity.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {selectedProject?.agent?.walletAddress && (
+                    <div className={s.wallet}>
+                      <p
+                        className={cn(
+                          s.walletTitle,
+                          'p-xs text-uppercase text-bold',
+                        )}
+                      >
+                        Wallet
+                      </p>
+                      <div className={s.walletLayout}>
+                        <div className={s.walletDetails}>
+                          <div className={s.addressContainer}>
+                            <TokenBaseIcon className={s.walletIcon} />
+                            <code className="p-s">
+                              {selectedProject.agent.walletAddress}
+                            </code>
+                            <button
+                              className={s.copyButton}
+                              onClick={() =>
+                                copyToClipboard(
+                                  selectedProject.agent.walletAddress,
+                                )
+                              }
+                              aria-label={`Copy agent wallet address ${selectedProject.agent.walletAddress} to clipboard`}
+                              title="Copy address to clipboard"
+                            >
+                              <PixelCopySolid />
+                            </button>
+                          </div>
+                          <p className={s.walletDisclaimer}>
+                            This is the agent's on-chain wallet address for
+                            direct interactions.
                           </p>
                         </div>
                       </div>

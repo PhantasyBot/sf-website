@@ -51,22 +51,22 @@
 
       &.active {
         background-color: var(--primary-accent);
-        color: var(--text-primary);
+        color: #000000;
 
         p {
-          color: var(--text-primary);
+          color: #000000;
         }
 
         .category span {
-          color: var(--text-primary);
+          color: #000000;
         }
 
         .icon path {
-          stroke: var(--text-primary) !important;
+          stroke: #000000 !important;
         }
 
         &:focus-visible {
-          outline: 2px solid var(--text-primary);
+          outline: 2px solid #000000;
           outline-offset: 2px;
         }
       }
@@ -105,7 +105,7 @@
 
       &[data-state='open'] {
         p {
-          color: var(--text-primary);
+          color: #000000;
         }
         > .icon > .x {
           transform: rotate(0);
@@ -128,7 +128,7 @@
     }
 
     .external {
-      color: var(--primary-accent) !important;
+      color: var(--primary-accent);
 
       .arrow {
         display: inline;
@@ -140,11 +140,7 @@
     }
 
     .tokenSection .dexLink {
-      color: var(--primary-accent) !important;
-    }
-
-    .copyButton svg {
-      color: var(--text-black) !important;
+      color: var(--primary-accent);
     }
 
     .image {
@@ -296,16 +292,26 @@
             align-items: center;
             justify-content: center;
             border-radius: mobile-vw(2px);
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
 
             svg {
               width: mobile-vw(12px);
               height: mobile-vw(12px);
-              color: var(--text-black);
+              color: #e1dcdc;
             }
 
             &:hover {
               background-color: var(--background-secondary);
+              transform: scale(1.1);
+            }
+
+            &:active {
+              background-color: var(--primary-accent);
+              transform: scale(0.95);
+
+              svg {
+                color: var(--text-on-accent);
+              }
             }
           }
         }
@@ -323,6 +329,14 @@
           &:hover {
             color: var(--secondary-accent);
           }
+
+          .externalIcon {
+            width: mobile-vw(8px);
+            height: mobile-vw(8px);
+            margin-left: mobile-vw(4px);
+            fill: var(--primary-accent);
+            flex-shrink: 0;
+          }
         }
       }
 
@@ -336,7 +350,25 @@
 
       .external {
         color: var(--primary-accent);
+        font-size: mobile-vw(10px);
         text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--secondary-accent);
+        }
+
+        .externalIcon {
+          width: mobile-vw(8px);
+          height: mobile-vw(8px);
+          margin-left: mobile-vw(4px);
+          fill: var(--primary-accent);
+          flex-shrink: 0;
+        }
 
         .arrow {
           display: inline;

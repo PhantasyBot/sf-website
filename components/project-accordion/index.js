@@ -8,15 +8,18 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import s from './project-accordion.module.scss'
 
-const Arrow = dynamic(() => import('icons/pixel-external-link-solid.svg'), {
-  ssr: false,
-})
 const PixelCopySolid = dynamic(() => import('icons/pixel-copy-solid.svg'), {
   ssr: false,
 })
 const TokenBaseIcon = dynamic(() => import('icons/token-base.svg'), {
   ssr: false,
 })
+const PixelExternalIcon = dynamic(
+  () => import('icons/pixel-external-link-solid.svg'),
+  {
+    ssr: false,
+  },
+)
 
 export const ProjectAccordion = ({
   data,
@@ -114,7 +117,7 @@ export const ProjectAccordion = ({
                           className={s.dexLink}
                         >
                           DEX
-                          <Arrow className={s.externalIcon} />
+                          <PixelExternalIcon className={s.externalIcon} />
                         </a>
                       )}
                     </div>
@@ -127,7 +130,7 @@ export const ProjectAccordion = ({
                       className={s.external}
                     >
                       Visit
-                      <Arrow className={s.externalIcon} />
+                      <PixelExternalIcon className={s.externalIcon} />
                     </a>
                   )}
                 </div>
