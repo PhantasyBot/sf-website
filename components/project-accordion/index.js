@@ -88,28 +88,6 @@ export const ProjectAccordion = ({
               {/* Mobile token and link section */}
               <div className={s.mobileInfo}>
                 <div className={s.tokenInfoRow}>
-                  {item?.agent?.walletAddress && (
-                    <div className={s.tokenSection}>
-                      <div className={s.tokenAddress}>
-                        <TokenBaseIcon className={s.tokenIcon} />
-                        <code>
-                          {item.agent.walletAddress.slice(0, 8)}...
-                          {item.agent.walletAddress.slice(-6)}
-                        </code>
-                        <button
-                          className={s.copyButton}
-                          onClick={() => {
-                            navigator.clipboard.writeText(
-                              item.agent.walletAddress,
-                            )
-                          }}
-                          title="Copy wallet address"
-                        >
-                          <PixelCopySolid />
-                        </button>
-                      </div>
-                    </div>
-                  )}
                   {item?.token && (
                     <div className={s.tokenSection}>
                       <div className={s.tokenAddress}>
@@ -155,7 +133,8 @@ export const ProjectAccordion = ({
                 </div>
                 {item?.token && (
                   <p className={s.tokenDisclaimer}>
-                    Not an investment • No value • Entertainment purposes only
+                    This token is provided for entertainment purposes only and
+                    does not constitute an investment opportunity.
                   </p>
                 )}
               </div>

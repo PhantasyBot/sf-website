@@ -461,6 +461,10 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                               <p className={cn('p text-bold', s.agentName)}>
                                 {selectedProject.agent.name}
                               </p>
+                              <p className={cn('p-s', s.agentDescription)}>
+                                A specialized AI agent designed to assist with
+                                various tasks and provide engaging interactions.
+                              </p>
                               <p className={cn('p-s', s.agentGoal)}>
                                 <span className="text-muted">Goal:</span>{' '}
                                 {selectedProject.agent.goal}
@@ -543,15 +547,13 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                           'p-xs text-uppercase text-bold',
                         )}
                       >
+                        <span className={s.ticker}>
+                          {selectedProject.token.ticker}
+                        </span>{' '}
                         Token
                       </p>
                       <div className={s.tokenLayout}>
                         <div className={s.tokenDetails}>
-                          <div className={s.tokenHeader}>
-                            <span className={s.ticker}>
-                              {selectedProject.token.ticker}
-                            </span>
-                          </div>
                           <div className={s.addressContainer}>
                             <TokenBaseIcon className={s.tokenIcon} />
                             <code className="p-s">
@@ -567,6 +569,18 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             >
                               <PixelCopySolid />
                             </button>
+                            {selectedProject.token.dexLink && (
+                              <Link
+                                href={selectedProject.token.dexLink}
+                                className={s.dexButton}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`Trade ${selectedProject.name} token on decentralized exchange in new tab`}
+                              >
+                                Trade
+                                <PixelExternalIcon className={s.externalIcon} />
+                              </Link>
+                            )}
                           </div>
                           <p className={s.tokenDisclaimer}>
                             This token is provided for entertainment purposes
@@ -574,20 +588,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             opportunity.
                           </p>
                         </div>
-                        {selectedProject.token.dexLink && (
-                          <div className={s.tokenActions}>
-                            <Link
-                              href={selectedProject.token.dexLink}
-                              className={s.dexButton}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`Trade ${selectedProject.name} token on decentralized exchange in new tab`}
-                            >
-                              Trade
-                              <PixelExternalIcon className={s.externalIcon} />
-                            </Link>
-                          </div>
-                        )}
                       </div>
                     </div>
                   )}
