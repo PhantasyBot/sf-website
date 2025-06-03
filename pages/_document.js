@@ -21,13 +21,6 @@ export default function Document() {
           crossOrigin="anonymous"
         />
         <link
-          href="/fonts/GTAlpina-ThIt.woff2"
-          as="font"
-          rel="preload prefetch"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
           href="/fonts/MessinaSansMono-Regular.woff2"
           as="font"
           rel="preload prefetch"
@@ -36,27 +29,6 @@ export default function Document() {
         />
         <link
           href="/fonts/MessinaSansMono-SemiBold.woff2"
-          as="font"
-          rel="preload prefetch"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="/fonts/NeueMontreal-Bold.woff2"
-          as="font"
-          rel="preload prefetch"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="/fonts/NeueMontreal-Light.woff2"
-          as="font"
-          rel="preload prefetch"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="/fonts/NeueMontreal-Regular.woff2"
           as="font"
           rel="preload prefetch"
           type="font/woff2"

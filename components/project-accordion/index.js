@@ -8,7 +8,9 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import s from './project-accordion.module.scss'
 
-const Arrow = dynamic(() => import('icons/arrow.svg'), { ssr: false })
+const Arrow = dynamic(() => import('icons/pixel-external-link-solid.svg'), {
+  ssr: false,
+})
 const PixelCopySolid = dynamic(() => import('icons/pixel-copy-solid.svg'), {
   ssr: false,
 })

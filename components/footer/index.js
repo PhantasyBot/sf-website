@@ -5,8 +5,10 @@ import { Separator } from 'components/separator'
 import dynamic from 'next/dynamic'
 import s from './footer.module.scss'
 
-const XIcon = dynamic(() => import('icons/x.svg'), { ssr: false })
-const DiscordIcon = dynamic(() => import('icons/discord.svg'), { ssr: false })
+const XIcon = dynamic(() => import('icons/pixel-x.svg'), { ssr: false })
+const DiscordIcon = dynamic(() => import('icons/pixel-discord.svg'), {
+  ssr: false,
+})
 const InstagramIcon = dynamic(() => import('icons/pixel-instagram.svg'), {
   ssr: false,
 })
