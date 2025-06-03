@@ -4,7 +4,7 @@ import { useStore } from 'lib/store'
 import { useEffect, useRef, useState } from 'react'
 import s from './gallery.module.scss'
 
-export function Gallery() {
+export function Gallery({ onBackToProject }) {
   const contentRef = useRef(null)
   const [selectedProject, galleryVisible, setGalleryVisible] = useStore(
     (state) => [
@@ -43,6 +43,13 @@ export function Gallery() {
       return
     }
     setCurrentImageIndex((prev) => (prev === totalImages - 1 ? 0 : prev + 1))
+  }
+
+  const handleBackToProject = () => {
+    setGalleryVisible(false)
+    if (onBackToProject) {
+      onBackToProject()
+    }
   }
 
   useEffect(() => {
@@ -94,6 +101,25 @@ export function Gallery() {
             />
           </svg>
           <span className={cn(s.text, 'p-xs text-uppercase')}>Close</span>
+        </button>
+
+        <button className={s.backToProject} onClick={handleBackToProject}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span className={cn(s.text, 'p-xs text-uppercase')}>
+            Back to Project
+          </span>
         </button>
 
         {totalImages > 1 && (

@@ -405,7 +405,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
         </ClientOnly>
       )}
 
-      <Gallery />
+      <Gallery onBackToProject={() => setShowInfoModal(true)} />
     </Layout>
   )
 }

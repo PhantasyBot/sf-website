@@ -64,6 +64,34 @@
     }
   }
 
+  .backToProject {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: desktop-vh(8px);
+    background: none;
+    border: none;
+    color: var(--primary-accent);
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    svg {
+      width: desktop-vw(24px);
+      height: desktop-vh(24px);
+    }
+
+    .text {
+      font-size: desktop-vh(10px);
+      text-transform: uppercase;
+      writing-mode: horizontal-tb;
+      transform: none;
+    }
+
+    &:hover {
+      color: var(--secondary-accent);
+    }
+  }
+
   .navButton {
     display: flex;
     flex-direction: column;
