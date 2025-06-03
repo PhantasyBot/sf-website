@@ -7,6 +7,20 @@ export default function Document() {
       <Head>
         <meta charSet="UTF-8" />
         <link
+          href="/fonts/Geist[wght].woff2"
+          as="font"
+          rel="preload prefetch"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="/fonts/Geist-Italic[wght].woff2"
+          as="font"
+          rel="preload prefetch"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
           href="/fonts/GTAlpina-ThIt.woff2"
           as="font"
           rel="preload prefetch"

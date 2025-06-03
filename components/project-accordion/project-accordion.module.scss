@@ -23,6 +23,34 @@
       text-transform: uppercase;
       width: 100%;
       user-select: none;
+      padding: mobile-vw(10px);
+      background-color: #ffffff;
+      border: none;
+      border-radius: mobile-vw(5px);
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+
+      &:hover:not(.active) {
+        background-color: #f5f5f5;
+      }
+
+      &.active {
+        background-color: var(--primary-accent);
+        color: var(--text-on-accent);
+
+        p {
+          color: var(--text-on-accent);
+        }
+
+        .category span {
+          color: var(--text-on-accent);
+        }
+
+        .icon path {
+          stroke: var(--text-on-accent);
+        }
+      }
 
       .category {
         display: flex;
@@ -65,16 +93,17 @@
     overflow: hidden;
     height: 100%;
     position: relative;
+    color: #2c2c2c;
 
-    .image {
-      aspect-ratio: 343 / 238;
-      width: 100%;
-      height: mobile-vw(238px);
-      margin-bottom: mobile-vw(16px);
+    p,
+    span,
+    code,
+    li {
+      color: #2c2c2c !important;
     }
 
     .external {
-      color: var(--primary-accent);
+      color: var(--primary-accent) !important;
 
       .arrow {
         display: inline;
@@ -83,6 +112,21 @@
         width: mobile-vw(6px);
         aspect-ratio: 1;
       }
+    }
+
+    .tokenSection .dexLink {
+      color: var(--primary-accent) !important;
+    }
+
+    .copyButton svg {
+      color: var(--primary-accent) !important;
+    }
+
+    .image {
+      aspect-ratio: 343 / 238;
+      width: 100%;
+      height: mobile-vw(238px);
+      margin-bottom: mobile-vw(16px);
     }
 
     .slides {
@@ -98,25 +142,31 @@
         transform: translateY(-50%);
         display: flex;
         flex-direction: column;
-        gap: mobile-vw(8px);
+        gap: mobile-vw(4px);
         z-index: 10;
 
         :global(.blaze-pagination-button) {
-          width: mobile-vw(8px);
-          height: mobile-vw(8px);
+          width: mobile-vw(6px);
+          height: mobile-vw(6px);
           border-radius: 50%;
-          border: 1px solid var(--text-secondary);
-          background: transparent;
+          border: none;
+          background: rgba(255, 255, 255, 0.4);
           cursor: pointer;
           transition: all 0.3s ease;
+          padding: 0;
+          font-size: 0; // Hide any text/numbers
 
           &:global(.active) {
             background: var(--primary-accent);
-            border-color: var(--primary-accent);
+            transform: scale(1.2);
           }
 
           &:hover {
-            border-color: var(--primary-accent);
+            background: rgba(255, 255, 255, 0.6);
+          }
+
+          &:global(.active):hover {
+            background: var(--primary-accent);
           }
         }
       }
@@ -175,15 +225,29 @@
           code {
             font-family: monospace;
             font-size: mobile-vw(10px);
-            color: var(--text-primary);
+            color: #2c2c2c !important;
           }
 
           .copyButton {
             background: none;
             border: none;
             cursor: pointer;
-            font-size: mobile-vw(12px);
-            padding: 0;
+            padding: mobile-vw(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: mobile-vw(2px);
+            transition: background-color 0.3s ease;
+
+            svg {
+              width: mobile-vw(12px);
+              height: mobile-vw(12px);
+              color: var(--primary-accent);
+            }
+
+            &:hover {
+              background-color: var(--background-secondary);
+            }
           }
         }
 

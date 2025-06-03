@@ -5,7 +5,13 @@ import { renderer } from 'lib/compatibility/renderer'
 import { useEffect, useRef } from 'react'
 import s from './layout-mobile.module.scss'
 
-const LayoutMobile = ({ projects, phantasy, currentAboutSection }) => {
+const LayoutMobile = ({
+  projects,
+  phantasy,
+  currentAboutSection,
+  selectedProject,
+  setSelectedProject,
+}) => {
   const aboutSectionRef = useRef(null)
 
   // Determine what content to show in the About section
@@ -43,7 +49,11 @@ const LayoutMobile = ({ projects, phantasy, currentAboutSection }) => {
         />
       </section>
       <section className={cn(s.projects, 'layout-block')}>
-        <ProjectAccordion data={projectsData} />
+        <ProjectAccordion
+          data={projectsData}
+          selectedProject={selectedProject}
+          setSelectedProject={setSelectedProject}
+        />
       </section>
       <section className={s.image}>
         <Image

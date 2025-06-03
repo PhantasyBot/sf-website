@@ -209,7 +209,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Phantasy is an 18+ NSFW AI Gaming and Entertainment Studio pushing the boundaries of interactive digital experiences.',
+                      'Phantasy is an 18+ NSFW Entertainment and Video Game Development Studio pushing the boundaries of interactive digital experiences.',
                     marks: [],
                     data: {},
                   },

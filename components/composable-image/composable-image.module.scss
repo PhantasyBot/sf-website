@@ -153,66 +153,67 @@
 
   .nsfwContent {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: mobile-vw(8px);
+    gap: mobile-vw(6px);
+    padding: mobile-vw(6px) mobile-vw(8px);
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: mobile-vw(4px);
 
     @include desktop {
-      gap: desktop-vw(8px);
+      gap: desktop-vw(6px);
+      padding: desktop-vw(6px) desktop-vw(8px);
+      border-radius: desktop-vw(4px);
     }
 
     .revealed & {
-      flex-direction: row;
-      gap: 0;
+      padding: mobile-vw(2px);
+      background: rgba(0, 0, 0, 0.6);
+
+      @include desktop {
+        padding: desktop-vw(2px);
+      }
     }
   }
 
   .ageWarning {
-    background: rgba(255, 255, 255, 0.9);
-    color: #000;
-    padding: mobile-vw(4px) mobile-vw(8px);
-    border-radius: mobile-vw(4px);
+    color: #fff;
     font-weight: bold;
-    font-size: mobile-vw(12px);
+    font-size: mobile-vw(11px);
     font-family: var(--font-secondary);
+    line-height: 1;
 
     @include desktop {
-      padding: desktop-vw(4px) desktop-vw(8px);
-      border-radius: desktop-vw(4px);
-      font-size: desktop-vw(12px);
+      font-size: desktop-vw(11px);
+    }
+
+    .revealed & {
+      display: none;
     }
   }
 
   .eyeButton {
-    background: rgba(255, 255, 255, 0.9);
+    background: transparent;
     border: none;
-    border-radius: mobile-vw(4px);
-    padding: mobile-vw(6px);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    padding: mobile-vw(2px);
 
     @include desktop {
-      border-radius: desktop-vw(4px);
-      padding: desktop-vw(6px);
+      padding: desktop-vw(2px);
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
     }
 
     &.minimal {
-      background: rgba(255, 255, 255, 0.6);
       padding: mobile-vw(4px);
 
       @include desktop {
         padding: desktop-vw(4px);
-      }
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.8);
       }
 
       svg {
@@ -227,12 +228,18 @@
     }
 
     svg {
-      width: mobile-vw(20px);
-      height: mobile-vw(20px);
+      width: mobile-vw(18px);
+      height: mobile-vw(18px);
+      color: var(--primary-accent);
 
       @include desktop {
-        width: desktop-vw(20px);
-        height: desktop-vw(20px);
+        width: desktop-vw(18px);
+        height: desktop-vw(18px);
+      }
+
+      path {
+        fill: currentColor;
+        stroke: currentColor;
       }
     }
   }

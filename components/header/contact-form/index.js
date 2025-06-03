@@ -56,7 +56,9 @@ export function ContactFormModal({ data }) {
           <Separator
             className={s.separator}
             hideIcons={true}
-            rightContent={<span>✰✰✰</span>}
+            rightContent={
+              <span style={{ color: 'var(--primary-accent)' }}>✰✰✰</span>
+            }
           />
         </div>
         <ScrollableBox className={s.scrollable} shadow={false}>

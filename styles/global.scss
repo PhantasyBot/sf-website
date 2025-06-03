@@ -133,9 +133,27 @@ svg.icon {
 // Global styles for blaze slider pagination
 .blaze-pagination {
   .blaze-pagination-button {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    font-size: 0; // Hide any text/numbers
+
     &.active {
-      background-color: var(--primary-accent) !important;
-      border-color: var(--primary-accent) !important;
+      background: var(--primary-accent) !important;
+      transform: scale(1.2);
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    &.active:hover {
+      background: var(--primary-accent) !important;
     }
   }
 }

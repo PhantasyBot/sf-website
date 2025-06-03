@@ -1,32 +1,6 @@
 .container {
   width: 100%;
   position: relative;
-
-  .footer-image {
-    @include mobile {
-      margin-bottom: mobile-vw(24px);
-      position: relative;
-      aspect-ratio: 360 / 260;
-      width: 100%;
-      height: mobile-vw(260px);
-      margin-top: 10px;
-
-      &:before {
-        content: '';
-        position: absolute;
-        bottom: -1px;
-        width: 100%;
-        height: mobile-vw(190px);
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0) 30%,
-          rgba(0, 0, 0, 1) 80%
-        );
-        z-index: 1;
-        pointer-events: none;
-      }
-    }
-  }
 }
 
 .footer {
@@ -50,10 +24,10 @@
       &:nth-child(1) {
         display: flex;
         align-self: start;
-        grid-column: span 3;
+        grid-column: span 2;
       }
       &:nth-child(2) {
-        grid-column: span 2;
+        grid-column: span 3;
 
         li {
           display: inline-block;

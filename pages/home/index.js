@@ -15,6 +15,9 @@ import { useEffect, useState } from 'react'
 import s from './home.module.scss'
 
 const Arrow = dynamic(() => import('icons/arrow.svg'), { ssr: false })
+const PixelCopySolid = dynamic(() => import('icons/pixel-copy-solid.svg'), {
+  ssr: false,
+})
 
 const Gallery = dynamic(
   () => import('components/gallery').then(({ Gallery }) => Gallery),
@@ -26,7 +29,7 @@ const Gallery = dynamic(
 export default function Home({ phantasy, contact, projects, aboutContent }) {
   const router = useRouter()
 
-  const [showInfoModal, setShowInfoModal] = useState(false)
+  const [showInfoModal, setShowInfoModal] = useState(true)
   const [resetScroll, setResetScroll] = useState(false)
   const isDesktop = useMediaQuery('(min-width: 800px)')
   const [selectedProject, setSelectedProject] = useStore((state) => [
@@ -167,6 +170,8 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
           phantasy={phantasy}
           projects={projects}
           currentAboutSection={currentAboutSection}
+          selectedProject={selectedProject}
+          setSelectedProject={setSelectedProject}
         />
       ) : (
         <ClientOnly>
@@ -185,7 +190,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
               <p
                 className={cn(s.title, 'p text-bold text-uppercase text-muted')}
               >
-                Agents
+                Apps & Games
               </p>
               <ScrollableBox className={s.list}>
                 <ul>
@@ -231,7 +236,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       setShowInfoModal(!showInfoModal)
                     }}
                   >
-                    {showInfoModal ? 'close' : 'info'}
+                    {showInfoModal ? 'gallery' : 'close'}
                   </button>
                   {selectedProject?.link && (
                     <Link
@@ -343,7 +348,10 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                           <p className="p text-bold">
                             {selectedProject.agent.name}
                           </p>
-                          <p className="p-s">{selectedProject.agent.goal}</p>
+                          <p className="p-s">
+                            <span className="text-muted">GOAL:</span>{' '}
+                            {selectedProject.agent.goal}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -373,7 +381,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             }}
                             title="Copy address"
                           >
-                            📋
+                            <PixelCopySolid />
                           </button>
                         </div>
                         {selectedProject.token.dexLink && (
@@ -416,7 +424,7 @@ export async function getStaticProps() {
               {
                 nodeType: 'text',
                 value:
-                  'Phantasy is an 18+ NSFW AI Gaming and Entertainment Studio pushing the boundaries of interactive digital experiences.',
+                  'Phantasy is an 18+ NSFW entertainment studio pushing the boundaries of games and other interactive digital experiences.',
                 marks: [],
                 data: {},
               },
@@ -429,7 +437,7 @@ export async function getStaticProps() {
               {
                 nodeType: 'text',
                 value:
-                  'We specialize in creating immersive AI-powered characters and experiences that blur the line between reality and fantasy.',
+                  'We specialize in creating AI-powered characters and experiences that blur the line between reality and fantasy.',
                 marks: [],
                 data: {},
               },
@@ -512,7 +520,7 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'Phantasy is an 18+ NSFW AI Gaming and Entertainment Studio that creates virtual companions and adult-oriented AI experiences. We specialize in AI companions, NSFW entertainment, and virtual relationships.',
+                        'Phantasy is an 18+ NSFW Entertainment and Gaming Studio that creates virtual companions and adult-oriented AI experiences. We specialize in AI companions, NSFW entertainment, and virtual relationships.',
                       marks: [],
                       data: {},
                     },
@@ -652,7 +660,7 @@ export async function getStaticProps() {
         {
           sys: { id: 'project5' },
           name: 'Alchemist',
-          industry: 'Tech',
+          industry: 'Deep Research',
           body: {
             json: {
               nodeType: 'document',
@@ -681,8 +689,8 @@ export async function getStaticProps() {
             link: 'https://example.com/alchemist',
           },
           agent: {
-            name: 'Alchemist AI',
-            goal: 'To provide cutting-edge AI solutions and innovative technological experiences.',
+            name: 'Alchemist',
+            goal: 'An AI agent with deep research abilities specializing in uncovering hidden knowledge and conducting thorough analysis. Designed for 18+ users seeking intelligent, NSFW-capable AI companionship with advanced research capabilities.',
             profileImage:
               'https://placehold.co/1026x604/111/333?text=Alchemist',
           },
@@ -740,7 +748,7 @@ export async function getStaticProps() {
           },
           agent: {
             name: 'Rally',
-            goal: 'To provide companionship, entertainment, and NSFW interactions in a safe virtual environment.',
+            goal: 'An AI agent that excels in marketing and promotions, creating engaging campaigns and building connections. She offers NSFW-capable companionship for 18+ users, combining promotional expertise with intimate virtual girlfriend experiences.',
             profileImage: 'https://r2.rally.sh/photos/rally_pfp.png',
           },
           token: {
@@ -804,7 +812,7 @@ export async function getStaticProps() {
         {
           sys: { id: 'project2' },
           name: 'Banshee',
-          industry: 'Tech',
+          industry: 'AI Live Cams',
           body: {
             json: {
               nodeType: 'document',
@@ -833,7 +841,7 @@ export async function getStaticProps() {
           },
           agent: {
             name: 'Banshee',
-            goal: 'To provide mystical and ethereal AI companionship experiences.',
+            goal: 'An AI agent specializing in live cam experiences and real-time interactive entertainment. She provides immersive, NSFW-capable AI companionship for 18+ users through dynamic live streaming and personalized interactive sessions.',
             profileImage:
               'https://placehold.co/1026x604/cad2e2/fff?text=Banshee',
           },
@@ -861,7 +869,7 @@ export async function getStaticProps() {
         {
           sys: { id: 'project3' },
           name: 'Munny',
-          industry: 'Tech',
+          industry: 'Bounty Hunting',
           body: {
             json: {
               nodeType: 'document',
@@ -884,14 +892,14 @@ export async function getStaticProps() {
             },
           },
           platform: {
-            name: 'Munny Platform',
+            name: 'Munny.fun',
             summary:
-              'Green technology platform for sustainable AI experiences.',
-            link: 'https://example.com/munny',
+              'A bounty hunting platform featuring gig-style jobs and task completion rewards. Coming soon.',
+            link: 'https://munny.fun',
           },
           agent: {
             name: 'Munny',
-            goal: 'To provide eco-friendly and sustainable AI companion services.',
+            goal: 'An AI agent focused on facilitating and evaluating bounty hunts through the munny.fun platform. She manages gig-style jobs and task evaluations while providing NSFW-capable AI companionship for 18+ users in a professional yet intimate setting.',
             profileImage: 'https://placehold.co/1026x604/558b2f/fff?text=Munny',
           },
           token: {
@@ -918,7 +926,7 @@ export async function getStaticProps() {
         {
           sys: { id: 'project4' },
           name: 'Lorelei',
-          industry: 'Tech',
+          industry: 'Storytelling',
           body: {
             json: {
               nodeType: 'document',
@@ -941,14 +949,14 @@ export async function getStaticProps() {
             },
           },
           platform: {
-            name: 'Lorelei Platform',
+            name: 'Lorelei.app',
             summary:
-              'Enchanting AI platform for mystical and alluring digital experiences.',
-            link: 'https://example.com/lorelei',
+              'An everlasting visual novel platform powered by AI that creates infinite stories and worlds. Coming soon.',
+            link: 'https://lorelei.app',
           },
           agent: {
             name: 'Lorelei',
-            goal: 'To provide enchanting and mystical AI companion experiences with captivating interactions.',
+            goal: 'An AI agent focused on creating stories and immersive worlds through the lorelei.app platform. She crafts everlasting visual novels that evolve infinitely, offering NSFW-capable storytelling experiences for 18+ users seeking narrative-driven AI companionship.',
             profileImage:
               'https://placehold.co/1026x604/a0c4ff/fff?text=Lorelei',
           },
@@ -995,7 +1003,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Phantasy is an 18+ NSFW AI Gaming and Entertainment Studio pushing the boundaries of interactive digital experiences.',
+                      'Phantasy is an 18+ NSFW Entertainment and Gaming Studio pushing the boundaries of interactive digital experiences.',
                     marks: [],
                     data: {},
                   },

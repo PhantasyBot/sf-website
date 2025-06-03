@@ -10,13 +10,20 @@ import { useState } from 'react'
 import s from './project-accordion.module.scss'
 
 const Arrow = dynamic(() => import('icons/arrow.svg'), { ssr: false })
+const PixelCopySolid = dynamic(() => import('icons/pixel-copy-solid.svg'), {
+  ssr: false,
+})
 
-export const ProjectAccordion = ({ data }) => {
+export const ProjectAccordion = ({
+  data,
+  selectedProject,
+  setSelectedProject,
+}) => {
   const [active, setActive] = useState(0)
 
   return (
     <div className={s.accordion}>
-      <p className="p text-bold text-uppercase text-muted">Projects</p>
+      <p className="p text-bold text-uppercase text-muted">Apps & Games</p>
 
       <Accordion.Root type="single" className={s['accordion-root']} collapsible>
         {data.map((item, i) => (
@@ -25,8 +32,14 @@ export const ProjectAccordion = ({ data }) => {
               <Accordion.Trigger
                 onClick={() => {
                   setActive(active === i ? false : i)
+                  if (setSelectedProject) {
+                    setSelectedProject(item)
+                  }
                 }}
-                className={s.trigger}
+                className={cn(
+                  s.trigger,
+                  selectedProject?.sys?.id === item.sys.id && s.active,
+                )}
               >
                 <p>{item.name}</p>
                 <div className={s.category}>
@@ -90,7 +103,7 @@ export const ProjectAccordion = ({ data }) => {
                         }}
                         title="Copy address"
                       >
-                        📋
+                        <PixelCopySolid />
                       </button>
                     </div>
                     {item.token.dexLink && (

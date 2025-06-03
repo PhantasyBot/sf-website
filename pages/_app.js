@@ -3,6 +3,7 @@ import { useLenis } from '@studio-freight/react-lenis'
 import Tempus from '@studio-freight/tempus'
 // import { Analytics } from '@vercel/analytics/react' // Removed Vercel Analytics
 import 'blaze-slider/dist/blaze.css'
+import ErrorBoundary from 'components/error-boundary'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useStore } from 'lib/store'
@@ -100,7 +101,7 @@ function MyApp({ Component, pageProps }) {
   }, [lenis, overflow])
 
   return (
-    <>
+    <ErrorBoundary>
       {/* <PageTransition /> */}
       <RealViewport />
       <Dither currentTheme={currentTheme} />
@@ -114,7 +115,7 @@ function MyApp({ Component, pageProps }) {
       </ProjectProvider> */}
       {/* <Analytics /> */}
       {/* Removed Vercel Analytics component */}
-    </>
+    </ErrorBoundary>
   )
 }
 

@@ -186,9 +186,7 @@ button,
 }
 
 .text-muted {
-  color: var(
-    --text-secondary
-  ); // Removed !important, relying on specificity instead
+  color: #a9a9a9; // Consistent light gray across all themes
 }
 
 // Active project indicator, etc.

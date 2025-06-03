@@ -77,33 +77,9 @@
       }
 
       .separator {
-        margin: 0 mobile-vw(16px);
+        margin: 0 mobile-vw(24px);
         @include desktop {
-          margin: 0 desktop-vw(16px);
-        }
-      }
-
-      .inlineSeperator {
-        margin: 0 mobile-vw(16px);
-        display: inline-flex;
-        align-items: center;
-
-        @include desktop {
-          margin: 0 desktop-vw(16px);
-        }
-
-        .line {
-          display: none !important;
-        }
-
-        .icon {
-          width: mobile-vw(8px);
-          height: mobile-vw(8px);
-
-          @include desktop {
-            width: desktop-vw(8px);
-            height: desktop-vw(8px);
-          }
+          margin: 0 desktop-vw(32px);
         }
       }
     }
