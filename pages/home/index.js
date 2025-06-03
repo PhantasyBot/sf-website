@@ -81,6 +81,31 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
     }
   }, [])
 
+  // Manage tabindex for action buttons based on showInfoModal state
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const actionButtonSelectors = [
+      `.${s.platformButton}`,
+      `.${s.galleryButton}`,
+      `.${s.copyButton}`,
+      `.${s.dexButton}`,
+    ]
+
+    actionButtonSelectors.forEach((selector) => {
+      const elements = document.querySelectorAll(`.${s.info} ${selector}`)
+      elements.forEach((element) => {
+        if (showInfoModal) {
+          // Remove any previously set tabindex to restore natural tab order
+          element.removeAttribute('tabindex')
+        } else {
+          // Make unfocusable when info is hidden
+          element.setAttribute('tabindex', '-1')
+        }
+      })
+    })
+  }, [showInfoModal])
+
   useEffect(() => {
     const searchTerm = router.asPath.substring(router.asPath.indexOf('#') + 1)
     const projectParam = router.query.project

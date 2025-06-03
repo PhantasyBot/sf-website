@@ -39,7 +39,7 @@ export function ScrollableBox({ children, className, infinite, reset }) {
   }, [reset])
 
   return (
-    <div className={cn(s.hi, className)} ref={wrapperRef}>
+    <div className={cn(s.hi, className)} ref={wrapperRef} tabIndex="-1">
       <div ref={contentRef}>{children}</div>
     </div>
   )

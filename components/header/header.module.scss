@@ -76,6 +76,12 @@
     color: var(--grey);
     text-transform: uppercase;
 
+    // Prevent marquee text from being focusable
+    * {
+      pointer-events: none;
+      user-select: none;
+    }
+
     .principle {
       font-weight: 700;
       text-decoration: none;
@@ -168,6 +174,9 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
+
+      // Ensure SVG logo is not accidentally focusable
+      pointer-events: none;
 
       @include desktop-xl {
         max-height: desktop-vw(30px);

@@ -34,7 +34,11 @@ export const Header = ({ principles = [], contact }) => {
     <header className={cn(s.container, 'layout-block')}>
       <div className={cn(s.top, 'layout-grid')}>
         <div className={s.branding}>
-          <a name="branding" className={s.logo} href="https://phantasy.bot">
+          <a
+            href="https://phantasy.bot"
+            className={s.logo}
+            aria-label="Phantasy Bot homepage"
+          >
             <PhantasyLettermark />
           </a>
         </div>
@@ -53,6 +57,8 @@ export const Header = ({ principles = [], contact }) => {
           onClick={() => {
             setContactIsOpen(!contactIsOpen)
           }}
+          aria-label="Open frequently asked questions"
+          aria-expanded={contactIsOpen}
         >
           FAQ
         </button>
@@ -60,9 +66,19 @@ export const Header = ({ principles = [], contact }) => {
       <Separator hideIcons={true} className="layout-block" />
       <div className={cn(s.header, 'layout-grid')}>
         {isMobile === true ? (
-          <PhantasyLogoMobile className={s.title} />
+          <PhantasyLogoMobile
+            className={s.title}
+            role="img"
+            aria-label="Phantasy logo"
+            tabIndex="-1"
+          />
         ) : (
-          <PhantasyLogo className={s.title} />
+          <PhantasyLogo
+            className={s.title}
+            role="img"
+            aria-label="Phantasy logo"
+            tabIndex="-1"
+          />
         )}
       </div>
       <Separator hideIcons={true} className="layout-block" />
