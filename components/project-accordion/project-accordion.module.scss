@@ -278,9 +278,10 @@
           }
 
           code {
-            font-family: monospace;
+            font-family: var(--font-accent);
             font-size: mobile-vw(10px);
             color: #ffffff !important;
+            letter-spacing: 0.02em;
           }
 
           .copyButton {

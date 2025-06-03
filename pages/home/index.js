@@ -895,14 +895,13 @@ export async function getStaticProps() {
             summary:
               'Advanced AI technology platform for next-generation digital experiences.',
             link: 'https://example.com/alchemist',
-            image: 'https://placehold.co/48x48/ff0033/fff?text=A',
+            image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
             name: 'Alchemist',
             goal: 'Deep research and analysis specialist',
             skills: 'Deep Research, Data Analysis, Knowledge Discovery',
-            profileImage:
-              'https://placehold.co/1026x604/111/333?text=Alchemist',
+            profileImage: '/mobile-temp-images/rally_pfp.png',
             walletAddress: '0xalchemy1234567890abcdef1234567890abcdef',
           },
           token: {
@@ -917,7 +916,7 @@ export async function getStaticProps() {
                 imagesCollection: {
                   items: [
                     {
-                      url: 'https://placehold.co/1026x604/111/333?text=Alchemist',
+                      url: '/mobile-temp-images/rally_pfp.png',
                       width: 1026,
                       height: 604,
                     },
@@ -1079,15 +1078,14 @@ export async function getStaticProps() {
             name: 'Banshee Platform',
             summary: 'Ethereal AI platform for mystical digital experiences.',
             link: 'https://example.com/banshee',
-            image: 'https://placehold.co/48x48/d0d0d0/000?text=B',
+            image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
             name: 'Banshee',
             goal: 'Live streaming and interactive entertainment specialist',
             skills:
               'Live Streaming, Interactive Entertainment, Real-time Engagement',
-            profileImage:
-              'https://placehold.co/1026x604/cad2e2/fff?text=Banshee',
+            profileImage: '/mobile-temp-images/rally_pfp.png',
             walletAddress: '0xbanshee1234567890abcdef1234567890abcdef',
           },
           token: {
@@ -1102,7 +1100,7 @@ export async function getStaticProps() {
                 imagesCollection: {
                   items: [
                     {
-                      url: 'https://placehold.co/1026x604/111/333?text=Project+Two',
+                      url: '/mobile-temp-images/rally_pfp.png',
                       width: 1026,
                       height: 604,
                     },
@@ -1142,13 +1140,13 @@ export async function getStaticProps() {
             summary:
               'A bounty hunting platform featuring gig-style jobs and task completion rewards. Coming soon.',
             link: 'https://munny.fun',
-            image: 'https://placehold.co/48x48/f0f8e6/2d4a22?text=M',
+            image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
             name: 'Munny',
             goal: 'Bounty hunting and task evaluation specialist',
             skills: 'Bounty Hunting, Task Evaluation, Gig Management',
-            profileImage: 'https://placehold.co/1026x604/558b2f/fff?text=Munny',
+            profileImage: '/mobile-temp-images/rally_pfp.png',
             walletAddress: '0xmunny1234567890abcdef1234567890abcdefgh',
           },
           token: {
@@ -1163,7 +1161,7 @@ export async function getStaticProps() {
                 imagesCollection: {
                   items: [
                     {
-                      url: 'https://placehold.co/1026x604/111/333?text=Project+Two',
+                      url: '/mobile-temp-images/rally_pfp.png',
                       width: 1026,
                       height: 604,
                     },
@@ -1203,14 +1201,13 @@ export async function getStaticProps() {
             summary:
               'An everlasting visual novel platform powered by AI that creates infinite stories and worlds. Coming soon.',
             link: 'https://lorelei.app',
-            image: 'https://placehold.co/48x48/64b5f6/000?text=L',
+            image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
             name: 'Lorelei',
             goal: 'Storytelling and world creation specialist',
             skills: 'Storytelling, World Building, Visual Novel Creation',
-            profileImage:
-              'https://placehold.co/1026x604/a0c4ff/fff?text=Lorelei',
+            profileImage: '/mobile-temp-images/rally_pfp.png',
             walletAddress: '0xlorelei1234567890abcdef1234567890abcdef',
           },
           token: {
@@ -1225,7 +1222,7 @@ export async function getStaticProps() {
                 imagesCollection: {
                   items: [
                     {
-                      url: 'https://placehold.co/1026x604/111/333?text=Project+Two',
+                      url: '/mobile-temp-images/rally_pfp.png',
                       width: 1026,
                       height: 604,
                     },

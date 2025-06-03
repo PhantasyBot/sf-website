@@ -217,8 +217,10 @@
     color: #fff;
     font-weight: bold;
     font-size: mobile-vw(11px);
-    font-family: var(--font-secondary);
+    font-family: var(--font-accent);
     line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 
     @include desktop {
       font-size: desktop-vw(11px);

@@ -80,3 +80,21 @@
 .text-bold {
   font-weight: 700;
 }
+
+// MadouFutoMaruGothic font utilities
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+.nsfw-overlay-text {
+  font-family: var(--font-accent);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wallet-address {
+  font-family: var(--font-accent);
+  font-weight: normal;
+  letter-spacing: 0.02em;
+}
