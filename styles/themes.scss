@@ -194,7 +194,7 @@ button,
   .button-style,
   .project-details .actions button,
   .project-details .actions a {
-    color: var(--text-black) !important;
+    color: var(--text-black);
   }
 
   // More specific overrides for project detail buttons
@@ -204,11 +204,11 @@ button,
   .platformButton,
   .galleryButton,
   .dexButton {
-    color: var(--text-black) !important;
+    color: var(--text-black);
 
     &:hover,
     &:focus-visible {
-      color: var(--text-black) !important;
+      color: var(--text-black);
     }
   }
 
@@ -217,7 +217,7 @@ button,
   .accordion .trigger .category span,
   .accordion .trigger,
   .accordion .name {
-    color: var(--text-black) !important;
+    color: var(--text-black);
   }
 
   // Ensure FAQ and other heading text stays correct
@@ -229,7 +229,7 @@ button,
   h4,
   h5,
   h6 {
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
   }
 
   // Ensure section titles use the appropriate color
@@ -237,13 +237,14 @@ button,
   .projects .title,
   .project-details .title,
   .agentTitle,
-  .tokenTitle {
-    color: var(--text-primary) !important;
+  .tokenTitle,
+  .walletTitle {
+    color: var(--text-primary);
   }
 
   // Ensure project list items stay their intended color
   .projects .list .list-item button p {
-    color: var(--text-black) !important;
+    color: var(--text-black);
   }
 
   // Fix any text that might be inheriting green color
@@ -251,19 +252,19 @@ button,
   span,
   div,
   a:not(.decorate) {
-    color: inherit !important;
+    color: inherit;
   }
 
   // Ensure navigation and links use theme colors appropriately
   .decorate {
-    color: var(--primary-accent) !important;
+    color: var(--primary-accent);
   }
 
   // Fix mobile accordion content
   .project-accordion-content p,
   .project-accordion-content span,
   .project-accordion-content div {
-    color: var(--text-black) !important;
+    color: var(--text-black);
   }
 }
 
@@ -273,7 +274,8 @@ button,
 [data-theme='lorelei'],
 [data-theme='alchemist'] {
   .agentTitle,
-  .tokenTitle {
-    color: var(--text-secondary) !important;
+  .tokenTitle,
+  .walletTitle {
+    color: var(--text-secondary);
   }
 }

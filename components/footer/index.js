@@ -53,13 +53,7 @@ export function Footer({ className, style, links }) {
             }}
           >
             {litePaperText}
-            <PixelExternalIcon
-              style={{
-                width: '16px',
-                height: '16px',
-                color: 'var(--text-primary)',
-              }}
-            />
+            <PixelExternalIcon className={s.externalIcon} />
           </a>
         )}
         {isMobile === false && (
@@ -107,13 +101,7 @@ export function Footer({ className, style, links }) {
                 }}
               >
                 {litePaperText}
-                <PixelExternalIcon
-                  style={{
-                    width: '16px',
-                    height: '16px',
-                    color: 'var(--text-primary)',
-                  }}
-                />
+                <PixelExternalIcon className={s.externalIcon} />
               </a>
               <span className="p-s text-muted">
                 &copy; {new Date().getFullYear()} Phantasy LLC

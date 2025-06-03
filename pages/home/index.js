@@ -20,6 +20,12 @@ const PixelCopySolid = dynamic(() => import('icons/pixel-copy-solid.svg'), {
 const TokenBaseIcon = dynamic(() => import('icons/token-base.svg'), {
   ssr: false,
 })
+const PixelExternalIcon = dynamic(
+  () => import('icons/pixel-external-link-solid.svg'),
+  {
+    ssr: false,
+  },
+)
 
 const Gallery = dynamic(
   () => import('components/gallery').then(({ Gallery }) => Gallery),
@@ -423,7 +429,8 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                               rel="noopener noreferrer"
                               aria-label={`Visit ${selectedProject.platform.name} app in new tab`}
                             >
-                              Visit App ↗
+                              Visit App
+                              <PixelExternalIcon className={s.externalIcon} />
                             </Link>
                           </div>
                         )}
@@ -455,16 +462,22 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                                 {selectedProject.agent.name}
                               </p>
                               <p className={cn('p-s', s.agentGoal)}>
-                                <span className="text-muted">GOAL:</span>{' '}
+                                <span className="text-muted">Goal:</span>{' '}
                                 {selectedProject.agent.goal}
                               </p>
                               <div className={s.agentSkills}>
                                 <span className={cn('p-s', s.skillsLabel)}>
-                                  SKILLS:
+                                  Skills:
                                 </span>
-                                <span className={cn('p-s', s.skillsList)}>
-                                  {selectedProject.agent.skills}
-                                </span>
+                                <div className={cn('p-s', s.skillsList)}>
+                                  {selectedProject.agent.skills
+                                    .split(',')
+                                    .map((skill, index) => (
+                                      <span key={index} className={s.skillTag}>
+                                        # {skill.trim()}
+                                      </span>
+                                    ))}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -484,18 +497,61 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       </div>
                     </div>
                   )}
+                  {selectedProject?.agent?.walletAddress && (
+                    <div className={s.wallet}>
+                      <p
+                        className={cn(
+                          s.walletTitle,
+                          'p-xs text-uppercase text-bold',
+                        )}
+                      >
+                        Wallet
+                      </p>
+                      <div className={s.walletLayout}>
+                        <div className={s.walletDetails}>
+                          <div className={s.addressContainer}>
+                            <TokenBaseIcon className={s.walletIcon} />
+                            <code className="p-s">
+                              {selectedProject.agent.walletAddress}
+                            </code>
+                            <button
+                              className={s.copyButton}
+                              onClick={() =>
+                                copyToClipboard(
+                                  selectedProject.agent.walletAddress,
+                                )
+                              }
+                              aria-label={`Copy agent wallet address ${selectedProject.agent.walletAddress} to clipboard`}
+                              title="Copy address to clipboard"
+                            >
+                              <PixelCopySolid />
+                            </button>
+                          </div>
+                          <p className={s.walletDisclaimer}>
+                            This is the agent's on-chain wallet address for
+                            direct interactions.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   {selectedProject?.token && (
                     <div className={s.token}>
                       <p
                         className={cn(
                           s.tokenTitle,
-                          'p-s text-uppercase text-bold',
+                          'p-xs text-uppercase text-bold',
                         )}
                       >
                         Token
                       </p>
                       <div className={s.tokenLayout}>
                         <div className={s.tokenDetails}>
+                          <div className={s.tokenHeader}>
+                            <span className={s.ticker}>
+                              {selectedProject.token.ticker}
+                            </span>
+                          </div>
                           <div className={s.addressContainer}>
                             <TokenBaseIcon className={s.tokenIcon} />
                             <code className="p-s">
@@ -528,6 +584,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                               aria-label={`Trade ${selectedProject.name} token on decentralized exchange in new tab`}
                             >
                               Trade
+                              <PixelExternalIcon className={s.externalIcon} />
                             </Link>
                           </div>
                         )}
@@ -832,9 +889,11 @@ export async function getStaticProps() {
             skills: 'Deep Research, Data Analysis, Knowledge Discovery',
             profileImage:
               'https://placehold.co/1026x604/111/333?text=Alchemist',
+            walletAddress: '0xalchemy1234567890abcdef1234567890abcdef',
           },
           token: {
             address: '0xabcdef1234567890abcdef1234567890abcdef12',
+            ticker: '$ALCH',
             dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/alchemist',
@@ -904,9 +963,11 @@ export async function getStaticProps() {
             goal: 'Marketing and promotional campaigns specialist',
             skills: 'Marketing, Promotions, Community Building',
             profileImage: 'https://r2.rally.sh/photos/rally_pfp.png',
+            walletAddress: '0xrally1234567890abcdef1234567890abcdef12',
           },
           token: {
             address: '0x1234567890abcdef1234567890abcdef12345678',
+            ticker: '$RALLY',
             dexLink: 'https://app.virtuals.io',
           },
           link: 'https://rally.sh',
@@ -1013,9 +1074,11 @@ export async function getStaticProps() {
               'Live Streaming, Interactive Entertainment, Real-time Engagement',
             profileImage:
               'https://placehold.co/1026x604/cad2e2/fff?text=Banshee',
+            walletAddress: '0xbanshee1234567890abcdef1234567890abcdef',
           },
           token: {
             address: '0xbanshee1234567890abcdef1234567890abcdef',
+            ticker: '$BANSHEE',
             dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/project2',
@@ -1072,9 +1135,11 @@ export async function getStaticProps() {
             goal: 'Bounty hunting and task evaluation specialist',
             skills: 'Bounty Hunting, Task Evaluation, Gig Management',
             profileImage: 'https://placehold.co/1026x604/558b2f/fff?text=Munny',
+            walletAddress: '0xmunny1234567890abcdef1234567890abcdefgh',
           },
           token: {
             address: '0xmunny1234567890abcdef1234567890abcdefgh',
+            ticker: '$MUNNY',
             dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/project2',
@@ -1132,9 +1197,11 @@ export async function getStaticProps() {
             skills: 'Storytelling, World Building, Visual Novel Creation',
             profileImage:
               'https://placehold.co/1026x604/a0c4ff/fff?text=Lorelei',
+            walletAddress: '0xlorelei1234567890abcdef1234567890abcdef',
           },
           token: {
             address: '0xlorelei1234567890abcdef1234567890abcdef',
+            ticker: '$LORE',
             dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/project2',

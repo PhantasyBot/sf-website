@@ -144,7 +144,7 @@
     }
 
     .copyButton svg {
-      color: var(--primary-accent) !important;
+      color: var(--text-black) !important;
     }
 
     .image {
@@ -301,7 +301,7 @@
             svg {
               width: mobile-vw(12px);
               height: mobile-vw(12px);
-              color: var(--primary-accent);
+              color: var(--text-black);
             }
 
             &:hover {
@@ -316,6 +316,9 @@
           text-decoration: none;
           font-weight: bold;
           text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          transition: color 0.3s ease;
 
           &:hover {
             color: var(--secondary-accent);
@@ -343,6 +346,14 @@
           aspect-ratio: 1;
         }
       }
+    }
+
+    .externalIcon {
+      width: mobile-vh(10px);
+      height: mobile-vh(10px);
+      margin-left: mobile-vw(4px);
+      fill: var(--text-black);
+      flex-shrink: 0;
     }
 
     &[data-state='open'] {

@@ -88,6 +88,28 @@ export const ProjectAccordion = ({
               {/* Mobile token and link section */}
               <div className={s.mobileInfo}>
                 <div className={s.tokenInfoRow}>
+                  {item?.agent?.walletAddress && (
+                    <div className={s.tokenSection}>
+                      <div className={s.tokenAddress}>
+                        <TokenBaseIcon className={s.tokenIcon} />
+                        <code>
+                          {item.agent.walletAddress.slice(0, 8)}...
+                          {item.agent.walletAddress.slice(-6)}
+                        </code>
+                        <button
+                          className={s.copyButton}
+                          onClick={() => {
+                            navigator.clipboard.writeText(
+                              item.agent.walletAddress,
+                            )
+                          }}
+                          title="Copy wallet address"
+                        >
+                          <PixelCopySolid />
+                        </button>
+                      </div>
+                    </div>
+                  )}
                   {item?.token && (
                     <div className={s.tokenSection}>
                       <div className={s.tokenAddress}>
@@ -113,20 +135,21 @@ export const ProjectAccordion = ({
                           rel="noopener noreferrer"
                           className={s.dexLink}
                         >
-                          DEX ↗
+                          DEX
+                          <Arrow className={s.externalIcon} />
                         </a>
                       )}
                     </div>
                   )}
-                  {item?.link && (
+                  {(item?.platform?.link || item?.link) && (
                     <a
-                      href={item.link}
+                      href={item?.platform?.link || item?.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={s.external}
                     >
                       Visit
-                      <Arrow className={s.arrow} />
+                      <Arrow className={s.externalIcon} />
                     </a>
                   )}
                 </div>
