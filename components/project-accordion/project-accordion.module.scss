@@ -387,6 +387,12 @@
       .mobileInfo .tokenSection .tokenAddress .copyButton svg {
         fill: #e1dcdc !important;
       }
+
+      // Ensure external icons use theme colors on mobile
+      .mobileInfo .tokenSection .dexLink .externalIcon,
+      .mobileInfo .external .externalIcon {
+        fill: var(--primary-accent) !important;
+      }
     }
 
     &[data-state='open'] {

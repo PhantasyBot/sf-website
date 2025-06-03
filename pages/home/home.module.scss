@@ -301,8 +301,8 @@
       }
 
       .platform {
-        margin-bottom: desktop-vh(32px);
-        padding-bottom: desktop-vh(32px);
+        margin-bottom: desktop-vh(16px);
+        padding-bottom: desktop-vh(16px);
         border-bottom: 1px solid var(--text-secondary);
 
         .platformLayout {
@@ -355,435 +355,497 @@
             }
           }
         }
-
-        .platformActions {
-          flex: 0 0 auto;
-          display: flex;
-          justify-content: flex-end;
-          align-items: flex-end;
-          min-height: desktop-vw(80px);
-          padding-left: desktop-vw(16px);
-
-          @media (max-width: 1200px) {
-            padding-left: desktop-vw(8px);
-          }
-
-          .platformButton {
-            background-color: var(--primary-accent);
-            color: var(--text-on-accent);
-            padding: desktop-vh(6px) desktop-vw(8px);
-            border-radius: desktop-vw(4px);
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: desktop-vh(10px);
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: desktop-vw(70px);
-            height: desktop-vh(28px);
-
-            @media (max-width: 1200px) {
-              min-width: desktop-vw(60px);
-              padding: desktop-vh(6px) desktop-vw(6px);
-            }
-
-            &:hover,
-            &:focus-visible {
-              background-color: var(--secondary-accent);
-              transform: translateY(-1px);
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-
-            &:focus-visible {
-              outline: 2px solid var(--text-on-accent);
-              outline-offset: 2px;
-            }
-          }
-        }
       }
 
-      .agent {
-        margin-bottom: desktop-vh(8px);
-        padding-bottom: desktop-vh(8px);
+      .platformActions {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        min-height: desktop-vw(80px);
+        padding-left: desktop-vw(16px);
+        min-width: 0;
+        overflow: visible;
 
-        .agentTitle {
-          color: var(--text-secondary);
-          margin: 0 0 desktop-vh(16px) 0;
-          text-align: center;
-          font-size: desktop-vh(20px);
+        @media (max-width: 1200px) {
+          padding-left: desktop-vw(8px);
         }
 
-        .agentLayout {
-          display: flex;
-          gap: desktop-vw(16px);
-          align-items: flex-start;
+        @media (max-width: 1000px) {
+          padding-left: desktop-vw(4px);
         }
 
-        .agentDetails {
-          flex: 1;
-          min-width: 0;
-          display: flex;
-          align-items: flex-start;
-          gap: desktop-vw(16px);
-          min-height: desktop-vw(80px);
-
-          .agentProfileContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-shrink: 0;
-          }
-
-          .agentProfile {
-            width: desktop-vw(80px);
-            height: desktop-vw(80px);
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary-accent);
-            flex-shrink: 0;
-          }
-
-          .agentInfo {
-            flex: 1;
-
-            .agentText {
-              .agentName {
-                font-size: desktop-vh(16px);
-                margin-bottom: desktop-vh(4px);
-                line-height: 1.3;
-              }
-
-              .agentDescription {
-                font-size: desktop-vh(11px);
-                margin-bottom: desktop-vh(8px);
-                line-height: 1.4;
-                color: var(--text-secondary);
-                text-transform: none;
-                font-style: italic;
-              }
-
-              .agentGoal {
-                font-size: desktop-vh(12px);
-                margin-bottom: desktop-vh(4px);
-                line-height: 1.3;
-                text-transform: none;
-              }
-
-              .agentSkills {
-                display: flex;
-                align-items: flex-start;
-                gap: desktop-vw(8px);
-
-                .skillsLabel {
-                  font-size: desktop-vh(12px);
-                  color: var(--text-secondary);
-                  text-transform: none;
-                  flex-shrink: 0;
-                  margin-top: desktop-vh(2px);
-                }
-
-                .skillsList {
-                  font-size: desktop-vh(12px);
-                  line-height: 1.3;
-                  flex: 1;
-                  display: flex;
-                  flex-wrap: wrap;
-                  gap: desktop-vw(6px);
-
-                  .skillTag {
-                    background-color: var(--primary-accent);
-                    color: var(--text-on-accent);
-                    padding: desktop-vh(2px) desktop-vw(6px);
-                    border-radius: desktop-vw(12px);
-                    font-size: desktop-vh(10px);
-                    font-weight: bold;
-                    text-transform: none;
-                    white-space: nowrap;
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        .agentActions {
-          flex: 0 0 auto;
-          display: flex;
-          justify-content: flex-end;
-          align-items: flex-end;
-          min-height: desktop-vw(80px);
-          padding-left: desktop-vw(16px);
-
-          @media (max-width: 1200px) {
-            padding-left: desktop-vw(8px);
-          }
-
-          .galleryButton {
-            background-color: var(--primary-accent);
-            color: var(--text-on-accent);
-            padding: desktop-vh(6px) desktop-vw(8px);
-            border-radius: desktop-vw(4px);
-            border: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: desktop-vh(10px);
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: desktop-vw(70px);
-            height: desktop-vh(28px);
-
-            @media (max-width: 1200px) {
-              min-width: desktop-vw(60px);
-              padding: desktop-vh(6px) desktop-vw(6px);
-            }
-
-            &:hover,
-            &:focus-visible {
-              background-color: var(--secondary-accent);
-              transform: translateY(-1px);
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-
-            &:focus-visible {
-              outline: 2px solid var(--text-on-accent);
-              outline-offset: 2px;
-            }
-          }
-        }
-      }
-
-      .wallet {
-        margin-bottom: desktop-vh(16px);
-
-        .walletTitle {
-          color: var(--text-secondary);
-          margin: 0 0 desktop-vh(12px) 0;
-          font-size: desktop-vh(16px);
-        }
-
-        .walletLayout {
-          display: flex;
-          gap: desktop-vw(16px);
-          align-items: flex-start;
-        }
-
-        .walletDetails {
-          flex: 1;
-
-          .addressContainer {
-            display: flex;
-            align-items: center;
-            gap: desktop-vw(6px);
-            padding: desktop-vw(6px);
-            background-color: var(--background-secondary);
-            border-radius: desktop-vw(4px);
-
-            .walletIcon {
-              width: desktop-vh(14px);
-              height: desktop-vh(14px);
-              flex-shrink: 0;
-              opacity: 0.8;
-            }
-
-            code {
-              font-family: monospace;
-              font-size: desktop-vh(10px);
-              color: var(--text-primary);
-              background-color: transparent;
-              flex: 1;
-              word-break: break-all;
-            }
-
-            .copyButton {
-              background-color: var(--primary-accent);
-              border: none;
-              padding: desktop-vw(4px);
-              border-radius: desktop-vw(4px);
-              cursor: pointer;
-              transition: all 0.3s ease;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-
-              svg {
-                width: desktop-vh(12px);
-                height: desktop-vh(12px);
-                fill: var(--text-black);
-              }
-
-              &:hover,
-              &:focus-visible {
-                background-color: var(--secondary-accent);
-                transform: scale(1.05);
-              }
-
-              &:focus-visible {
-                outline: 2px solid var(--text-on-accent);
-                outline-offset: 2px;
-              }
-            }
-          }
-
-          .walletDisclaimer {
-            margin-top: desktop-vh(6px);
-            font-size: desktop-vh(9px);
-            color: var(--text-secondary);
-            text-align: left;
-            font-style: normal;
-            line-height: 1.3;
-          }
-        }
-      }
-
-      .token {
-        margin-bottom: desktop-vh(24px);
-
-        .tokenTitle {
-          color: var(--text-secondary);
-          margin: 0 0 desktop-vh(12px) 0;
-          font-size: desktop-vh(16px);
-          display: flex;
-          align-items: baseline;
-          gap: desktop-vw(8px);
-        }
-
-        .tokenLayout {
-          display: flex;
-          gap: desktop-vw(16px);
-          align-items: flex-start;
-        }
-
-        .tokenDetails {
-          flex: 1;
-
-          .addressContainer {
-            display: flex;
-            align-items: center;
-            gap: desktop-vw(6px);
-            padding: desktop-vw(6px);
-            background-color: var(--background-secondary);
-            border-radius: desktop-vw(4px);
-
-            .tokenIcon {
-              width: desktop-vh(14px);
-              height: desktop-vh(14px);
-              flex-shrink: 0;
-              opacity: 0.8;
-            }
-
-            code {
-              font-family: monospace;
-              font-size: desktop-vh(10px);
-              color: var(--text-primary);
-              background-color: transparent;
-              flex: 1;
-              word-break: break-all;
-            }
-
-            .copyButton {
-              background-color: var(--primary-accent);
-              border: none;
-              padding: desktop-vw(4px);
-              border-radius: desktop-vw(4px);
-              cursor: pointer;
-              transition: all 0.3s ease;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-
-              svg {
-                width: desktop-vh(12px);
-                height: desktop-vh(12px);
-                fill: var(--text-black);
-              }
-
-              &:hover,
-              &:focus-visible {
-                background-color: var(--secondary-accent);
-                transform: scale(1.05);
-              }
-
-              &:focus-visible {
-                outline: 2px solid var(--text-on-accent);
-                outline-offset: 2px;
-              }
-            }
-
-            .dexButton {
-              background-color: var(--primary-accent);
-              color: var(--text-on-accent);
-              padding: desktop-vw(4px);
-              border-radius: desktop-vw(4px);
-              text-decoration: none;
-              font-weight: bold;
-              text-transform: uppercase;
-              font-size: desktop-vh(9px);
-              white-space: nowrap;
-              transition: all 0.3s ease;
-              border: none;
-              cursor: pointer;
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              margin-left: desktop-vw(8px);
-              height: desktop-vh(20px);
-              min-width: desktop-vw(50px);
-
-              @media (max-width: 1200px) {
-                padding: desktop-vw(3px);
-                font-size: desktop-vh(8px);
-                min-width: desktop-vw(40px);
-              }
-
-              &:hover,
-              &:focus-visible {
-                background-color: var(--secondary-accent);
-                transform: translateY(-1px);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-              }
-
-              &:focus-visible {
-                outline: 2px solid var(--text-on-accent);
-                outline-offset: 2px;
-              }
-            }
-          }
-
-          .tokenDisclaimer {
-            margin-top: desktop-vh(6px);
-            font-size: desktop-vh(9px);
-            color: var(--text-secondary);
-            text-align: left;
-            font-style: normal;
-            line-height: 1.3;
-          }
-        }
-
-        .ticker {
-          font-family: var(--font-secondary);
-          font-size: desktop-vh(16px);
+        .platformButton {
+          background-color: var(--primary-accent);
+          color: var(--text-on-accent);
+          padding: desktop-vh(6px) desktop-vw(8px);
+          border-radius: desktop-vw(4px);
+          text-decoration: none;
           font-weight: bold;
-          color: var(--primary-accent);
           text-transform: uppercase;
+          font-size: desktop-vh(10px);
+          white-space: nowrap;
+          transition: all 0.3s ease;
+          border: none;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: desktop-vw(70px);
+          height: desktop-vh(28px);
+
+          @media (max-width: 1200px) {
+            min-width: desktop-vw(60px);
+            padding: desktop-vh(6px) desktop-vw(6px);
+            font-size: desktop-vh(9px);
+          }
+
+          // Better responsiveness for smaller screens
+          @media (max-width: 1000px) {
+            min-width: desktop-vw(50px);
+            padding: desktop-vh(5px) desktop-vw(4px);
+            font-size: desktop-vh(8px);
+          }
+
+          &:hover,
+          &:focus-visible {
+            background-color: var(--secondary-accent);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--text-on-accent);
+            outline-offset: 2px;
+          }
         }
       }
     }
 
-    .externalIcon {
-      width: desktop-vh(12px);
-      height: desktop-vh(12px);
-      margin-left: desktop-vw(6px);
+    .agent {
+      margin-bottom: desktop-vh(8px);
+      padding-bottom: desktop-vh(8px);
+
+      .agentLayout {
+        display: flex;
+        gap: desktop-vw(16px);
+        align-items: flex-start;
+      }
+
+      .agentDetails {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: flex-start;
+        gap: desktop-vw(16px);
+        min-height: desktop-vw(80px);
+
+        .agentProfileContainer {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex-shrink: 0;
+        }
+
+        .agentProfile {
+          width: desktop-vw(80px);
+          height: desktop-vw(80px);
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid var(--primary-accent);
+          flex-shrink: 0;
+        }
+
+        .agentInfo {
+          flex: 1;
+
+          .agentText {
+            .agentHeader {
+              display: flex;
+              align-items: baseline;
+              gap: desktop-vw(8px);
+              margin-bottom: desktop-vh(4px);
+            }
+
+            .agentTitle {
+              color: var(--text-secondary);
+              font-size: desktop-vh(12px);
+              margin: 0;
+              flex-shrink: 0;
+            }
+
+            .agentName {
+              font-size: desktop-vh(16px);
+              margin: 0;
+              line-height: 1.3;
+            }
+
+            .agentDescription {
+              font-size: desktop-vh(11px);
+              margin-bottom: desktop-vh(8px);
+              line-height: 1.4;
+              color: var(--text-secondary);
+              text-transform: none;
+              font-style: italic;
+            }
+
+            .agentGoal {
+              font-size: desktop-vh(12px);
+              margin-bottom: desktop-vh(4px);
+              line-height: 1.3;
+              text-transform: none;
+            }
+
+            .agentSkills {
+              display: flex;
+              align-items: flex-start;
+              gap: desktop-vw(8px);
+
+              .skillsLabel {
+                font-size: desktop-vh(12px);
+                color: var(--text-secondary);
+                text-transform: none;
+                flex-shrink: 0;
+                margin-top: desktop-vh(2px);
+              }
+
+              .skillsList {
+                font-size: desktop-vh(12px);
+                line-height: 1.3;
+                flex: 1;
+                display: flex;
+                flex-wrap: wrap;
+                gap: desktop-vw(6px);
+
+                .skillTag {
+                  background-color: var(--primary-accent);
+                  color: var(--text-on-accent);
+                  padding: desktop-vh(2px) desktop-vw(6px);
+                  border-radius: desktop-vw(12px);
+                  font-size: desktop-vh(10px);
+                  font-weight: bold;
+                  text-transform: none;
+                  white-space: nowrap;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .agentActions {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        min-height: desktop-vw(80px);
+        padding-left: desktop-vw(16px);
+        min-width: 0;
+        overflow: visible;
+
+        @media (max-width: 1200px) {
+          padding-left: desktop-vw(8px);
+        }
+
+        @media (max-width: 1000px) {
+          padding-left: desktop-vw(4px);
+        }
+
+        .galleryButton {
+          background-color: var(--primary-accent);
+          color: var(--text-on-accent);
+          padding: desktop-vh(6px) desktop-vw(8px);
+          border-radius: desktop-vw(4px);
+          border: none;
+          font-weight: bold;
+          text-transform: uppercase;
+          font-size: desktop-vh(10px);
+          white-space: nowrap;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: desktop-vw(70px);
+          height: desktop-vh(28px);
+
+          @media (max-width: 1200px) {
+            min-width: desktop-vw(60px);
+            padding: desktop-vh(6px) desktop-vw(6px);
+            font-size: desktop-vh(9px);
+          }
+
+          // Better responsiveness for smaller screens
+          @media (max-width: 1000px) {
+            min-width: desktop-vw(50px);
+            padding: desktop-vh(5px) desktop-vw(4px);
+            font-size: desktop-vh(8px);
+          }
+
+          &:hover,
+          &:focus-visible {
+            background-color: var(--secondary-accent);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--text-on-accent);
+            outline-offset: 2px;
+          }
+        }
+      }
+    }
+
+    .wallet {
+      margin-bottom: desktop-vh(16px);
+
+      .walletTitle {
+        color: var(--text-secondary);
+        margin: 0 0 desktop-vh(12px) 0;
+        font-size: desktop-vh(16px);
+      }
+
+      .walletLayout {
+        display: flex;
+        gap: desktop-vw(16px);
+        align-items: flex-start;
+      }
+
+      .walletDetails {
+        flex: 1;
+
+        .addressContainer {
+          display: flex;
+          align-items: center;
+          gap: desktop-vw(6px);
+          padding: desktop-vw(6px);
+          background-color: var(--background-secondary);
+          border-radius: desktop-vw(4px);
+          min-width: 0;
+          overflow: visible;
+
+          @media (max-width: 1000px) {
+            gap: desktop-vw(4px);
+            padding: desktop-vw(4px);
+          }
+
+          .walletIcon {
+            width: desktop-vh(14px);
+            height: desktop-vh(14px);
+            flex-shrink: 0;
+            opacity: 0.8;
+          }
+
+          code {
+            font-family: monospace;
+            font-size: desktop-vh(10px);
+            color: var(--text-primary);
+            background-color: transparent;
+            flex: 1;
+            word-break: break-all;
+          }
+
+          .copyButton {
+            background-color: var(--primary-accent);
+            border: none;
+            padding: desktop-vw(4px);
+            border-radius: desktop-vw(4px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+              width: desktop-vh(12px);
+              height: desktop-vh(12px);
+              fill: var(--text-black);
+            }
+
+            &:hover,
+            &:focus-visible {
+              background-color: var(--secondary-accent);
+              transform: scale(1.05);
+            }
+
+            &:focus-visible {
+              outline: 2px solid var(--text-on-accent);
+              outline-offset: 2px;
+            }
+          }
+        }
+
+        .walletDisclaimer {
+          margin-top: desktop-vh(6px);
+          font-size: desktop-vh(9px);
+          color: var(--text-secondary);
+          text-align: left;
+          font-style: normal;
+          line-height: 1.3;
+        }
+      }
+    }
+
+    .token {
+      margin-bottom: desktop-vh(24px);
+
+      .tokenTitle {
+        color: var(--text-secondary);
+        margin: 0 0 desktop-vh(12px) 0;
+        font-size: desktop-vh(16px);
+        display: flex;
+        align-items: baseline;
+        gap: desktop-vw(8px);
+      }
+
+      .tokenLayout {
+        display: flex;
+        gap: desktop-vw(16px);
+        align-items: flex-start;
+      }
+
+      .tokenDetails {
+        flex: 1;
+
+        .addressContainer {
+          display: flex;
+          align-items: center;
+          gap: desktop-vw(6px);
+          padding: desktop-vw(6px);
+          background-color: var(--background-secondary);
+          border-radius: desktop-vw(4px);
+          min-width: 0;
+          overflow: visible;
+
+          @media (max-width: 1000px) {
+            gap: desktop-vw(4px);
+            padding: desktop-vw(4px);
+          }
+
+          .tokenIcon {
+            width: desktop-vh(14px);
+            height: desktop-vh(14px);
+            flex-shrink: 0;
+            opacity: 0.8;
+          }
+
+          code {
+            font-family: monospace;
+            font-size: desktop-vh(10px);
+            color: var(--text-primary);
+            background-color: transparent;
+            flex: 1;
+            word-break: break-all;
+          }
+
+          .copyButton {
+            background-color: var(--primary-accent);
+            border: none;
+            padding: desktop-vw(4px);
+            border-radius: desktop-vw(4px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+              width: desktop-vh(12px);
+              height: desktop-vh(12px);
+              fill: var(--text-black);
+            }
+
+            &:hover,
+            &:focus-visible {
+              background-color: var(--secondary-accent);
+              transform: scale(1.05);
+            }
+
+            &:focus-visible {
+              outline: 2px solid var(--text-on-accent);
+              outline-offset: 2px;
+            }
+          }
+
+          .dexButton {
+            background-color: var(--primary-accent);
+            color: var(--text-on-accent);
+            padding: desktop-vw(4px);
+            border-radius: desktop-vw(4px);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: desktop-vh(9px);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: desktop-vw(8px);
+            height: desktop-vh(20px);
+            min-width: desktop-vw(50px);
+
+            @media (max-width: 1200px) {
+              padding: desktop-vw(3px);
+              font-size: desktop-vh(8px);
+              min-width: desktop-vw(40px);
+            }
+
+            // Better responsiveness for smaller screens
+            @media (max-width: 1000px) {
+              padding: desktop-vw(2px);
+              font-size: desktop-vh(7px);
+              min-width: desktop-vw(35px);
+              margin-left: desktop-vw(6px);
+            }
+
+            &:hover,
+            &:focus-visible {
+              background-color: var(--secondary-accent);
+              transform: translateY(-1px);
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            &:focus-visible {
+              outline: 2px solid var(--text-on-accent);
+              outline-offset: 2px;
+            }
+          }
+        }
+
+        .tokenDisclaimer {
+          margin-top: desktop-vh(6px);
+          font-size: desktop-vh(9px);
+          color: var(--text-secondary);
+          text-align: left;
+          font-style: normal;
+          line-height: 1.3;
+        }
+      }
+
+      .ticker {
+        font-family: var(--font-secondary);
+        font-size: desktop-vh(16px);
+        font-weight: bold;
+        color: var(--primary-accent);
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .externalIcon {
+    width: desktop-vh(12px);
+    height: desktop-vh(12px);
+    margin-left: desktop-vw(6px);
+    fill: var(--text-black);
+    flex-shrink: 0;
+
+    // Keep theme colors on mobile
+    @include mobile {
       fill: var(--primary-accent);
-      flex-shrink: 0;
     }
   }
 }

@@ -442,14 +442,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                       <div className={s.agentLayout}>
                         <div className={s.agentDetails}>
                           <div className={s.agentProfileContainer}>
-                            <p
-                              className={cn(
-                                s.agentTitle,
-                                'p-s text-uppercase text-bold',
-                              )}
-                            >
-                              Agent
-                            </p>
                             <img
                               src={selectedProject.agent.profileImage}
                               alt={selectedProject.agent.name}
@@ -458,9 +450,19 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                           </div>
                           <div className={s.agentInfo}>
                             <div className={s.agentText}>
-                              <p className={cn('p text-bold', s.agentName)}>
-                                {selectedProject.agent.name}
-                              </p>
+                              <div className={s.agentHeader}>
+                                <p
+                                  className={cn(
+                                    s.agentTitle,
+                                    'p-s text-uppercase text-bold',
+                                  )}
+                                >
+                                  Agent
+                                </p>
+                                <p className={cn('p text-bold', s.agentName)}>
+                                  {selectedProject.agent.name}
+                                </p>
+                              </div>
                               <p className={cn('p-s', s.agentDescription)}>
                                 A specialized AI agent designed to assist with
                                 various tasks and provide engaging interactions.
