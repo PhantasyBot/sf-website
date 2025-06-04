@@ -14,7 +14,8 @@ const Orchestra = dynamic(
 export function Layout({
   seo = {
     title: 'Phantasy',
-    description: 'Phantasy is an 18+ Entertainment and Gaming Studio.',
+    description:
+      'Phantasy is an 18+ NSFW gaming and entertainment studio pushing the boundaries of interactive digital experiences using artificial intelligence.',
     image: { url: 'https://r2.rally.sh/photos/rally_pfp.png' },
     keywords: ['AI', 'NSFW', 'Entertainment', 'Studio', 'AI Entertainment'],
   },
