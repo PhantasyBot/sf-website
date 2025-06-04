@@ -49,11 +49,11 @@ export function Footer({ className, style, links }) {
               color: 'var(--text-primary)',
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '4px',
             }}
           >
             {litePaperText}
-            <PixelExternalIcon className={s.externalIcon} />
+            <PixelExternalIcon className={s.externalIconSmall} />
           </a>
         )}
         {isMobile === false && (
@@ -63,12 +63,20 @@ export function Footer({ className, style, links }) {
                 <li key={i}>
                   {link.external ? (
                     <a
-                      className="p-s decorate"
+                      className={cn(
+                        'p-s decorate',
+                        link.themeColor && s.themeColorLink,
+                      )}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       {link.name}
+                      {link.themeColor && (
+                        <PixelExternalIcon
+                          className={s.themeExternalIconSmall}
+                        />
+                      )}
                     </a>
                   ) : (
                     <Link className="p-s decorate" href={link.url}>
@@ -97,37 +105,39 @@ export function Footer({ className, style, links }) {
                   color: 'var(--text-primary)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
+                  gap: '4px',
                 }}
               >
                 {litePaperText}
-                <PixelExternalIcon className={s.externalIcon} />
+                <PixelExternalIcon className={s.externalIconSmall} />
               </a>
-              <span className="p-s text-muted">
+              <span className="p-s text-muted copyright-text">
                 &copy; {new Date().getFullYear()} Phantasy LLC
               </span>
             </div>
 
-            {/* Second row: Navigation links */}
+            {/* Second row: Navigation links - filter out desktop-only links */}
             <ul className={cn(s.column, s.mobileLinks)}>
-              {links.map((link, i) => (
-                <li key={i}>
-                  {link.external ? (
-                    <a
-                      className="p-s decorate"
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {link.name}
-                    </a>
-                  ) : (
-                    <Link className="p-s decorate" href={link.url}>
-                      {link.name}
-                    </Link>
-                  )}
-                </li>
-              ))}
+              {links
+                .filter((link) => !link.desktopOnly)
+                .map((link, i) => (
+                  <li key={i}>
+                    {link.external ? (
+                      <a
+                        className="p-s decorate"
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link className="p-s decorate" href={link.url}>
+                        {link.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
             </ul>
           </>
         )}
@@ -171,7 +181,7 @@ export function Footer({ className, style, links }) {
 
         {isMobile === false && (
           <ul className={s.column}>
-            <li className="p-s text-muted">
+            <li className="p-s text-muted copyright-text">
               &copy; {new Date().getFullYear()} Phantasy LLC
             </li>
           </ul>

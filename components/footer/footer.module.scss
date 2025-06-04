@@ -52,6 +52,7 @@
         grid-column: span 2;
       }
       &:nth-child(2) {
+        margin-left: -15px;
         grid-column: span 3;
         display: flex;
         align-items: center;
@@ -249,5 +250,61 @@
       width: mobile-vh(12px);
       height: mobile-vh(12px);
     }
+  }
+
+  .externalIconSmall {
+    width: desktop-vh(10px);
+    height: desktop-vh(10px);
+    fill: var(--text-primary);
+    flex-shrink: 0;
+
+    @include mobile {
+      width: mobile-vh(10px);
+      height: mobile-vh(10px);
+    }
+  }
+
+  .themeColorLink {
+    color: var(--primary-accent) !important;
+    display: inline-flex !important;
+    align-items: baseline !important;
+    gap: 4px !important;
+    vertical-align: baseline !important;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--secondary-accent) !important;
+    }
+  }
+
+  .themeExternalIcon {
+    width: desktop-vh(12px);
+    height: desktop-vh(12px);
+    fill: var(--primary-accent);
+    flex-shrink: 0;
+
+    @include mobile {
+      width: mobile-vh(12px);
+      height: mobile-vh(12px);
+    }
+  }
+
+  .themeExternalIconSmall {
+    width: desktop-vh(9px);
+    height: desktop-vh(9px);
+    fill: var(--primary-accent);
+    flex-shrink: 0;
+
+    @include mobile {
+      width: mobile-vh(9px);
+      height: mobile-vh(9px);
+    }
+  }
+
+  .themeColorLink:hover .themeExternalIcon,
+  .themeColorLink:focus-visible .themeExternalIcon,
+  .themeColorLink:hover .themeExternalIconSmall,
+  .themeColorLink:focus-visible .themeExternalIconSmall {
+    fill: var(--secondary-accent);
   }
 }

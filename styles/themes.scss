@@ -46,9 +46,9 @@
 }
 
 [data-theme='munny'] {
-  // Japanese Super Light Matcha Green - almost white with subtle green tint
-  --primary-accent: #f0f8e6; // Super light matcha green, almost white
-  --secondary-accent: #f5faf0; // Even lighter, almost pure white with green hint
+  // Japanese Super Light Matcha Green - slightly more green while staying whitish
+  --primary-accent: #e8f5e0; // More noticeable green tint, still very light
+  --secondary-accent: #f0f9ed; // Lighter companion with subtle green hint
   --background-primary: #1a1a1a; // Dark background
   --background-secondary: #2c2c2c; // Darker secondary
   --text-primary: #ffffff; // White text
@@ -56,7 +56,7 @@
   --text-on-accent: #000000; // Black text on light accents for readability
   --text-black: #000000; // Consistent black
   --theme-mode: 'dark';
-  --primary-accent-gradient: linear-gradient(90deg, #f0f8e6, #f5faf0);
+  --primary-accent-gradient: linear-gradient(90deg, #e8f5e0, #f0f9ed);
 }
 
 [data-theme='lorelei'] {

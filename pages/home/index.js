@@ -26,6 +26,33 @@ const PixelExternalIcon = dynamic(
     ssr: false,
   },
 )
+const PixelImageSolid = dynamic(() => import('icons/pixel-image-solid.svg'), {
+  ssr: false,
+})
+const PixelFinance = dynamic(() => import('icons/pixel-finance.svg'), {
+  ssr: false,
+})
+const PixelX = dynamic(() => import('icons/pixel-x.svg'), {
+  ssr: false,
+})
+const PixelAt = dynamic(() => import('icons/pixel-at-solid.svg'), {
+  ssr: false,
+})
+const PixelInstagram = dynamic(() => import('icons/pixel-instagram.svg'), {
+  ssr: false,
+})
+const PixelPaperclip = dynamic(
+  () => import('icons/pixel-paperclip-solid.svg'),
+  {
+    ssr: false,
+  },
+)
+const PixelBookHeart = dynamic(
+  () => import('icons/pixel-book-heart-solid.svg'),
+  {
+    ssr: false,
+  },
+)
 
 const Gallery = dynamic(
   () => import('components/gallery').then(({ Gallery }) => Gallery),
@@ -221,7 +248,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
             : '/?section=legal',
         },
         {
-          name: 'Disclaimers',
+          name: 'Disclaimer',
           url: selectedProject
             ? `/?section=disclaimers&project=${encodeURIComponent(
                 selectedProject.name.toLowerCase(),
@@ -229,10 +256,22 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
             : '/?section=disclaimers',
         },
         {
-          name: 'Store',
-          url: 'https://store.phantasy.bot',
+          name: 'Shop',
+          url: 'https://shop.phantasy.bot',
           external: true,
         },
+        // Add agent platform link if available - desktop only and last
+        ...(selectedProject?.platform?.link
+          ? [
+              {
+                name: selectedProject.platform.name,
+                url: selectedProject.platform.link,
+                external: true,
+                themeColor: true,
+                desktopOnly: true,
+              },
+            ]
+          : []),
       ],
     },
   }
@@ -422,12 +461,86 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             )}
                             <div className={s.platformInfo}>
                               <div className={s.platformText}>
-                                <p className="p text-bold">
-                                  {selectedProject.platform.name}
-                                </p>
+                                <div className={s.platformHeader}>
+                                  <p
+                                    className={cn(
+                                      s.platformTitle,
+                                      'p-s text-uppercase text-bold',
+                                    )}
+                                  >
+                                    Platform
+                                  </p>
+                                  <p
+                                    className={cn(
+                                      'p text-bold',
+                                      s.platformName,
+                                    )}
+                                  >
+                                    {selectedProject.platform.name}
+                                  </p>
+                                </div>
                                 <p className={cn('p-s', s.platformSummary)}>
                                   {selectedProject.platform.summary}
                                 </p>
+                                {selectedProject.platform.links && (
+                                  <div className={s.platformLinks}>
+                                    {selectedProject.platform.links.map(
+                                      (link, index) => {
+                                        const getIcon = (type) => {
+                                          switch (type) {
+                                            case 'twitter-profile':
+                                              return (
+                                                <PixelX
+                                                  className={s.platformLinkIcon}
+                                                />
+                                              )
+                                            case 'twitter-agent':
+                                              return (
+                                                <PixelAt
+                                                  className={s.platformLinkIcon}
+                                                />
+                                              )
+                                            case 'instagram':
+                                              return (
+                                                <PixelInstagram
+                                                  className={s.platformLinkIcon}
+                                                />
+                                              )
+                                            case 'website':
+                                              return (
+                                                <PixelPaperclip
+                                                  className={s.platformLinkIcon}
+                                                />
+                                              )
+                                            case 'docs':
+                                              return (
+                                                <PixelBookHeart
+                                                  className={s.platformLinkIcon}
+                                                />
+                                              )
+                                            default:
+                                              return null
+                                          }
+                                        }
+
+                                        return (
+                                          <a
+                                            key={index}
+                                            href={link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={s.platformLink}
+                                            aria-label={
+                                              link.label || `Visit ${link.type}`
+                                            }
+                                          >
+                                            {getIcon(link.type)}
+                                          </a>
+                                        )
+                                      },
+                                    )}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -479,10 +592,14 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                                 A specialized AI agent designed to assist with
                                 various tasks and provide engaging interactions.
                               </p>
-                              <p className={cn('p-s', s.agentGoal)}>
-                                <span className="text-muted">Goal:</span>{' '}
-                                {selectedProject.agent.goal}
-                              </p>
+                              <div className={s.agentGoal}>
+                                <span className={cn('p-s', s.goalLabel)}>
+                                  Goal:
+                                </span>
+                                <span className={cn('p-s', s.goalText)}>
+                                  {selectedProject.agent.goal}
+                                </span>
+                              </div>
                               <div className={s.agentSkills}>
                                 <span className={cn('p-s', s.skillsLabel)}>
                                   Skills:
@@ -509,6 +626,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                             aria-label="Toggle between project gallery and information"
                             aria-pressed={!showInfoModal}
                           >
+                            <PixelImageSolid className={s.galleryIcon} />
                             Gallery
                           </button>
                         </div>
@@ -523,7 +641,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                           'p-xs text-uppercase text-bold',
                         )}
                       >
-                        <span className={s.ticker}>
+                        <span className={s.projectName}>
                           {selectedProject.token.ticker}
                         </span>{' '}
                         Token
@@ -553,8 +671,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                                 rel="noopener noreferrer"
                                 aria-label={`Trade ${selectedProject.name} token on decentralized exchange in new tab`}
                               >
-                                Trade
-                                <PixelExternalIcon className={s.externalIcon} />
+                                <PixelFinance />
                               </Link>
                             )}
                           </div>
@@ -575,7 +692,10 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                           'p-xs text-uppercase text-bold',
                         )}
                       >
-                        Wallet
+                        <span className={s.agentName}>
+                          {selectedProject.agent.name}
+                        </span>
+                        <span className={s.agentName}>'s</span> Wallet
                       </p>
                       <div className={s.walletLayout}>
                         <div className={s.walletDetails}>
@@ -894,7 +1014,7 @@ export async function getStaticProps() {
             name: 'Alchemist Platform',
             summary:
               'Advanced AI technology platform for next-generation digital experiences.',
-            link: 'https://example.com/alchemist',
+            link: 'https://alchemist.sh/',
             image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
@@ -906,7 +1026,7 @@ export async function getStaticProps() {
           },
           token: {
             address: '0xabcdef1234567890abcdef1234567890abcdef12',
-            ticker: '$ALCH',
+            ticker: '$ALMA',
             dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/alchemist',
@@ -970,6 +1090,28 @@ export async function getStaticProps() {
               'An interactive AI companion platform featuring Rally, your virtual girlfriend experience.',
             link: 'https://rally.sh',
             image: 'https://r2.rally.sh/photos/rally_pfp.png',
+            links: [
+              {
+                type: 'twitter-profile',
+                url: 'https://x.com/rallyonbase',
+                label: 'Rally Profile on X',
+              },
+              {
+                type: 'twitter-agent',
+                url: 'https://x.com/rally_agent',
+                label: 'Rally Agent on X',
+              },
+              {
+                type: 'website',
+                url: 'https://rally.sh',
+                label: 'Rally Website',
+              },
+              {
+                type: 'docs',
+                url: 'https://docs.rally.sh',
+                label: 'Rally Documentation',
+              },
+            ],
           },
           agent: {
             name: 'Rally',
@@ -1090,7 +1232,7 @@ export async function getStaticProps() {
           },
           token: {
             address: '0xbanshee1234567890abcdef1234567890abcdef',
-            ticker: '$BANSHEE',
+            ticker: '$SHEESH',
             dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/project2',
@@ -1292,31 +1434,6 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
-                    value: 'Terms of Service',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'paragraph',
-                data: {},
-                content: [
-                  {
-                    nodeType: 'text',
-                    value:
-                      'By using our services, you accept these terms. You must be 18+ to access our platform. All blockchain transactions are final and irreversible.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'heading',
-                data: { level: 2 },
-                content: [
-                  {
-                    nodeType: 'text',
                     value: 'Privacy Policy',
                     marks: [],
                     data: {},
@@ -1330,19 +1447,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'We collect information you provide directly and use industry-standard security measures. We do not sell your personal information to third parties. Wallet addresses and transaction data may be publicly visible on blockchain networks.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'heading',
-                data: { level: 2 },
-                content: [
-                  {
-                    nodeType: 'text',
-                    value: 'Token Disclaimer',
+                      'We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support. We use this information to provide, maintain, and improve our services, process transactions, and communicate with you.',
                     marks: [],
                     data: {},
                   },
@@ -1355,7 +1460,45 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Tokens are not securities or financial instruments. They are provided for entertainment and utility purposes only within our platform ecosystem.',
+                      'We implement industry-standard security measures to protect your personal information. We do not sell your personal information to third parties. However, wallet addresses and transaction data may be publicly visible on blockchain networks.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'heading',
+                data: { level: 2 },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Terms of Service',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'By accessing and using our services, you accept and agree to be bound by the terms and provision of this agreement. You must be at least 18 years old to use our services. Our platform contains adult content and is not suitable for minors.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'All blockchain transactions are final and irreversible. We reserve the right to modify these terms at any time. Continued use of our services after changes constitutes acceptance of the new terms.',
                     marks: [],
                     data: {},
                   },
@@ -1380,7 +1523,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'We respect intellectual property rights. Contact us with proof of ownership and location of infringing material for DMCA takedown requests.',
+                      'We respect intellectual property rights. Contact us with proof of ownership and location of infringing material for DMCA takedown requests. We will respond promptly to valid requests in accordance with the Digital Millennium Copyright Act.',
                     marks: [],
                     data: {},
                   },
@@ -1392,7 +1535,7 @@ export async function getStaticProps() {
       },
       {
         key: 'disclaimers',
-        name: 'Disclaimers',
+        name: 'Disclaimer',
         subtitle: 'Important Notices',
         content: {
           json: {
@@ -1405,7 +1548,7 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
-                    value: 'Content Warning',
+                    value: 'AI Technology Disclaimers',
                     marks: [],
                     data: {},
                   },
@@ -1418,7 +1561,33 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'This platform contains explicit adult content for users 18+. All characters are AI-generated and fictional, not representing real individuals.',
+                      'This platform contains explicit adult content intended for users 18 years of age or older. All characters and interactions are AI-generated and completely fictional. They do not represent real individuals and should not be confused with actual persons.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Our platform uses advanced AI technology to generate responses and content. While sophisticated, AI may occasionally produce unexpected or inconsistent responses. AI-generated content should not be considered factual or used as professional advice of any kind.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'We are not liable for any content generated by AI systems or any decisions made based on AI interactions. Users interact with AI systems at their own discretion and risk.',
                     marks: [],
                     data: {},
                   },
@@ -1430,7 +1599,7 @@ export async function getStaticProps() {
                 content: [
                   {
                     nodeType: 'text',
-                    value: 'Investment Warning',
+                    value: 'Web3 & Cryptocurrency Disclaimers',
                     marks: [],
                     data: {},
                   },
@@ -1443,19 +1612,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Nothing on this platform constitutes investment advice. Do not treat any content as financial guidance. Conduct your own research and consult financial advisors before making investment decisions.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'heading',
-                data: { level: 2 },
-                content: [
-                  {
-                    nodeType: 'text',
-                    value: 'Technical Risks',
+                      'Tokens are for entertainment purposes only and have no inherent value. Tokens are not securities, investments, or financial instruments and do not promise equity, ownership, or future returns. No tokens represent ownership in any company or entity.',
                     marks: [],
                     data: {},
                   },
@@ -1468,19 +1625,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Blockchain technology carries inherent risks including network congestion, gas fee fluctuations, and potential loss of funds. We cannot guarantee security of third-party networks.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'heading',
-                data: { level: 2 },
-                content: [
-                  {
-                    nodeType: 'text',
-                    value: 'Liability & Service Availability',
+                      'Cryptocurrency and blockchain technology carry inherent risks including but not limited to: network congestion, gas fee fluctuations, potential loss of funds, smart contract vulnerabilities, and regulatory changes. Do Your Own Research (DYOR) before engaging with any blockchain assets.',
                     marks: [],
                     data: {},
                   },
@@ -1493,19 +1638,7 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'Services are provided "as is" without warranties. We are not liable for damages. Service availability is not guaranteed and may be subject to interruption or geographic restrictions.',
-                    marks: [],
-                    data: {},
-                  },
-                ],
-              },
-              {
-                nodeType: 'heading',
-                data: { level: 2 },
-                content: [
-                  {
-                    nodeType: 'text',
-                    value: 'AI Technology & Third-Party Services',
+                      'Invest at your own risk. We are not liable for any financial losses, damages, or consequences resulting from your use of our platform or interaction with blockchain technology. We cannot guarantee the security of third-party networks or services.',
                     marks: [],
                     data: {},
                   },
@@ -1518,7 +1651,20 @@ export async function getStaticProps() {
                   {
                     nodeType: 'text',
                     value:
-                      'AI may occasionally produce unexpected responses. AI-generated content should not be considered factual. Third-party integrations carry their own risks - review their terms independently.',
+                      'Nothing on this platform constitutes investment advice, financial guidance, or recommendations. Consult with qualified financial advisors before making any investment decisions. Past performance does not indicate future results.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+              },
+              {
+                nodeType: 'paragraph',
+                data: {},
+                content: [
+                  {
+                    nodeType: 'text',
+                    value:
+                      'Services are provided "as is" without warranties of any kind. Service availability is not guaranteed and may be subject to interruption, maintenance, or geographic restrictions.',
                     marks: [],
                     data: {},
                   },

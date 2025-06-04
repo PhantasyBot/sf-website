@@ -25,9 +25,9 @@ export function Dither({ currentTheme = 'rally' }) {
         hover: '#d8d8d8', // Medium gray between primary and secondary
       },
       munny: {
-        primary: '#f0f8e6', // Super light matcha green, almost white
-        secondary: '#f5faf0', // Even lighter, almost pure white with green hint
-        hover: '#f2f9eb', // Medium between primary and secondary
+        primary: '#e8f5e0', // More noticeable green tint, still very light
+        secondary: '#f0f9ed', // Lighter companion with subtle green hint
+        hover: '#eaf6e6', // Medium between primary and secondary
       },
       lorelei: {
         primary: '#b3d9ff', // Much lighter Japanese blue

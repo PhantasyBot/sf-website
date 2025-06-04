@@ -94,8 +94,7 @@ export function Gallery({ onBackToProject }) {
     const focusableElements = [
       `.${s.close}`,
       `.${s.backToProject}`,
-      `.${s.prevButton}`,
-      `.${s.nextButton}`,
+      ...(totalImages > 1 ? [`.${s.prevButton}`, `.${s.nextButton}`] : []),
     ].join(', ')
 
     const handleTabKeyPress = (e) => {
@@ -191,6 +190,7 @@ export function Gallery({ onBackToProject }) {
               onClick={goToPrevious}
               disabled={totalImages <= 1}
               aria-label="Previous image"
+              tabIndex={galleryVisible && totalImages > 1 ? 0 : -1}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -214,6 +214,7 @@ export function Gallery({ onBackToProject }) {
               onClick={goToNext}
               disabled={totalImages <= 1}
               aria-label="Next image"
+              tabIndex={galleryVisible && totalImages > 1 ? 0 : -1}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

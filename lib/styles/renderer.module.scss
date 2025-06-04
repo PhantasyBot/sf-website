@@ -31,3 +31,22 @@
     transform: scaleX(1) !important;
   }
 }
+
+.subheading {
+  color: var(--primary-accent) !important;
+  font-size: mobile-vw(14px);
+  font-weight: 600;
+  margin-top: mobile-vw(24px);
+  margin-bottom: mobile-vw(12px);
+  letter-spacing: 0.02em;
+
+  @include desktop {
+    font-size: desktop-vw(16px);
+    margin-top: desktop-vw(24px);
+    margin-bottom: desktop-vw(12px);
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
