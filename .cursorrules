@@ -2,9 +2,16 @@
 
 ## Project Overview
 
-This is a Next.js website for Phantasy using modern web technologies including dynamic imports and responsive design.
+This is a production-ready Next.js website for Phantasy using modern web technologies including dynamic imports, responsive design, and optimized performance.
 
 ## Key Architecture Decisions
+
+### Production Optimizations
+
+- Debug pages (\_debug/\*) are redirected to 404 in production builds
+- Orchestra component is disabled in production for better performance
+- Unused dependencies have been removed to reduce bundle size
+- Enhanced security headers for production environments
 
 ### Dynamic Imports
 
@@ -17,6 +24,7 @@ This is a Next.js website for Phantasy using modern web technologies including d
 - Development CSP is more permissive to support hot reloading and eval
 - Production CSP is strict but allows necessary external resources
 - Separate policies for dev/prod environments
+- Additional security headers including Referrer-Policy and Permissions-Policy
 
 ### Font Loading
 
@@ -25,6 +33,20 @@ This is a Next.js website for Phantasy using modern web technologies including d
 - MadouFutoMaruGothic font used for NSFW overlays (18+ text) and wallet addresses
 - Font hierarchy: Geist (primary), Messina Sans Mono (secondary), MadouFutoMaruGothic (accent)
 
+## Dependencies Management
+
+### Production Dependencies
+
+- Kept only essential packages for core functionality
+- Removed unused packages: `@builder.io/partytown`, `react-use-measure`
+- Theatre.js and Orchestra kept for development debugging but disabled in production
+
+### Security
+
+- Enhanced security headers for production
+- Debug functionality only available in development
+- CSP policies prevent XSS and other security vulnerabilities
+
 ## Common Issues & Solutions
 
 ### Console Errors Fixed
@@ -32,6 +54,7 @@ This is a Next.js website for Phantasy using modern web technologies including d
 1. **CSP eval errors**: Resolved by proper CSP configuration for dev/prod
 2. **Dynamic import failures**: Added loading states and error boundaries
 3. **Font loading errors**: Proper fallbacks and optimization
+4. **Build issues**: Removed experimental features that required additional dependencies
 
 ### Best Practices
 
@@ -39,9 +62,12 @@ This is a Next.js website for Phantasy using modern web technologies including d
 - Test both development and production builds
 - Include error boundaries for dynamic content
 - Monitor console for new errors after changes
+- Keep debug features separate from production code
 
 ## Development Guidelines
 
 - Use semantic versioning
 - Verify CSP policies don't break functionality
 - Monitor console for new errors after changes
+- Test production builds regularly
+- Keep bundle size optimized for performance

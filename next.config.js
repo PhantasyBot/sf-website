@@ -10,7 +10,6 @@ const nextConfig = {
   transpilePackages: ['@studio-freight/compono'],
   experimental: {
     optimizeCss: true,
-    nextScriptWorkers: true,
     urlImports: ['https://cdn.skypack.dev', 'https://unpkg.com'],
   },
   compiler: {
@@ -36,6 +35,30 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import 'styles/_functions';`,
+  },
+  redirects: async () => {
+    return [
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/capabilities',
+        destination: '/Phantasy-Capabilities.pdf',
+        permanent: true,
+      },
+      // Redirect debug pages to 404 in production
+      ...(process.env.NODE_ENV === 'production'
+        ? [
+            {
+              source: '/_debug/:path*',
+              destination: '/404',
+              permanent: false,
+            },
+          ]
+        : []),
+    ]
   },
   webpack: (config) => {
     config.module.rules.push({
@@ -107,6 +130,15 @@ const nextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value:
+              'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+          },
           ...(process.env.NODE_ENV === 'development'
             ? [
                 {
@@ -123,20 +155,6 @@ const nextConfig = {
                 },
               ]),
         ],
-      },
-    ]
-  },
-  redirects: async () => {
-    return [
-      {
-        source: '/home',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/capabilities',
-        destination: '/Phantasy-Capabilities.pdf',
-        permanent: true,
       },
     ]
   },
