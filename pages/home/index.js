@@ -444,284 +444,301 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                   className={cn(s.info, showInfoModal && s.visible)}
                   reset={!showInfoModal || resetScroll}
                 >
-                  {selectedProject?.platform && (
-                    <div className={s.platform}>
-                      <div className={s.platformLayout}>
-                        <div className={s.platformDetails}>
-                          <div className={s.platformContent}>
-                            {selectedProject.platform.image && (
+                  <div>
+                    {selectedProject?.platform && (
+                      <div className={s.platform}>
+                        <div className={s.platformLayout}>
+                          <div className={s.platformDetails}>
+                            <div className={s.platformContent}>
+                              {selectedProject.platform.image && (
+                                <img
+                                  src={selectedProject.platform.image}
+                                  alt={selectedProject.platform.name}
+                                  className={s.platformImage}
+                                />
+                              )}
+                              <div className={s.platformInfo}>
+                                <div className={s.platformText}>
+                                  <div className={s.platformHeader}>
+                                    <p
+                                      className={cn(
+                                        s.platformTitle,
+                                        'p-s text-uppercase text-bold',
+                                      )}
+                                    >
+                                      Platform
+                                    </p>
+                                    <p
+                                      className={cn(
+                                        'p text-bold',
+                                        s.platformName,
+                                      )}
+                                    >
+                                      {selectedProject.platform.name}
+                                    </p>
+                                  </div>
+                                  <p className={cn('p-s', s.platformSummary)}>
+                                    {selectedProject.platform.summary}
+                                  </p>
+                                  {selectedProject.platform.links && (
+                                    <div className={s.platformLinks}>
+                                      {selectedProject.platform.links.map(
+                                        (link, index) => {
+                                          const getIcon = (type) => {
+                                            switch (type) {
+                                              case 'twitter-profile':
+                                                return (
+                                                  <PixelX
+                                                    className={
+                                                      s.platformLinkIcon
+                                                    }
+                                                  />
+                                                )
+                                              case 'twitter-agent':
+                                                return (
+                                                  <PixelAt
+                                                    className={
+                                                      s.platformLinkIcon
+                                                    }
+                                                  />
+                                                )
+                                              case 'instagram':
+                                                return (
+                                                  <PixelInstagram
+                                                    className={
+                                                      s.platformLinkIcon
+                                                    }
+                                                  />
+                                                )
+                                              case 'website':
+                                                return (
+                                                  <PixelGlobeSolid
+                                                    className={
+                                                      s.platformLinkIcon
+                                                    }
+                                                  />
+                                                )
+                                              case 'docs':
+                                                return (
+                                                  <PixelBookHeart
+                                                    className={
+                                                      s.platformLinkIcon
+                                                    }
+                                                  />
+                                                )
+                                              default:
+                                                return null
+                                            }
+                                          }
+
+                                          return (
+                                            <a
+                                              key={index}
+                                              href={link.url}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className={s.platformLink}
+                                              aria-label={
+                                                link.label ||
+                                                `Visit ${link.type}`
+                                              }
+                                            >
+                                              {getIcon(link.type)}
+                                            </a>
+                                          )
+                                        },
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {selectedProject.platform.link && (
+                            <div className={s.platformActions}>
+                              <Link
+                                href={selectedProject.platform.link}
+                                className={s.platformButton}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`Visit ${selectedProject.platform.name} app in new tab`}
+                              >
+                                Visit App
+                                <PixelExternalIcon className={s.externalIcon} />
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    {selectedProject?.agent && (
+                      <div className={s.agent}>
+                        <div className={s.agentLayout}>
+                          <div className={s.agentDetails}>
+                            <div className={s.agentProfileContainer}>
                               <img
-                                src={selectedProject.platform.image}
-                                alt={selectedProject.platform.name}
-                                className={s.platformImage}
+                                src={selectedProject.agent.profileImage}
+                                alt={selectedProject.agent.name}
+                                className={s.agentProfile}
                               />
-                            )}
-                            <div className={s.platformInfo}>
-                              <div className={s.platformText}>
-                                <div className={s.platformHeader}>
+                            </div>
+                            <div className={s.agentInfo}>
+                              <div className={s.agentText}>
+                                <div className={s.agentHeader}>
                                   <p
                                     className={cn(
-                                      s.platformTitle,
+                                      s.agentTitle,
                                       'p-s text-uppercase text-bold',
                                     )}
                                   >
-                                    Platform
+                                    Agent
                                   </p>
-                                  <p
-                                    className={cn(
-                                      'p text-bold',
-                                      s.platformName,
-                                    )}
-                                  >
-                                    {selectedProject.platform.name}
+                                  <p className={cn('p text-bold', s.agentName)}>
+                                    {selectedProject.agent.name}
                                   </p>
                                 </div>
-                                <p className={cn('p-s', s.platformSummary)}>
-                                  {selectedProject.platform.summary}
+                                <p className={cn('p-s', s.agentDescription)}>
+                                  A specialized AI agent designed to assist with
+                                  various tasks and provide engaging
+                                  interactions.
                                 </p>
-                                {selectedProject.platform.links && (
-                                  <div className={s.platformLinks}>
-                                    {selectedProject.platform.links.map(
-                                      (link, index) => {
-                                        const getIcon = (type) => {
-                                          switch (type) {
-                                            case 'twitter-profile':
-                                              return (
-                                                <PixelX
-                                                  className={s.platformLinkIcon}
-                                                />
-                                              )
-                                            case 'twitter-agent':
-                                              return (
-                                                <PixelAt
-                                                  className={s.platformLinkIcon}
-                                                />
-                                              )
-                                            case 'instagram':
-                                              return (
-                                                <PixelInstagram
-                                                  className={s.platformLinkIcon}
-                                                />
-                                              )
-                                            case 'website':
-                                              return (
-                                                <PixelGlobeSolid
-                                                  className={s.platformLinkIcon}
-                                                />
-                                              )
-                                            case 'docs':
-                                              return (
-                                                <PixelBookHeart
-                                                  className={s.platformLinkIcon}
-                                                />
-                                              )
-                                            default:
-                                              return null
-                                          }
-                                        }
-
-                                        return (
-                                          <a
-                                            key={index}
-                                            href={link.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={s.platformLink}
-                                            aria-label={
-                                              link.label || `Visit ${link.type}`
-                                            }
-                                          >
-                                            {getIcon(link.type)}
-                                          </a>
-                                        )
-                                      },
-                                    )}
+                                <div className={s.agentGoal}>
+                                  <span className={cn('p-s', s.goalLabel)}>
+                                    Goal:
+                                  </span>
+                                  <span className={cn('p-s', s.goalText)}>
+                                    {selectedProject.agent.goal}
+                                  </span>
+                                </div>
+                                <div className={s.agentSkills}>
+                                  <span className={cn('p-s', s.skillsLabel)}>
+                                    Skills:
+                                  </span>
+                                  <div className={cn('p-s', s.skillsList)}>
+                                    {selectedProject.agent.skills
+                                      .split(',')
+                                      .map((skill, index) => (
+                                        <span
+                                          key={index}
+                                          className={s.skillTag}
+                                        >
+                                          # {skill.trim()}
+                                        </span>
+                                      ))}
                                   </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        {selectedProject.platform.link && (
-                          <div className={s.platformActions}>
-                            <Link
-                              href={selectedProject.platform.link}
-                              className={s.platformButton}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`Visit ${selectedProject.platform.name} app in new tab`}
-                            >
-                              Visit App
-                              <PixelExternalIcon className={s.externalIcon} />
-                            </Link>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                  {selectedProject?.agent && (
-                    <div className={s.agent}>
-                      <div className={s.agentLayout}>
-                        <div className={s.agentDetails}>
-                          <div className={s.agentProfileContainer}>
-                            <img
-                              src={selectedProject.agent.profileImage}
-                              alt={selectedProject.agent.name}
-                              className={s.agentProfile}
-                            />
-                          </div>
-                          <div className={s.agentInfo}>
-                            <div className={s.agentText}>
-                              <div className={s.agentHeader}>
-                                <p
-                                  className={cn(
-                                    s.agentTitle,
-                                    'p-s text-uppercase text-bold',
-                                  )}
-                                >
-                                  Agent
-                                </p>
-                                <p className={cn('p text-bold', s.agentName)}>
-                                  {selectedProject.agent.name}
-                                </p>
-                              </div>
-                              <p className={cn('p-s', s.agentDescription)}>
-                                A specialized AI agent designed to assist with
-                                various tasks and provide engaging interactions.
-                              </p>
-                              <div className={s.agentGoal}>
-                                <span className={cn('p-s', s.goalLabel)}>
-                                  Goal:
-                                </span>
-                                <span className={cn('p-s', s.goalText)}>
-                                  {selectedProject.agent.goal}
-                                </span>
-                              </div>
-                              <div className={s.agentSkills}>
-                                <span className={cn('p-s', s.skillsLabel)}>
-                                  Skills:
-                                </span>
-                                <div className={cn('p-s', s.skillsList)}>
-                                  {selectedProject.agent.skills
-                                    .split(',')
-                                    .map((skill, index) => (
-                                      <span key={index} className={s.skillTag}>
-                                        # {skill.trim()}
-                                      </span>
-                                    ))}
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className={s.agentActions}>
-                          <button
-                            className={s.galleryButton}
-                            onClick={() => {
-                              setShowInfoModal(!showInfoModal)
-                            }}
-                            aria-label="Toggle between project gallery and information"
-                            aria-pressed={!showInfoModal}
-                          >
-                            <PixelImageSolid className={s.galleryIcon} />
-                            Gallery
-                          </button>
+                          <div className={s.agentActions}>
+                            <button
+                              className={s.galleryButton}
+                              onClick={() => {
+                                setShowInfoModal(!showInfoModal)
+                              }}
+                              aria-label="Toggle between project gallery and information"
+                              aria-pressed={!showInfoModal}
+                            >
+                              <PixelImageSolid className={s.galleryIcon} />
+                              Gallery
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                  {selectedProject?.token && (
-                    <div className={s.token}>
-                      <p
-                        className={cn(
-                          s.tokenTitle,
-                          'p-xs text-uppercase text-bold',
-                        )}
-                      >
-                        <span className={s.projectName}>
-                          {selectedProject.token.ticker}
-                        </span>{' '}
-                        Token
-                      </p>
-                      <div className={s.tokenLayout}>
-                        <div className={s.tokenDetails}>
-                          <div className={s.addressContainer}>
-                            <TokenBaseIcon className={s.tokenIcon} />
-                            <code className="p-s">
-                              {selectedProject.token.address}
-                            </code>
-                            <button
-                              className={s.copyButton}
-                              onClick={() =>
-                                copyToClipboard(selectedProject.token.address)
-                              }
-                              aria-label={`Copy token address ${selectedProject.token.address} to clipboard`}
-                              title="Copy address to clipboard"
-                            >
-                              <PixelCopySolid />
-                            </button>
-                            {selectedProject.token.dexLink && (
-                              <Link
-                                href={selectedProject.token.dexLink}
-                                className={s.dexButton}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={`Trade ${selectedProject.name} token on decentralized exchange in new tab`}
+                    )}
+                    {selectedProject?.token && (
+                      <div className={s.token}>
+                        <p
+                          className={cn(
+                            s.tokenTitle,
+                            'p-xs text-uppercase text-bold',
+                          )}
+                        >
+                          <span className={s.projectName}>
+                            {selectedProject.token.ticker}
+                          </span>{' '}
+                          Token
+                        </p>
+                        <div className={s.tokenLayout}>
+                          <div className={s.tokenDetails}>
+                            <div className={s.addressContainer}>
+                              <TokenBaseIcon className={s.tokenIcon} />
+                              <code className="p-s">
+                                {selectedProject.token.address}
+                              </code>
+                              <button
+                                className={s.copyButton}
+                                onClick={() =>
+                                  copyToClipboard(selectedProject.token.address)
+                                }
+                                aria-label={`Copy token address ${selectedProject.token.address} to clipboard`}
+                                title="Copy address to clipboard"
                               >
-                                <PixelFinance />
-                              </Link>
-                            )}
+                                <PixelCopySolid />
+                              </button>
+                              {selectedProject.token.dexLink && (
+                                <Link
+                                  href={selectedProject.token.dexLink}
+                                  className={s.dexButton}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`Trade ${selectedProject.name} token on decentralized exchange in new tab`}
+                                >
+                                  <PixelFinance />
+                                </Link>
+                              )}
+                            </div>
+                            <p className={s.tokenDisclaimer}>
+                              This token is provided for entertainment purposes
+                              only and does not constitute an investment
+                              opportunity.
+                            </p>
                           </div>
-                          <p className={s.tokenDisclaimer}>
-                            This token is provided for entertainment purposes
-                            only and does not constitute an investment
-                            opportunity.
-                          </p>
                         </div>
                       </div>
-                    </div>
-                  )}
-                  {selectedProject?.agent?.walletAddress && (
-                    <div className={s.wallet}>
-                      <p
-                        className={cn(
-                          s.walletTitle,
-                          'p-xs text-uppercase text-bold',
-                        )}
-                      >
-                        <span className={s.agentName}>
-                          {selectedProject.agent.name}
-                        </span>
-                        <span className={s.agentName}>'s</span> Wallet
-                      </p>
-                      <div className={s.walletLayout}>
-                        <div className={s.walletDetails}>
-                          <div className={s.addressContainer}>
-                            <TokenBaseIcon className={s.walletIcon} />
-                            <code className="p-s">
-                              {selectedProject.agent.walletAddress}
-                            </code>
-                            <button
-                              className={s.copyButton}
-                              onClick={() =>
-                                copyToClipboard(
-                                  selectedProject.agent.walletAddress,
-                                )
-                              }
-                              aria-label={`Copy agent wallet address ${selectedProject.agent.walletAddress} to clipboard`}
-                              title="Copy address to clipboard"
-                            >
-                              <PixelCopySolid />
-                            </button>
+                    )}
+                    {selectedProject?.agent?.walletAddress && (
+                      <div className={s.wallet}>
+                        <p
+                          className={cn(
+                            s.walletTitle,
+                            'p-xs text-uppercase text-bold',
+                          )}
+                        >
+                          <span className={s.agentName}>
+                            {selectedProject.agent.name}
+                          </span>
+                          <span className={s.agentName}>'s</span> Wallet
+                        </p>
+                        <div className={s.walletLayout}>
+                          <div className={s.walletDetails}>
+                            <div className={s.addressContainer}>
+                              <TokenBaseIcon className={s.walletIcon} />
+                              <code className="p-s">
+                                {selectedProject.agent.walletAddress}
+                              </code>
+                              <button
+                                className={s.copyButton}
+                                onClick={() =>
+                                  copyToClipboard(
+                                    selectedProject.agent.walletAddress,
+                                  )
+                                }
+                                aria-label={`Copy agent wallet address ${selectedProject.agent.walletAddress} to clipboard`}
+                                title="Copy address to clipboard"
+                              >
+                                <PixelCopySolid />
+                              </button>
+                            </div>
+                            <p className={s.walletDisclaimer}>
+                              This is the agent's on-chain wallet address for
+                              direct interactions.
+                            </p>
                           </div>
-                          <p className={s.walletDisclaimer}>
-                            This is the agent's on-chain wallet address for
-                            direct interactions.
-                          </p>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </ScrollableBox>
               </div>
             </main>

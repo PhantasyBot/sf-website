@@ -31,7 +31,7 @@
 
   .title {
     display: flex;
-    padding-bottom: desktop-vh(24px);
+    padding-bottom: 12px;
   }
 
   .list {
@@ -129,12 +129,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: desktop-vh(12px);
+    padding-bottom: 12px;
 
     .project-title {
       color: var(--text-primary);
       margin: 0;
       flex: 1;
+      font-size: desktop-vw(16px);
     }
 
     .toggle-button {
@@ -142,13 +143,13 @@
       background: none;
       border: none;
       text-transform: uppercase;
-      font-family: var(--font-secondary);
-      font-size: desktop-vh(12px);
+      font-family: var(--font);
+      font-size: desktop-vw(16px);
       cursor: pointer;
-      padding: desktop-vh(6px) desktop-vw(12px);
-      border-radius: desktop-vw(6px);
+      padding: 0px;
+      border-radius: 6px;
       transition: all 0.3s ease;
-      margin-left: desktop-vw(16px);
+      margin-left: 16px;
 
       &:hover {
         color: var(--secondary-accent);
@@ -158,7 +159,7 @@
         outline: 3px solid var(--primary-accent);
         outline-offset: 3px;
         background-color: rgba(var(--primary-accent-rgb), 0.1);
-        border-radius: desktop-vw(6px);
+        border-radius: 6px;
       }
     }
   }
@@ -276,15 +277,14 @@
       width: 100%;
 
       > div {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: desktop-vh(24px);
+        display: flex;
+        flex-direction: column;
         width: 100%;
         max-width: none;
         min-width: 0;
 
-        @include desktop-xl {
-          grid-gap: desktop-vh(32px);
+        > *:last-child {
+          border-bottom: 1px solid var(--text-secondary);
         }
       }
 
@@ -293,21 +293,18 @@
         opacity: 0;
       }
 
-      .description,
       .platform,
       .agent,
       .wallet,
       .token {
-        grid-column: span 2;
+        border-top: 1px solid var(--text-secondary);
+        padding-top: desktop-vw(16px);
+        padding-bottom: desktop-vw(16px);
+        margin-top: 0;
+        margin-bottom: 0;
       }
 
       .platform {
-        margin-bottom: desktop-vh(0px);
-        padding-top: desktop-vh(16px);
-        padding-bottom: desktop-vh(16px);
-        border-bottom: 1px solid var(--text-secondary);
-        border-top: 1px solid var(--text-secondary);
-
         .platformLayout {
           display: flex;
           gap: desktop-vw(16px);
@@ -424,14 +421,6 @@
         min-width: 0;
         overflow: visible;
 
-        @media (max-width: 1200px) {
-          padding-left: desktop-vw(8px);
-        }
-
-        @media (max-width: 1000px) {
-          padding-left: desktop-vw(4px);
-        }
-
         .platformButton {
           background-color: var(--primary-accent);
           color: var(--text-on-accent);
@@ -453,19 +442,6 @@
           min-width: desktop-vw(70px);
           letter-spacing: 0.02em;
 
-          @media (max-width: 1200px) {
-            min-width: desktop-vw(60px);
-            padding: desktop-vh(6px) desktop-vw(6px);
-            font-size: desktop-vh(9px);
-          }
-
-          // Better responsiveness for smaller screens
-          @media (max-width: 1000px) {
-            min-width: desktop-vw(50px);
-            padding: desktop-vh(5px) desktop-vw(4px);
-            font-size: desktop-vh(8px);
-          }
-
           &:hover,
           &:focus-visible {
             background-color: var(--secondary-accent);
@@ -486,9 +462,7 @@
     }
 
     .agent {
-      margin-bottom: desktop-vh(0px);
-      padding-bottom: desktop-vh(16px);
-      border-bottom: 1px solid var(--text-secondary);
+      padding-bottom: desktop-vw(16px);
 
       .agentLayout {
         display: flex;
@@ -620,14 +594,6 @@
         min-width: 0;
         overflow: visible;
 
-        @media (max-width: 1200px) {
-          padding-left: desktop-vw(8px);
-        }
-
-        @media (max-width: 1000px) {
-          padding-left: desktop-vw(4px);
-        }
-
         .galleryButton {
           background-color: var(--primary-accent);
           color: var(--text-on-accent);
@@ -648,36 +614,11 @@
           height: desktop-vh(28px);
           letter-spacing: 0.02em;
 
-          @media (max-width: 1200px) {
-            min-width: desktop-vw(60px);
-            padding: desktop-vh(6px) desktop-vw(6px);
-            font-size: desktop-vh(9px);
-            gap: desktop-vw(5px);
-          }
-
-          // Better responsiveness for smaller screens
-          @media (max-width: 1000px) {
-            min-width: desktop-vw(50px);
-            padding: desktop-vh(5px) desktop-vw(4px);
-            font-size: desktop-vh(8px);
-            gap: desktop-vw(4px);
-          }
-
           .galleryIcon {
             width: desktop-vh(12px);
             height: desktop-vh(12px);
             flex-shrink: 0;
             fill: currentColor;
-
-            @media (max-width: 1200px) {
-              width: desktop-vh(11px);
-              height: desktop-vh(11px);
-            }
-
-            @media (max-width: 1000px) {
-              width: desktop-vh(10px);
-              height: desktop-vh(10px);
-            }
           }
 
           &:hover,
@@ -709,8 +650,6 @@
     }
 
     .wallet {
-      margin-bottom: desktop-vh(16px);
-
       .walletTitle {
         color: var(--text-secondary);
         margin: 0 0 desktop-vh(12px) 0;
@@ -743,11 +682,6 @@
           border-radius: desktop-vw(4px);
           min-width: 0;
           overflow: visible;
-
-          @media (max-width: 1000px) {
-            gap: desktop-vw(4px);
-            padding: desktop-vw(4px);
-          }
 
           .walletIcon {
             width: desktop-vh(14px);
@@ -814,8 +748,6 @@
     }
 
     .token {
-      margin-bottom: desktop-vh(6px);
-
       .tokenTitle {
         color: var(--text-secondary);
         margin: 0 0 desktop-vh(12px) 0;
@@ -845,11 +777,6 @@
           border-radius: desktop-vw(4px);
           min-width: 0;
           overflow: visible;
-
-          @media (max-width: 1000px) {
-            gap: desktop-vw(4px);
-            padding: desktop-vw(4px);
-          }
 
           .tokenIcon {
             width: desktop-vh(14px);
@@ -971,11 +898,6 @@
     margin-left: desktop-vw(6px);
     fill: var(--text-black);
     flex-shrink: 0;
-
-    // Keep theme colors on mobile
-    @include mobile {
-      fill: var(--primary-accent);
-    }
   }
 }
 
