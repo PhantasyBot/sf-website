@@ -46,7 +46,7 @@ export const SelectItem = forwardRef(
         <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
       </RadixSelect.Item>
     )
-  }
+  },
 )
 
 SelectItem.displayName = 'SelectItem'

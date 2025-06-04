@@ -1,113 +1,3 @@
-const withPWA = require('@ducanh2912/next-pwa').default({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
-  register: false,
-  skipWaiting: false,
-  sw: 'sw.js',
-  fallbacks: {
-    document: '/offline',
-  },
-  workboxOptions: {
-    disableDevLogs: true,
-    runtimeCaching: [
-      {
-        urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'google-fonts-cache',
-          expiration: {
-            maxEntries: 10,
-            maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
-      },
-      {
-        urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'gstatic-fonts-cache',
-          expiration: {
-            maxEntries: 10,
-            maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
-          },
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
-      },
-      {
-        urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
-        handler: 'StaleWhileRevalidate',
-        options: {
-          cacheName: 'static-font-assets',
-          expiration: {
-            maxEntries: 4,
-            maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
-          },
-        },
-      },
-      {
-        urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-        handler: 'StaleWhileRevalidate',
-        options: {
-          cacheName: 'static-image-assets',
-          expiration: {
-            maxEntries: 64,
-            maxAgeSeconds: 24 * 60 * 60, // 24 hours
-          },
-        },
-      },
-      {
-        urlPattern: /\/_next\/image\?url=.+$/i,
-        handler: 'StaleWhileRevalidate',
-        options: {
-          cacheName: 'next-image',
-          expiration: {
-            maxEntries: 64,
-            maxAgeSeconds: 24 * 60 * 60, // 24 hours
-          },
-        },
-      },
-      {
-        urlPattern: /\.(?:js)$/i,
-        handler: 'StaleWhileRevalidate',
-        options: {
-          cacheName: 'static-js-assets',
-          expiration: {
-            maxEntries: 32,
-            maxAgeSeconds: 24 * 60 * 60, // 24 hours
-          },
-        },
-      },
-      {
-        urlPattern: /\.(?:css)$/i,
-        handler: 'StaleWhileRevalidate',
-        options: {
-          cacheName: 'static-style-assets',
-          expiration: {
-            maxEntries: 32,
-            maxAgeSeconds: 24 * 60 * 60, // 24 hours
-          },
-        },
-      },
-      {
-        urlPattern: /^https:\/\/.*/i,
-        handler: 'NetworkFirst',
-        options: {
-          cacheName: 'offsite-assets',
-          expiration: {
-            maxEntries: 32,
-            maxAgeSeconds: 24 * 60 * 60, // 24 hours
-          },
-          networkTimeoutSeconds: 10,
-        },
-      },
-    ],
-  },
-})
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -133,10 +23,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.ctfassets.net',
-      },
-      {
-        protocol: 'https',
         hostname: 'assets.phantasy.bot',
       },
       {
@@ -151,78 +37,56 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import 'styles/_functions';`,
   },
-  webpack: (config, options) => {
-    const { dir } = options
-
-    config.module.rules.push(
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: '@svgr/webpack',
-            options: {
-              memo: true,
-              dimensions: false,
-              svgoConfig: {
-                multipass: true,
-                plugins: [
-                  'removeDimensions',
-                  'removeOffCanvasPaths',
-                  'reusePaths',
-                  'removeElementsByAttr',
-                  'removeStyleElement',
-                  'removeScriptElement',
-                  'prefixIds',
-                  'cleanupIds',
-                  {
-                    name: 'cleanupNumericValues',
-                    params: {
-                      floatPrecision: 1,
-                    },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            memo: true,
+            dimensions: false,
+            svgoConfig: {
+              multipass: true,
+              plugins: [
+                'removeDimensions',
+                'removeOffCanvasPaths',
+                'reusePaths',
+                'removeElementsByAttr',
+                'removeStyleElement',
+                'removeScriptElement',
+                'prefixIds',
+                'cleanupIds',
+                {
+                  name: 'cleanupNumericValues',
+                  params: {
+                    floatPrecision: 1,
                   },
-                  {
-                    name: 'convertPathData',
-                    params: {
-                      floatPrecision: 1,
-                    },
+                },
+                {
+                  name: 'convertPathData',
+                  params: {
+                    floatPrecision: 1,
                   },
-                  {
-                    name: 'convertTransform',
-                    params: {
-                      floatPrecision: 1,
-                    },
+                },
+                {
+                  name: 'convertTransform',
+                  params: {
+                    floatPrecision: 1,
                   },
-                  {
-                    name: 'cleanupListOfValues',
-                    params: {
-                      floatPrecision: 1,
-                    },
+                },
+                {
+                  name: 'cleanupListOfValues',
+                  params: {
+                    floatPrecision: 1,
                   },
-                ],
-              },
+                },
+              ],
             },
           },
-        ],
-      },
-      {
-        test: /\.(graphql|gql)$/,
-        include: [dir],
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'graphql-tag/loader',
-          },
-        ],
-      },
-    )
-
-    // config.resolve.alias = {
-    //   ...config.resolve.alias,
-    //   '@studio-freight/hamo': path.resolve(
-    //     __dirname,
-    //     'node_modules/@studio-freight/hamo'
-    //   ),
-    // }
+        },
+      ],
+    })
 
     return config
   },
@@ -279,7 +143,7 @@ const nextConfig = {
 }
 
 const nextConfigWrapper = () => {
-  const plugins = [withPWA, withBundleAnalyzer]
+  const plugins = [withBundleAnalyzer]
   return plugins.reduce((acc, plugin) => plugin(acc), {
     ...nextConfig,
   })

@@ -791,61 +791,6 @@ export async function getStaticProps() {
   }
 
   const contact = {
-    form: {
-      formId: 'mock-form-id',
-      fields: [
-        {
-          name: 'firstname',
-          label: 'First Name',
-          type: 'text',
-          required: true,
-        },
-        { name: 'lastname', label: 'Last Name', type: 'text', required: true },
-        { name: 'email', label: 'Email', type: 'email', required: true },
-        { name: 'message', label: 'Message', type: 'textarea', required: true },
-      ],
-    },
-    description: {
-      json: {
-        nodeType: 'document',
-        data: {},
-        content: [
-          {
-            nodeType: 'paragraph',
-            data: {},
-            content: [
-              {
-                nodeType: 'text',
-                value: 'Contact us with any questions you might have.',
-                marks: [],
-                data: {},
-              },
-            ],
-          },
-        ],
-      },
-    },
-    thankYouMessage: {
-      json: {
-        nodeType: 'document',
-        data: {},
-        content: [
-          {
-            nodeType: 'paragraph',
-            data: {},
-            content: [
-              {
-                nodeType: 'text',
-                value:
-                  'Thank you for your message. We will get back to you shortly.',
-                marks: [],
-                data: {},
-              },
-            ],
-          },
-        ],
-      },
-    },
     faqsCollection: {
       items: [
         {

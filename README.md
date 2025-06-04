@@ -7,11 +7,10 @@ A Next.js website built with modern web technologies for Phantasy.
 ## Features
 
 - Next.js 14 with React 18
-- Contentful CMS integration
 - Modern CSS with SCSS modules
-- PWA capabilities
 - SEO optimized
 - Responsive design
+- Self-hosted with static content
 
 ## Development
 
@@ -30,13 +29,7 @@ The usual process for Next.js based apps/websites:
 
    `$ pnpm i`
 
-2. Get the .env variables from Vercel (check `.env.template`), after [installing Vercel CLI](https://vercel.com/docs/cli):
-
-   `$ vc link`
-
-   `$ vc env pull`
-
-3. run development environment:
+2. run development environment:
 
    `$ pnpm dev`
 
@@ -48,8 +41,6 @@ The usual process for Next.js based apps/websites:
 - [Next.js](https://nextjs.org/)
 - Sass (Modules)
 - [Zustand](https://github.com/pmndrs/zustand)
-- [React Hook Form](https://react-hook-form.com/)
-- GraphQL (CMS API)
 - [Next-Sitemap](https://github.com/iamvishnusankar/next-sitemap) (postbuild script)
 - [@svgr/webpack](https://github.com/gregberge/svgr/tree/main) (SVG Imports in `next.config.js`)
 
@@ -68,9 +59,6 @@ The usual process for Next.js based apps/websites:
 
 ## Third Party
 
-- [Contentful Headless CMS (GraphQL API)](https://contentful.com/)
-- [Hubspot CRM](https://hubspot.com/)
-- [Vercel (Hosting & Continuous Deployment)](https://vercel.com/home)
 - [GitHub Versioning](https://github.com/)
 
 ## Folder Structure
@@ -79,7 +67,6 @@ Alongside the usual Next.js folder structure (`/public`, `/pages`, etc.) We've a
 
 - **/assets:** General Images/Videos and SVGs
 - **/components:** Reusable components with their respective Sass file
-- **/contentful:** Fragments/Queries/Renderers
 - **/config:** General settings (mostly Leva for now)
 - **/hooks:** Reusable Custom Hooks
 - **/layouts:** High level layout component

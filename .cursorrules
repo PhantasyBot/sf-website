@@ -2,16 +2,9 @@
 
 ## Project Overview
 
-This is a Next.js website for Phantasy using modern web technologies including PWA capabilities, dynamic imports, and service workers.
+This is a Next.js website for Phantasy using modern web technologies including dynamic imports and responsive design.
 
 ## Key Architecture Decisions
-
-### PWA & Service Worker
-
-- PWA is disabled in development to avoid service worker conflicts
-- Custom caching strategies implemented for fonts, images, and assets
-- Service worker only registers in production
-- Offline fallback page provided at `/offline`
 
 ### Dynamic Imports
 
@@ -28,7 +21,6 @@ This is a Next.js website for Phantasy using modern web technologies including P
 ### Font Loading
 
 - Self-hosted fonts in `/public/fonts/`
-- Proper caching strategies for font files
 - Font loading optimizations via preload hints
 - MadouFutoMaruGothic font used for NSFW overlays (18+ text) and wallet addresses
 - Font hierarchy: Geist (primary), Messina Sans Mono (secondary), MadouFutoMaruGothic (accent)
@@ -38,22 +30,18 @@ This is a Next.js website for Phantasy using modern web technologies including P
 ### Console Errors Fixed
 
 1. **CSP eval errors**: Resolved by proper CSP configuration for dev/prod
-2. **Service worker NetworkOnly errors**: Fixed by disabling PWA in development
-3. **Dynamic import failures**: Added loading states and error boundaries
-4. **Font loading errors**: Proper caching strategies and fallbacks
+2. **Dynamic import failures**: Added loading states and error boundaries
+3. **Font loading errors**: Proper fallbacks and optimization
 
 ### Best Practices
 
 - Always add loading states to dynamic imports
 - Test both development and production builds
-- Use proper caching strategies for different asset types
 - Include error boundaries for dynamic content
-- Disable service worker in development to avoid conflicts
+- Monitor console for new errors after changes
 
 ## Development Guidelines
 
 - Use semantic versioning
-- Test PWA functionality in production mode
 - Verify CSP policies don't break functionality
 - Monitor console for new errors after changes
-- Clean service worker cache when updating PWA config
