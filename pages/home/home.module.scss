@@ -129,8 +129,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: desktop-vh(24px);
-    border-bottom: 1px solid var(--text-secondary);
+    padding-bottom: desktop-vh(12px);
 
     .project-title {
       color: var(--text-primary);
@@ -170,7 +169,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding-top: desktop-vh(12px);
     width: 100%;
     min-width: 0;
 
@@ -305,8 +303,10 @@
 
       .platform {
         margin-bottom: desktop-vh(0px);
+        padding-top: desktop-vh(16px);
         padding-bottom: desktop-vh(16px);
         border-bottom: 1px solid var(--text-secondary);
+        border-top: 1px solid var(--text-secondary);
 
         .platformLayout {
           display: flex;
@@ -369,7 +369,7 @@
                 display: flex;
                 gap: desktop-vw(8px);
                 align-items: center;
-                margin-top: desktop-vh(4px);
+                margin-top: desktop-vh(8px);
               }
 
               .platformLink {
@@ -397,13 +397,17 @@
               .platformLinkIcon {
                 width: desktop-vh(14px);
                 height: desktop-vh(14px);
-                fill: var(--text-secondary);
-                transition: fill 0.3s ease;
+                fill: var(--text-primary);
+                color: var(--text-primary);
+                transition:
+                  fill 0.3s ease,
+                  color 0.3s ease;
               }
 
               .platformLink:hover .platformLinkIcon,
               .platformLink:focus-visible .platformLinkIcon {
                 fill: var(--text-black);
+                color: var(--text-black);
               }
             }
           }

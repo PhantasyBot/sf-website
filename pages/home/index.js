@@ -41,12 +41,9 @@ const PixelAt = dynamic(() => import('icons/pixel-at-solid.svg'), {
 const PixelInstagram = dynamic(() => import('icons/pixel-instagram.svg'), {
   ssr: false,
 })
-const PixelPaperclip = dynamic(
-  () => import('icons/pixel-paperclip-solid.svg'),
-  {
-    ssr: false,
-  },
-)
+const PixelGlobeSolid = dynamic(() => import('icons/pixel-globe-solid.svg'), {
+  ssr: false,
+})
 const PixelBookHeart = dynamic(
   () => import('icons/pixel-book-heart-solid.svg'),
   {
@@ -508,7 +505,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                                               )
                                             case 'website':
                                               return (
-                                                <PixelPaperclip
+                                                <PixelGlobeSolid
                                                   className={s.platformLinkIcon}
                                                 />
                                               )
