@@ -71,20 +71,16 @@ function MyApp({ Component, pageProps }) {
       checkTheme()
     })
 
-    // Observe the body for changes
-    observer.observe(document.body, {
+    // Observe the document for changes since theme can be set anywhere
+    observer.observe(document.documentElement, {
       childList: true,
       subtree: true,
       attributes: true,
       attributeFilter: ['data-theme'],
     })
 
-    // Also check periodically as a fallback
-    const interval = setInterval(checkTheme, 1000)
-
     return () => {
       observer.disconnect()
-      clearInterval(interval)
     }
   }, [])
 

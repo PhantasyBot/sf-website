@@ -43,7 +43,11 @@ export function Dither({ currentTheme = 'rally' }) {
     [],
   )
 
-  const currentColors = themeColors[currentTheme] || themeColors.rally
+  // Memoize current colors to avoid recalculation
+  const currentColors = useMemo(
+    () => themeColors[currentTheme] || themeColors.rally,
+    [themeColors, currentTheme],
+  )
 
   // Track mouse movement
   useEffect(() => {

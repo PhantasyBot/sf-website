@@ -1,25 +1,18 @@
 import { useEffect, useState } from 'react'
 
-export function ClientOnly({ children }) {
+// Shared hook for mounting state
+function useMounted() {
   const [isMounted, setIsMounted] = useState(false)
-
   useEffect(() => setIsMounted(true), [])
+  return isMounted
+}
 
-  if (!isMounted) {
-    return null
-  }
-
-  return children || null
+export function ClientOnly({ children }) {
+  const isMounted = useMounted()
+  return isMounted ? children || null : null
 }
 
 export function ServerOnly({ children }) {
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => setIsMounted(true), [])
-
-  if (isMounted) {
-    return null
-  }
-
-  return children || null
+  const isMounted = useMounted()
+  return isMounted ? null : children || null
 }
