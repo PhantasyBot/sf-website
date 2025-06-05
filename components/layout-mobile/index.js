@@ -30,12 +30,14 @@ const LayoutMobile = ({
   useEffect(() => {
     if (currentAboutSection && aboutSectionRef.current) {
       // Add a small delay to ensure content is rendered
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         aboutSectionRef.current?.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
         })
       }, 100)
+
+      return () => clearTimeout(timer)
     }
   }, [currentAboutSection])
 

@@ -20,6 +20,8 @@ export function ComposableImage({
   onImageClick = null,
 }) {
   const [showNSFW, setShowNSFW] = useState(false)
+
+  // Calculate during render - no need for state or effect
   const amount = sources.items.length
 
   const toggleNSFW = (e) => {
