@@ -208,6 +208,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
       case 'Rally':
         return 'rally' // Pink theme
       case 'Banshee':
+      case 'Sheesh':
         return 'banshee' // Light theme
       case 'Lorelei':
         return 'lorelei' // Rainbow theme (changed from merchandise)
@@ -216,7 +217,7 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
       case 'Alkahest':
         return 'alchemist' // Use alchemist theme for Alkahest
       case 'Maho':
-        return 'lorelei' // Use lorelei theme for Maho
+        return 'maho' // Purple theme for Maho
       default:
         return 'rally' // Default theme
     }
@@ -1149,7 +1150,7 @@ export async function getStaticProps() {
         },
         {
           sys: { id: 'project2' },
-          name: 'Banshee',
+          name: 'Sheesh',
           industry: 'AI Live Cams',
           body: {
             json: {

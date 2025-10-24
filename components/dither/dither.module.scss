@@ -41,3 +41,8 @@
   mix-blend-mode: screen; // Good for neon red on dark
   opacity: 0.8;
 }
+
+[data-theme='maho'] .canvas {
+  mix-blend-mode: overlay; // Purple overlay
+  opacity: 0.65;
+}
