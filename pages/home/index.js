@@ -209,12 +209,14 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
         return 'rally' // Pink theme
       case 'Banshee':
         return 'banshee' // Light theme
-      case 'Munny':
-        return 'munny' // Green theme
       case 'Lorelei':
         return 'lorelei' // Rainbow theme (changed from merchandise)
       case 'Alchemist':
         return 'alchemist' // Japanese cyberpunk neon red theme
+      case 'Alkahest':
+        return 'alchemist' // Use alchemist theme for Alkahest
+      case 'Maho':
+        return 'lorelei' // Use lorelei theme for Maho
       default:
         return 'rally' // Default theme
     }
@@ -947,7 +949,7 @@ export async function getStaticProps() {
       items: [
         {
           sys: { id: 'project5' },
-          name: 'Alchemist',
+          name: 'Alkahest',
           industry: 'Deep Research',
           body: {
             json: {
@@ -971,25 +973,19 @@ export async function getStaticProps() {
             },
           },
           platform: {
-            name: 'Alchemist Platform',
+            name: 'Alkahest Platform',
             summary:
               'Advanced AI technology platform for next-generation digital experiences.',
-            link: 'https://alchemist.sh/',
+            link: 'https://alkahest.ai/',
             image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
-            name: 'Alchemist',
+            name: 'Alkahest',
             goal: 'Deep research and analysis specialist',
             skills: 'Deep Research, Data Analysis, Knowledge Discovery',
             profileImage: '/mobile-temp-images/rally_pfp.png',
-            walletAddress: '0xalchemy1234567890abcdef1234567890abcdef',
           },
-          token: {
-            address: '0xabcdef1234567890abcdef1234567890abcdef12',
-            ticker: '$ALMA',
-            dexLink: 'https://app.virtuals.io',
-          },
-          link: 'https://example.com/alchemist',
+          link: 'https://example.com/alkahest',
           assetsCollection: {
             items: [
               {
@@ -1188,12 +1184,6 @@ export async function getStaticProps() {
             skills:
               'Live Streaming, Interactive Entertainment, Real-time Engagement',
             profileImage: '/mobile-temp-images/rally_pfp.png',
-            walletAddress: '0xbanshee1234567890abcdef1234567890abcdef',
-          },
-          token: {
-            address: '0xbanshee1234567890abcdef1234567890abcdef',
-            ticker: '$SHEESH',
-            dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/project2',
           assetsCollection: {
@@ -1213,9 +1203,9 @@ export async function getStaticProps() {
           },
         },
         {
-          sys: { id: 'project3' },
-          name: 'Munny',
-          industry: 'Bounty Hunting',
+          sys: { id: 'project6' },
+          name: 'Maho',
+          industry: 'Companions',
           body: {
             json: {
               nodeType: 'document',
@@ -1228,7 +1218,7 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'An innovative tech platform with cutting-edge features.',
+                        'Magical companions with immersive, character-driven experiences.',
                       marks: [],
                       data: {},
                     },
@@ -1238,25 +1228,19 @@ export async function getStaticProps() {
             },
           },
           platform: {
-            name: 'Munny.fun',
+            name: 'Maho Platform',
             summary:
-              'A bounty hunting platform featuring gig-style jobs and task completion rewards. Coming soon.',
-            link: 'https://munny.fun',
+              'A platform for interactive AI companions with a focus on story and personality.',
+            link: 'https://example.com/maho',
             image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
-            name: 'Munny',
-            goal: 'Bounty hunting and task evaluation specialist',
-            skills: 'Bounty Hunting, Task Evaluation, Gig Management',
+            name: 'Maho',
+            goal: 'Immersive companion interactions and narratives',
+            skills: 'Storytelling, Engagement, Personalization',
             profileImage: '/mobile-temp-images/rally_pfp.png',
-            walletAddress: '0xmunny1234567890abcdef1234567890abcdefgh',
           },
-          token: {
-            address: '0xmunny1234567890abcdef1234567890abcdefgh',
-            ticker: '$MUNNY',
-            dexLink: 'https://app.virtuals.io',
-          },
-          link: 'https://example.com/project2',
+          link: 'https://example.com/maho',
           assetsCollection: {
             items: [
               {
@@ -1310,12 +1294,6 @@ export async function getStaticProps() {
             goal: 'Storytelling and world creation specialist',
             skills: 'Storytelling, World Building, Visual Novel Creation',
             profileImage: '/mobile-temp-images/rally_pfp.png',
-            walletAddress: '0xlorelei1234567890abcdef1234567890abcdef',
-          },
-          token: {
-            address: '0xlorelei1234567890abcdef1234567890abcdef',
-            ticker: '$LORE',
-            dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/project2',
           assetsCollection: {
