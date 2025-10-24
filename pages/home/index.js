@@ -950,7 +950,7 @@ export async function getStaticProps() {
         {
           sys: { id: 'project5' },
           name: 'Alkahest',
-          industry: 'Deep Research',
+          industry: 'AI ROUTER',
           body: {
             json: {
               nodeType: 'document',
@@ -963,7 +963,7 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'An innovative tech platform with cutting-edge features.',
+                        'AI Router that intelligently routes requests across agents, models, and tools.',
                       marks: [],
                       data: {},
                     },
@@ -975,12 +975,12 @@ export async function getStaticProps() {
           platform: {
             name: 'Alkahest Platform',
             summary:
-              'Advanced AI technology platform for next-generation digital experiences.',
+              'AI Router for intelligent routing across agents, models, and tools.',
             link: 'https://alkahest.ai/',
             image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
-            name: 'Alkahest',
+            name: 'Alchemist',
             goal: 'Deep research and analysis specialist',
             skills: 'Deep Research, Data Analysis, Knowledge Discovery',
             profileImage: '/mobile-temp-images/rally_pfp.png',
@@ -1173,17 +1173,10 @@ export async function getStaticProps() {
             },
           },
           platform: {
-            name: 'Banshee Platform',
-            summary: 'Ethereal AI platform for mystical digital experiences.',
-            link: 'https://example.com/banshee',
+            name: 'Sheesh',
+            summary: 'Ethereal AI live content platform. No agent tied yet.',
+            link: 'https://example.com/sheesh',
             image: '/mobile-temp-images/rally_pfp.png',
-          },
-          agent: {
-            name: 'Banshee',
-            goal: 'Live streaming and interactive entertainment specialist',
-            skills:
-              'Live Streaming, Interactive Entertainment, Real-time Engagement',
-            profileImage: '/mobile-temp-images/rally_pfp.png',
           },
           link: 'https://example.com/project2',
           assetsCollection: {
@@ -1205,7 +1198,7 @@ export async function getStaticProps() {
         {
           sys: { id: 'project6' },
           name: 'Maho',
-          industry: 'Companions',
+          industry: 'MCP ROUTER',
           body: {
             json: {
               nodeType: 'document',
@@ -1218,7 +1211,7 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'Magical companions with immersive, character-driven experiences.',
+                        'MCP Router for orchestrating tools and services across clients.',
                       marks: [],
                       data: {},
                     },
@@ -1229,8 +1222,7 @@ export async function getStaticProps() {
           },
           platform: {
             name: 'Maho Platform',
-            summary:
-              'A platform for interactive AI companions with a focus on story and personality.',
+            summary: 'Multi-Client MCP router for tools and models.',
             link: 'https://example.com/maho',
             image: '/mobile-temp-images/rally_pfp.png',
           },
@@ -1260,7 +1252,7 @@ export async function getStaticProps() {
         {
           sys: { id: 'project4' },
           name: 'Lorelei',
-          industry: 'Storytelling',
+          industry: 'INFINITE STORYTELLING',
           body: {
             json: {
               nodeType: 'document',
