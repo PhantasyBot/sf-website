@@ -51,6 +51,9 @@ const PixelBookHeart = dynamic(
     ssr: false,
   },
 )
+const PhantasyLogo = dynamic(() => import('icons/phantasy-logo.svg'), {
+  ssr: false,
+})
 
 const Gallery = dynamic(
   () => import('components/gallery').then(({ Gallery }) => Gallery),
@@ -207,14 +210,16 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
     switch (project.name) {
       case 'Rally':
         return 'rally' // Pink theme
-      case 'Banshee':
+      case 'Sheesh':
         return 'banshee' // Light theme
-      case 'Munny':
-        return 'munny' // Green theme
       case 'Lorelei':
         return 'lorelei' // Rainbow theme (changed from merchandise)
       case 'Alchemist':
         return 'alchemist' // Japanese cyberpunk neon red theme
+      case 'Alkahest':
+        return 'alchemist' // Use alchemist theme for Alkahest
+      case 'Maho':
+        return 'maho' // Purple theme for Maho
       default:
         return 'rally' // Default theme
     }
@@ -252,11 +257,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                 selectedProject.name.toLowerCase(),
               )}`
             : '/?section=disclaimers',
-        },
-        {
-          name: 'Shop',
-          url: 'https://shop.phantasy.bot',
-          external: true,
         },
         // Add agent platform link if available - desktop only and last
         ...(selectedProject?.platform?.link
@@ -303,6 +303,20 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
               <ScrollableBox className={s.description}>
                 {aboutSectionContent}
               </ScrollableBox>
+              <div className={s.shop} aria-labelledby="shop-heading">
+                <h2
+                  id="shop-heading"
+                  className={cn(
+                    s.title,
+                    'p text-bold text-uppercase text-muted',
+                  )}
+                >
+                  Shop
+                </h2>
+                <div className={s.shopPlaceholder} aria-hidden="true">
+                  <PhantasyLogo />
+                </div>
+              </div>
             </section>
             <section className={s.projects} aria-labelledby="projects-heading">
               <h2
@@ -947,8 +961,8 @@ export async function getStaticProps() {
       items: [
         {
           sys: { id: 'project5' },
-          name: 'Alchemist',
-          industry: 'Deep Research',
+          name: 'Alkahest',
+          industry: 'AI ROUTER',
           body: {
             json: {
               nodeType: 'document',
@@ -961,7 +975,7 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'An innovative tech platform with cutting-edge features.',
+                        'AI Router that intelligently routes requests across agents, models, and tools.',
                       marks: [],
                       data: {},
                     },
@@ -971,10 +985,10 @@ export async function getStaticProps() {
             },
           },
           platform: {
-            name: 'Alchemist Platform',
+            name: 'Alkahest Platform',
             summary:
-              'Advanced AI technology platform for next-generation digital experiences.',
-            link: 'https://alchemist.sh/',
+              'AI Router for intelligent routing across agents, models, and tools.',
+            link: 'https://alkahest.ai/',
             image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
@@ -982,14 +996,8 @@ export async function getStaticProps() {
             goal: 'Deep research and analysis specialist',
             skills: 'Deep Research, Data Analysis, Knowledge Discovery',
             profileImage: '/mobile-temp-images/rally_pfp.png',
-            walletAddress: '0xalchemy1234567890abcdef1234567890abcdef',
           },
-          token: {
-            address: '0xabcdef1234567890abcdef1234567890abcdef12',
-            ticker: '$ALMA',
-            dexLink: 'https://app.virtuals.io',
-          },
-          link: 'https://example.com/alchemist',
+          link: 'https://example.com/alkahest',
           assetsCollection: {
             items: [
               {
@@ -1153,7 +1161,7 @@ export async function getStaticProps() {
         },
         {
           sys: { id: 'project2' },
-          name: 'Banshee',
+          name: 'Sheesh',
           industry: 'AI Live Cams',
           body: {
             json: {
@@ -1177,23 +1185,10 @@ export async function getStaticProps() {
             },
           },
           platform: {
-            name: 'Banshee Platform',
-            summary: 'Ethereal AI platform for mystical digital experiences.',
-            link: 'https://example.com/banshee',
+            name: 'Sheesh',
+            summary: 'Ethereal AI live content platform. No agent tied yet.',
+            link: 'https://example.com/sheesh',
             image: '/mobile-temp-images/rally_pfp.png',
-          },
-          agent: {
-            name: 'Banshee',
-            goal: 'Live streaming and interactive entertainment specialist',
-            skills:
-              'Live Streaming, Interactive Entertainment, Real-time Engagement',
-            profileImage: '/mobile-temp-images/rally_pfp.png',
-            walletAddress: '0xbanshee1234567890abcdef1234567890abcdef',
-          },
-          token: {
-            address: '0xbanshee1234567890abcdef1234567890abcdef',
-            ticker: '$SHEESH',
-            dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/project2',
           assetsCollection: {
@@ -1213,9 +1208,9 @@ export async function getStaticProps() {
           },
         },
         {
-          sys: { id: 'project3' },
-          name: 'Munny',
-          industry: 'Bounty Hunting',
+          sys: { id: 'project6' },
+          name: 'Maho',
+          industry: 'MCP ROUTER',
           body: {
             json: {
               nodeType: 'document',
@@ -1228,7 +1223,7 @@ export async function getStaticProps() {
                     {
                       nodeType: 'text',
                       value:
-                        'An innovative tech platform with cutting-edge features.',
+                        'MCP Router for orchestrating tools and services across clients.',
                       marks: [],
                       data: {},
                     },
@@ -1238,25 +1233,18 @@ export async function getStaticProps() {
             },
           },
           platform: {
-            name: 'Munny.fun',
-            summary:
-              'A bounty hunting platform featuring gig-style jobs and task completion rewards. Coming soon.',
-            link: 'https://munny.fun',
+            name: 'Maho Platform',
+            summary: 'Multi-Client MCP router for tools and models.',
+            link: 'https://example.com/maho',
             image: '/mobile-temp-images/rally_pfp.png',
           },
           agent: {
-            name: 'Munny',
-            goal: 'Bounty hunting and task evaluation specialist',
-            skills: 'Bounty Hunting, Task Evaluation, Gig Management',
+            name: 'Maho',
+            goal: 'Immersive companion interactions and narratives',
+            skills: 'Storytelling, Engagement, Personalization',
             profileImage: '/mobile-temp-images/rally_pfp.png',
-            walletAddress: '0xmunny1234567890abcdef1234567890abcdefgh',
           },
-          token: {
-            address: '0xmunny1234567890abcdef1234567890abcdefgh',
-            ticker: '$MUNNY',
-            dexLink: 'https://app.virtuals.io',
-          },
-          link: 'https://example.com/project2',
+          link: 'https://example.com/maho',
           assetsCollection: {
             items: [
               {
@@ -1276,7 +1264,7 @@ export async function getStaticProps() {
         {
           sys: { id: 'project4' },
           name: 'Lorelei',
-          industry: 'Storytelling',
+          industry: 'INFINITE STORYTELLING',
           body: {
             json: {
               nodeType: 'document',
@@ -1310,12 +1298,6 @@ export async function getStaticProps() {
             goal: 'Storytelling and world creation specialist',
             skills: 'Storytelling, World Building, Visual Novel Creation',
             profileImage: '/mobile-temp-images/rally_pfp.png',
-            walletAddress: '0xlorelei1234567890abcdef1234567890abcdef',
-          },
-          token: {
-            address: '0xlorelei1234567890abcdef1234567890abcdef',
-            ticker: '$LORE',
-            dexLink: 'https://app.virtuals.io',
           },
           link: 'https://example.com/project2',
           assetsCollection: {

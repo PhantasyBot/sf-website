@@ -73,6 +73,20 @@
   --primary-accent-gradient: linear-gradient(90deg, #b3d9ff, #d4e6ff);
 }
 
+[data-theme='maho'] {
+  // Soft Purple Theme
+  --primary-accent: #cdb4ff; // Lavender
+  --secondary-accent: #e9d5ff; // Lighter lavender
+  --background-primary: #1a1a1a; // Dark background
+  --background-secondary: #2c2c2c; // Darker secondary
+  --text-primary: #ffffff; // White text
+  --text-secondary: #a9a9a9; // Consistent gray across themes
+  --text-on-accent: #000000; // Black text on purple accents
+  --text-black: #000000; // Consistent black
+  --theme-mode: 'dark';
+  --primary-accent-gradient: linear-gradient(90deg, #cdb4ff, #e9d5ff);
+}
+
 [data-theme='alchemist'] {
   // Japanese Cyberpunk Neon Red
   --primary-accent: #ff0033; // Bright Neon Red
@@ -272,7 +286,8 @@ button,
 [data-theme='rally'],
 [data-theme='banshee'],
 [data-theme='lorelei'],
-[data-theme='alchemist'] {
+[data-theme='alchemist'],
+[data-theme='maho'] {
   .agentTitle,
   .tokenTitle,
   .walletTitle {

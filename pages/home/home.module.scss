@@ -113,7 +113,32 @@
       }
 
       &:last-child {
-        border-bottom: 1px solid var(--text-secondary);
+        border-bottom: 0; // Remove underline for last item
+      }
+    }
+  }
+}
+
+.about {
+  .shop {
+    margin-top: desktop-vw(16px);
+
+    .title {
+      display: flex;
+      padding-bottom: desktop-vh(12px);
+    }
+
+    .shopPlaceholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: desktop-vw(16px);
+      border: 1px dashed var(--text-secondary);
+      border-radius: desktop-vw(8px);
+
+      svg {
+        width: desktop-vw(200px);
+        height: auto;
       }
     }
   }

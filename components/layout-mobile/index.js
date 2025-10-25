@@ -3,6 +3,7 @@ import cn from 'clsx'
 import { ProjectAccordion } from 'components/project-accordion'
 import { renderer } from 'lib/compatibility/renderer'
 import { useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import s from './layout-mobile.module.scss'
 
 const LayoutMobile = ({
@@ -12,6 +13,9 @@ const LayoutMobile = ({
   selectedProject,
   setSelectedProject,
 }) => {
+  const PhantasyLogo = dynamic(() => import('icons/phantasy-logo.svg'), {
+    ssr: false,
+  })
   const aboutSectionRef = useRef(null)
 
   // Determine what content to show in the About section
@@ -69,6 +73,17 @@ const LayoutMobile = ({
           {aboutSectionTitle}
         </p>
         <div className={s.description}>{aboutSectionContent}</div>
+        <div className={s.shop} aria-labelledby="shop-heading">
+          <p
+            id="shop-heading"
+            className={cn(s.title, 'p text-bold text-uppercase text-muted')}
+          >
+            Shop
+          </p>
+          <div className={s.shopPlaceholder} aria-hidden="true">
+            <PhantasyLogo />
+          </div>
+        </div>
       </section>
     </div>
   )
