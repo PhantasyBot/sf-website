@@ -51,6 +51,9 @@ const PixelBookHeart = dynamic(
     ssr: false,
   },
 )
+const PhantasyLogo = dynamic(() => import('icons/phantasy-logo.svg'), {
+  ssr: false,
+})
 
 const Gallery = dynamic(
   () => import('components/gallery').then(({ Gallery }) => Gallery),
@@ -207,7 +210,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
     switch (project.name) {
       case 'Rally':
         return 'rally' // Pink theme
-      case 'Banshee':
       case 'Sheesh':
         return 'banshee' // Light theme
       case 'Lorelei':
@@ -256,11 +258,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
               )}`
             : '/?section=disclaimers',
         },
-        {
-          name: 'Shop',
-          url: 'https://shop.phantasy.bot',
-          external: true,
-        },
         // Add agent platform link if available - desktop only and last
         ...(selectedProject?.platform?.link
           ? [
@@ -306,6 +303,17 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
               <ScrollableBox className={s.description}>
                 {aboutSectionContent}
               </ScrollableBox>
+            </section>
+            <section className={s.shop} aria-labelledby="shop-heading">
+              <h2
+                id="shop-heading"
+                className={cn(s.title, 'p text-bold text-uppercase text-muted')}
+              >
+                Shop
+              </h2>
+              <div className={s.shopPlaceholder} aria-hidden="true">
+                <PhantasyLogo />
+              </div>
             </section>
             <section className={s.projects} aria-labelledby="projects-heading">
               <h2

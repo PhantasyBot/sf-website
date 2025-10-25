@@ -113,7 +113,7 @@
       }
 
       &:last-child {
-        border-bottom: 1px solid var(--text-secondary);
+        border-bottom: 0; // Remove underline for last item
       }
     }
   }
