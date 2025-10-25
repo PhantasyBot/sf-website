@@ -120,7 +120,7 @@
 }
 
 .shop {
-  grid-column: span 2; // Match About column width and stack below it
+  grid-column: 1 / span 2; // Force start at column 1 on next row, matching About width
 
   .title {
     display: flex;
