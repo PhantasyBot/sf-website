@@ -119,6 +119,29 @@
   }
 }
 
+.shop {
+  grid-column: 1 / -1; // Full width; forces new row under About
+
+  .title {
+    display: flex;
+    padding-bottom: desktop-vh(24px);
+  }
+
+  .shopPlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: desktop-vw(24px);
+    border: 1px dashed var(--text-secondary);
+    border-radius: desktop-vw(8px);
+
+    svg {
+      width: desktop-vw(200px);
+      height: auto;
+    }
+  }
+}
+
 .project-details {
   grid-column: span 4;
   position: relative;
