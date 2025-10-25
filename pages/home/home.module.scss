@@ -24,6 +24,14 @@
     display: flex;
     padding-bottom: desktop-vh(24px);
   }
+
+  .shop {
+    margin-top: desktop-vw(8px); // reduced gap between About and Shop
+
+    .title {
+      padding-bottom: desktop-vh(8px);
+    }
+  }
 }
 
 .projects {

@@ -1086,12 +1086,11 @@ export async function getStaticProps() {
             goal: 'Marketing and promotional campaigns specialist',
             skills: 'Marketing, Promotions, Community Building',
             profileImage: 'https://r2.rally.sh/photos/rally_pfp.png',
-            walletAddress: '0xrally1234567890abcdef1234567890abcdef12',
+            walletAddress: 'TBD',
           },
           token: {
-            address: '0x1234567890abcdef1234567890abcdef12345678',
-            ticker: '$RALLY',
-            dexLink: 'https://app.virtuals.io',
+            address: 'TBD',
+            ticker: 'TBD',
           },
           link: 'https://rally.sh',
           assetsCollection: {

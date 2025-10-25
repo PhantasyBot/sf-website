@@ -209,11 +209,11 @@
 
 .about {
   .shop {
-    margin-top: mobile-vw(16px);
+    margin-top: mobile-vw(8px); // reduced gap on mobile
 
     .title {
       display: flex;
-      padding-bottom: mobile-vw(8px);
+      padding-bottom: mobile-vw(6px);
     }
 
     .shopPlaceholder {
