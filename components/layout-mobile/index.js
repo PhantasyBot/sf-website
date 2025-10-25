@@ -73,19 +73,16 @@ const LayoutMobile = ({
           {aboutSectionTitle}
         </p>
         <div className={s.description}>{aboutSectionContent}</div>
-      </section>
-      <section
-        className={cn(s.shop, 'layout-block')}
-        aria-labelledby="shop-heading"
-      >
-        <p
-          id="shop-heading"
-          className={cn(s.title, 'p text-bold text-uppercase text-muted')}
-        >
-          Shop
-        </p>
-        <div className={s.shopPlaceholder} aria-hidden="true">
-          <PhantasyLogo />
+        <div className={s.shop} aria-labelledby="shop-heading">
+          <p
+            id="shop-heading"
+            className={cn(s.title, 'p text-bold text-uppercase text-muted')}
+          >
+            Shop
+          </p>
+          <div className={s.shopPlaceholder} aria-hidden="true">
+            <PhantasyLogo />
+          </div>
         </div>
       </section>
     </div>

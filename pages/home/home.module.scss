@@ -119,25 +119,27 @@
   }
 }
 
-.shop {
-  grid-column: 1 / span 2; // Force start at column 1 on next row, matching About width
+.about {
+  .shop {
+    margin-top: desktop-vw(16px);
 
-  .title {
-    display: flex;
-    padding-bottom: desktop-vh(24px);
-  }
+    .title {
+      display: flex;
+      padding-bottom: desktop-vh(12px);
+    }
 
-  .shopPlaceholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: desktop-vw(24px);
-    border: 1px dashed var(--text-secondary);
-    border-radius: desktop-vw(8px);
+    .shopPlaceholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: desktop-vw(16px);
+      border: 1px dashed var(--text-secondary);
+      border-radius: desktop-vw(8px);
 
-    svg {
-      width: desktop-vw(200px);
-      height: auto;
+      svg {
+        width: desktop-vw(200px);
+        height: auto;
+      }
     }
   }
 }

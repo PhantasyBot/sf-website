@@ -303,6 +303,20 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
               <ScrollableBox className={s.description}>
                 {aboutSectionContent}
               </ScrollableBox>
+              <div className={s.shop} aria-labelledby="shop-heading">
+                <h2
+                  id="shop-heading"
+                  className={cn(
+                    s.title,
+                    'p text-bold text-uppercase text-muted',
+                  )}
+                >
+                  Shop
+                </h2>
+                <div className={s.shopPlaceholder} aria-hidden="true">
+                  <PhantasyLogo />
+                </div>
+              </div>
             </section>
             <section className={s.projects} aria-labelledby="projects-heading">
               <h2
@@ -348,17 +362,6 @@ export default function Home({ phantasy, contact, projects, aboutContent }) {
                   ))}
                 </ul>
               </ScrollableBox>
-            </section>
-            <section className={s.shop} aria-labelledby="shop-heading">
-              <h2
-                id="shop-heading"
-                className={cn(s.title, 'p text-bold text-uppercase text-muted')}
-              >
-                Shop
-              </h2>
-              <div className={s.shopPlaceholder} aria-hidden="true">
-                <PhantasyLogo />
-              </div>
             </section>
             <main
               className={s['project-details']}

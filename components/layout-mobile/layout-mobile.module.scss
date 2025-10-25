@@ -207,25 +207,27 @@
   margin-top: mobile-vw(50px);
 }
 
-.shop {
-  margin-top: mobile-vw(24px);
+.about {
+  .shop {
+    margin-top: mobile-vw(16px);
 
-  .title {
-    display: flex;
-    padding-bottom: mobile-vw(12px);
-  }
+    .title {
+      display: flex;
+      padding-bottom: mobile-vw(8px);
+    }
 
-  .shopPlaceholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: mobile-vw(16px);
-    border: 1px dashed var(--text-secondary);
-    border-radius: mobile-vw(8px);
+    .shopPlaceholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: mobile-vw(16px);
+      border: 1px dashed var(--text-secondary);
+      border-radius: mobile-vw(8px);
 
-    svg {
-      width: mobile-vw(150px);
-      height: auto;
+      svg {
+        width: mobile-vw(150px);
+        height: auto;
+      }
     }
   }
 }
